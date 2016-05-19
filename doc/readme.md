@@ -14,8 +14,8 @@
 
 ![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/level_description.png)
 
-Содеражание:
- 1.  [Прикладной уровень](https://github.com/1C-Company/DirectBank/blob/master/doc/application-layer/readme.md)
- 2.  [API обмена данными с банком из 1С](https://github.com/1C-Company/DirectBank/blob/master/doc/transport-api/readme.md)
- 3.  [API обмена данными с банком из 1С через внешнюю компоненту](https://github.com/1C-Company/DirectBank/blob/master/doc/vk-transport-api/readme.md)
- 4.  [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)
+
++ [Прикладной уровень](https://github.com/1C-Company/DirectBank/blob/master/doc/application-layer/readme.md)
++ [API обмена данными с банком из 1С](https://github.com/1C-Company/DirectBank/blob/master/doc/transport-api/readme.md)
++ [API обмена данными с банком из 1С через внешнюю компоненту](https://github.com/1C-Company/DirectBank/blob/master/doc/vk-transport-api/readme.md)
++ [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)

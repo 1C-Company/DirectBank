@@ -7,3 +7,5 @@
  Более подробную информацию об этой технологии и вариантах ее применения в решениях 1С можно найти по адресу – [http://directbank.1c.ru](http://directbank.1c.ru/)
 
 ![](http://www.v8.1c.ru/edi/edi_app/bank/images/scheme~.png)
+- - -
+## [Описание стандарта взаимодействия между «1С:Предприятие 8» и банковским сервисом по технологии DirectBank (прямой обмен с банком)](https://github.com/1C-Company/DirectBank/blob/master/doc/readme.md)

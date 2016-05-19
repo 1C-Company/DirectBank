@@ -1,22 +1,21 @@
 # Описание стандарта взаимодействия между «1С:Предприятие 8» и банковским сервисом по технологии DirectBank (прямой обмен с банком)
 
 Прямой обмен электронными документами из решений «1С:Предприятие 8» с банковской состоит из двух уровней взаимодействия:
+
 1. Прикладной уровень – описывает структуру и порядок взаимодействия с прикладными объектами, которые участвуют в обмене.
 
-2. API обмена данными – уровень который описывает подходы и методы осуществления операций обмена данными, он в свою очередь делится по виду взаимодействия с банком:
- - Взаимодействие с веб-сервисам банка из 1С напрямую;
- - Взаимодействие с банком через внешнюю компоненту.
+2. API обмена данными – уровень который описывает подходы и методы осуществления операций обмена данными, он в свою очередь делится делится на следующие уровни:
+ - Уровень аутентификации;
+ - Транспортный уровень.
 
- А каждый вид взаимодействия уже делится на уровни:
- - Аутентификации
- - Транспортный
+Так же имеется возможность организации обмена с банком используя внешнюю компоненту.
 
 Графически это можно отобразить так:
 
 ![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/level_description.png)
 
-Содержание:
+Содеражание:
  1.  [Прикладной уровень](https://github.com/1C-Company/DirectBank/blob/master/doc/application-layer/readme.md)
- 2.  [API обмена данными с банком](https://github.com/1C-Company/DirectBank/blob/master/doc/transport-api/readme.md)
- 3.  [API обмена данными с банком через внешнюю компоненту](https://github.com/1C-Company/DirectBank/blob/master/doc/vk-transport-api/readme.md)
- 4.  [Схемы](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)
+ 2.  [API обмена данными с банком из 1С](https://github.com/1C-Company/DirectBank/blob/master/doc/transport-api/readme.md)
+ 3.  [API обмена данными с банком из 1С через внешнюю компоненту](https://github.com/1C-Company/DirectBank/blob/master/doc/vk-transport-api/readme.md)
+ 4.  [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)

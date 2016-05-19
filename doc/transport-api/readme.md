@@ -45,19 +45,19 @@ API обмена данными – уровень который описыва
 #### <a name="1.1.1"></a> Метод LogonCert (HTTP-метод POST)
 
 **Заголовки:**
-Host: <Адрес ресурса банка>
-Content-Type: application/xml; charset=utf-8
-CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
-APIVersion: <Версия API обмена данными> 
+- Host: <Адрес ресурса банка>
+- Content-Type: application/xml; charset=utf-8
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
+- APIVersion: <Версия API обмена данными>
 
 **Тело запроса:**
-Content: < XML-файл, соответствующий XML-схеме данных для аутентификации по закр.ключу>
+- Content: < XML-файл, соответствующий XML-схеме данных для аутентификации по закр.ключу>
 
 
 **Успешный ответ:**
-HTTP/1.1 200 OK
-Content-Type: application/xml; charset=utf-8
-Content: < XML-файл, соответствующий XML-схеме ответа банк.сервиса>
+- HTTP/1.1 200 OK
+- Content-Type: application/xml; charset=utf-8
+- Content: < XML-файл, соответствующий XML-схеме ответа банк.сервиса>
 
 **Параметры:**
 

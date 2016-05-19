@@ -1,4 +1,4 @@
-#API обмена данными с банком из 1С
+#API прямого обмена данными с банком
 
 API обмена данными – уровень который описывает подходы и методы осуществления операций обмена данными, он в свою очередь делится на следующие уровни:
 - Уровень аутентификации;
@@ -11,7 +11,7 @@ API обмена данными – уровень который описыва
    + [Метод **LogonCert** (HTTP-метод POST)](#1.1.1)
  + [Аутентификация по логину и паролю](#1.2)
    + [Метод **Logon** (HTTP-метод POST)](#1.2.1)
-   + [Метод **LogonOTP** (HTTP-метод POST)](#1.2.2)
+    + [Метод **LogonOTP** (HTTP-метод POST)](#1.2.2)
  + [Рекомендации для банковского сервиса](#1.3)
 + [Порядок взаимодействия на транспортном уровне](#2)
  + [Формирование и разбор транспортного контейнера](#2.1)
@@ -345,4 +345,120 @@ Content-Length: 145
         </LogonResponse>
     </Success>
 </ResultBank>
+```
+
+### <a name="1.3"></a> Рекомендации для банковского сервиса
+
+Время жизни авторизованной сессии на стороне банк.сервиса рекомендуется устанавливать 5 минут, а при получении новых запросов из «1С:Предприятия 8» – автоматически его продлевать.
+В случае обнаружения 3-х подряд неверных попыток аутентификации на банковском сервисе в течение 30 секунд с одного IP-адреса рекомендуется отклонять все последующие попытки аутентификации с этого IP-адреса в течение 60 секунд.
+
+В случае обнаружения 10-ти подряд неверных попыток аутентификации с одного IP-адреса в течение 120 секунд банковскому сервису рекомендуется отклонять все последующие попытки аутентификации с этого IP-адреса в течение 240 секунд.
+
+При отклонении в систему «1С:Предприятие 8» банковский сервис должен в синхронном режиме возвращать соответствующую ошибку (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
+
+## <a name="2"></a> Порядок взаимодействия на транспортном уровне
+
+Данный уровень позволяет отправлять и получать электронные документы между системой «1С:Предприятие 8» Клиента и Банком по согласованным между сторонами обмена настройкам, используя шифрованный канал (протокол TLS 1.0/1.2) (подробнее см. раздел «Обеспечение безопасности данных»).
+
+Инициатором сеанса обмена всегда выступает система «1С:Предприятие 8».
+Для отправки и получения всех электронных документов используется единый адрес ресурса банка вида: `https://<host>:<port>`.
+
+Для передачи электронных документов между участниками обмена используется «транспортный контейнер» - XML-файл, сформированный по определенному формату (XML-схема транспортного контейнера).
+
+Отправителем и получателем транспортного контейнера могут быть как Клиент (Организация), работающий на системе «1С:Предприятие 8», так и Банк (роли участников обмена зависят от конкретной бизнес-операции).
+
+### <a name="2.1"></a> Формирование и разбор транспортного контейнера
+
+Формирование и разбор транспортного контейнер зависит от настроек обмена с конкретным банковским сервисом и может быть представлен в виде схем:
+
+![Формирование и разбор транспортного контейнера](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/shipping container write and read rules.png)
+
+### <a name="2.2"></a> Получение настроек обмена с банком в автоматическом режиме
+
+Получение настроек обмена с банком в 1С выполняется в 3 этапа:
+- аутентификация Клиента на стороне Банка (если нет ранее открытой сессии);
+- передача в банк расчетного счета Клиента, банк по этому номеру формирует файл настроек и отправляет обратно;
+- обработка ответа банка.
+
+## <a name="2.2.1"></a> Метод  GetSettings (HTTP-метод POST)
+
+**Заголовки:**
+- Host: <Адрес ресурса банка>
+- Content-Type: application/xml; charset=utf-8
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы. Если идентификатор неизвестен (первый запрос настроек), то передается «0»>
+- Account: <Номер расчетного счета Клиента>
+- Bic: <БИК Банка>
+- SID: <Идентификатор авторизованной сессии>
+- APIVersion: <Версия API обмена данными>
+
+**Тело запроса:**
+- ПУСТО
+
+
+**Успешный ответ:**
+- HTTP/1.1 200 OK
+- Content-Type: application/xml; charset=utf-8
+- Content: < XML-файл, соответствующий XML-схеме ответа банк.сервиса>
+
+
+**Параметры запроса:**
+
+| Параметр   | Тип               | Кратность | Описание                                                                                                                                   |
+|------------|-------------------|-----------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Host       | string            | [1]       | Адрес ресурса банка                                                                                                                        |
+| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Если идентификатор неизвестен (первый запрос настроек), то передается «0 |
+| Account    | AccNumType        | [1]       | Номер расчетного счета Клиента                                                                                                             |
+| Bic        | string (9)        | [1]       | БИК Банка                                                                                                                                  |
+| SID        | IDType            | [1]       | Идентификатор авторизованной сессии                                                                                                        |
+| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                                                                                                  |
+**Параметры ответа:**
+
+| Параметр                         | Тип               | Кратность | Описание                        |
+|----------------------------------|-------------------|-----------|---------------------------------|
+| Тип значения: ResultBank (выбор) |                   |           |                                 |
+| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
+| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+
+**Описание:**
+
+При запросе настроек обмена в автоматическом режиме система «1С:Предприятие 8» передает в Банк номер расчетного счета Клиента (отправка производится HTTP-методом POST - метод GetSettings). Банковский сервис по номеру расчетному счета клиента формирует файл настроек (XML-файл, соответствующий XML-схеме настроек обмена с банком) и в синхронном режиме возвращается в «1С:Предприятие 8» (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
+
+![Получение настроек обмена с банком в автоматическом режиме. GetSettings](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/GetSettings.png)
+
+Результатом неуспешного запроса настроек обмена будет ошибка, возвращаемая банковской системой также в синхронном режиме (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
+
+Особенностью данного процесса является то, что на момент первого запроса настроек обмена с банком в системе «1С:Предприятие 8» неизвестен уникальный идентификатор Клиента в банковской системе. В этом случае следует использовать «0» в качестве значения этого реквизита.
+
+**Пример запроса** получения настроек с банком:
+
+```http
+POST https://dbogate.demobank.ru/GetSettings HTTP/1.1
+Host: dbogate.demobank.ru
+Accept: */*
+CustomerID: 0
+SID: 8867755b6fbb4ae296aa0ac6b179ae88
+Bic: 044525888
+Account: 40802810200000099888
+APIVersion: 2.1.1
+User-Agent: 1C+Enterprise/8.3
+Content-Type: application/xml; charset=utf-8
+Content-Length: 0
+```
+
+**Пример успешного ответа** на запрос получения настроек с банком:
+
+```xml
+HTTP/1.1 200 OK
+Content-Type: application/xml;charset=UTF-8
+Content-Length: 2145
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
+    <Success>
+<GetSettingsResponse creationDate="2015-02-19T11:21:02" formatVersion="2.1.1" id="502036">
+	<Data dockind="06">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPGVkbzpTZXR0aW5ncyBjcmVhdGlvbkRhdGU9IjIwMTUtMDItMTlUMTE6MjE6MDJaIiBmb3JtYXRWZXJzaW9uPSIyLjAyIiB1c2VyQWdlbnQ9IkJhbmtTZXJ2aWNlIiBpZD0iNTAyMDM2MjcxMjEiIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL2JhbmsuMWMucnUvWE1MU2NoZW1hIDFDLUJhbmtfU2V0dGluZ3MueHNkIiB4bWxuczplZG89Imh0dHA6Ly9iYW5rLjFjLnJ1L1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSI+CiAgPGVkbzpTZW5kZXIgYmljPSIwNDQ1MjU5ODUiLz4KICA8ZWRvOlJlY2lwaWVudCBrcHA9IjExMTExMTExMSIgaW5uPSI3NjE3MDAwMjExMzIiIGlkPSI1MDIwMzYyNzEyMSIvPgogIDxlZG86RGF0YT4KICAgIDxlZG86Q3VzdG9tZXJJRD41MDIwMzYyNzEyMTwvZWRvOkN1c3RvbWVySUQ+CiAgICA8ZWRvOkJhbmtTZXJ2ZXJBZGRyZXNzPmh0dHBzOi8vZGJvZ2F0ZS1zdGFnZS5ub21vcy5ydS8xQ0Rib0dhdGUvPC9lZG86QmFua1NlcnZlckFkZHJlc3M+CiAgICA8ZWRvOkZvcm1hdFZlcnNpb24+Mi4wMjwvZWRvOkZvcm1hdFZlcnNpb24+CiAgICA8ZWRvOkVuY29kaW5nPlVURi04PC9lZG86RW5jb2Rpbmc+CiAgICA8ZWRvOkNvbXByZXNzPmZhbHNlPC9lZG86Q29tcHJlc3M+CiAgICA8ZWRvOkxvZ29uPgogICAgICA8ZWRvOkNlcnRpZmljYXRlPgogICAgICAgIDxlZG86RW5jcnlwdGluZ0FsZ29yaXRobT5HT1NUMjgxNDc8L2VkbzpFbmNyeXB0aW5nQWxnb3JpdGhtPgogICAgICA8L2VkbzpDZXJ0aWZpY2F0ZT4KICAgIDwvZWRvOkxvZ29uPgogICAgPGVkbzpDcnlwdG9QYXJhbWV0ZXJzPgogICAgICA8ZWRvOkNTUE5hbWU+U2lnbmFsLUNPTSBFQ0dPU1QgQ3J5cHRvZ3JhcGhpYyBQcm92aWRlcjwvZWRvOkNTUE5hbWU+CiAgICAgIDxlZG86Q1NQVHlwZT4xMjk8L2VkbzpDU1BUeXBlPgogICAgICA8ZWRvOlNpZ25BbGdvcml0aG0+RUNSMzQxMDwvZWRvOlNpZ25BbGdvcml0aG0+CiAgICAgIDxlZG86SGFzaEFsZ29yaXRobT5SVVMtSEFTSDwvZWRvOkhhc2hBbGdvcml0aG0+CiAgICAgIDxlZG86RW5jcnlwdGVkPgogICAgICAgIDxlZG86RW5jcnlwdEFsZ29yaXRobT5HT1NUMjgxNDc8L2VkbzpFbmNyeXB0QWxnb3JpdGhtPgogICAgICA8L2VkbzpFbmNyeXB0ZWQ+CiAgICAgIDxlZG86QmFua1RydXN0ZWRSb290Q2VydGlmaWNhdGUvPgogICAgICA8ZWRvOkJhbmtDZXJ0aWZpY2F0ZT5NSUlFMXpDQ0JIbWdBd0lCQWdJTEFXd0RBV1pnQVE4Q0xTb3dEZ1lLS3dZQkJBR3RXUUVEQWdVQU1JSHVNUXN3CkNRWURWUVFHRXdKU1ZURVZNQk1HQTFVRUNCNE1CQndFUGdSQkJEb0VNZ1F3TVJVd0V3WURWUVFISGd3RUhBUSsKQkVFRU9nUXlCREF4TlRBekJnTlZCQW9lTEFRZUJCQUVIZ0FnQkJFRU1BUTlCRG9BSUFBaUJDUUVHZ0FnQkI0RQpRZ1E2QkVBRVN3UkNCRGdFTlFBaU1WOHdYUVlEVlFRREhsWUVJd1EwQkQ0RVFRUkNCRDRFTWdRMUJFQUVUd1JPCkJFa0VPQVE1QUNBRUpnUTFCRDBFUWdSQUFDQUVIZ1FRQkI0QUlBUVJCREFFUFFRNkFDQUFJZ1FrQkJvQUlBUWUKQkVJRU9nUkFCRXNFUWdRNEJEVUFJakVaTUJjR0NTcUdTSWIzRFFFSkFSWUtjR3RwUUc5bVl5NXlkVEFlRncweApOREV4TWpBd09ESTRNamhhRncweE9URXhNakF3T0RJNE1qaGFNSUh2TVFzd0NRWURWUVFHRXdKU1ZURVZNQk1HCkExVUVDQjRNQkJ3RUhnUWhCQm9FRWdRUU1SVXdFd1lEVlFRSEhnd0VIQVFlQkNFRUdnUVNCQkF4TlRBekJnTlYKQkFvZUxBUWZCQkFFSGdBZ0JCRUVNQVE5QkRvQUlBQWlCQ1FFR2dBZ0JCNEVRZ1E2QkVBRVN3UkNCRGdFTlFBaQpNUlV3RXdZRFZRUUxIZ3dBUkFCQ0FFOEFMUUF4QUVNeFNUQkhCZ05WQkFNZVFBUWZCRUFFTlFRM0JEZ0VOQVExCkJEMEVRZ0FnQkI4RUVBUWVBQ0FFRVFRUUJCMEVHZ0FnQUNJRUpBUWFBQ0FFSGdRaUJCb0VJQVFyQkNJRUdBUVYKQUNJeEdUQVhCZ2txaGtpRzl3MEJDUUVXQ21SaWIwQnZabU11Y25Vd1hqQVdCZ29yQmdFRUFhMVpBUVlDQmdncQpoa2pPUFFNQkJ3TkVBQVJCQkZsRkRVTTRGM2wvWlVNKzMyRG82NVBaZS94eW5pUGd1RjZ2WHhYeDZ0Y1N3TnAwCjlzRXMvb29UUStvdVdiYVdISXZCT1FnTEU5SFZDWmZnUUY2R3JtK2pnZ0h3TUlJQjdEQWRCZ05WSFE0RUZnUVUKMDB3V1pMOCtuQlVOWHNMREUzczEzZHZGZndrd2dnRWtCZ05WSFNNRWdnRWJNSUlCRjRBVVNkOVQ1VDIyRmRNOQo4TUJ0M1puWk9ldGw5bG1oZ2ZTa2dmRXdnZTR4Q3pBSkJnTlZCQVlUQWxKVk1SVXdFd1lEVlFRSUhnd0VIQVErCkJFRUVPZ1F5QkRBeEZUQVRCZ05WQkFjZURBUWNCRDRFUVFRNkJESUVNREUxTURNR0ExVUVDaDRzQkI0RUVBUWUKQUNBRUVRUXdCRDBFT2dBZ0FDSUVKQVFhQUNBRUhnUkNCRG9FUUFSTEJFSUVPQVExQUNJeFh6QmRCZ05WQkFNZQpWZ1FqQkRRRVBnUkJCRUlFUGdReUJEVUVRQVJQQkU0RVNRUTRCRGtBSUFRbUJEVUVQUVJDQkVBQUlBUWVCQkFFCkhnQWdCQkVFTUFROUJEb0FJQUFpQkNRRUdnQWdCQjRFUWdRNkJFQUVTd1JDQkRnRU5RQWlNUmt3RndZSktvWkkKaHZjTkFRa0JGZ3B3YTJsQWIyWmpMbkoxZ2dnQmJBRUJBUThCQWpBTEJnTlZIUThFQkFNQ0EvZ3dnWlVHQTFVZApJQVNCalRDQmlqQ0Jod1lLS3dZQkJBR0NuQVVDQVRCNU1ERUdDQ3NHQVFVRkJ3SUJGaVZvZEhSd09pOHZkM2QzCkxtOW1ZeTV5ZFM5aFltOTFkQzlqWVMxeVpXZHNZVzFsYm5Rdk1FUUdDQ3NHQVFVRkJ3SUNNRGdhTnRIbzhmTGwKN1BzZzVPang4dUR0OXVqdTdlM3U0KzRnNGVEdDZ1N2k4ZXJ1NCs0Zzd1SHg2L1BtNk9MZzdlai9JQ2pCNE8zcQpLVEFPQmdvckJnRUVBYTFaQVFNQ0JRQURTQUF3UlFJZ0R3NEpKL0FmV3E3WHY1aW5lYWJCQVlmUHJiclhGVU1ICjVxbGtseUJDL3ljQ0lRQzJjekI1OWdxeS9EVDRDeFRkR3gvdW9HTHNtT2ZHeGJNUzE1Q0xobGNOYlE9PTwvZWRvOkJhbmtDZXJ0aWZpY2F0ZT4KICAgICAgPGVkbzpDdXN0b21lclNpZ25hdHVyZT4KICAgICAgICA8ZWRvOkdyb3VwU2lnbmF0dXJlcyBudW1iZXJHcm91cD0iMSI+CiAgICAgICAgICA8ZWRvOkNlcnRpZmljYXRlPk1JSUV2RENDQkYyZ0F3SUJBZ0lMQVd3REFWc0RBUThDSCtZd0RnWUtLd1lCQkFHdFdRRURBZ1VBTUlIdU1Rc3cKQ1FZRFZRUUdFd0pTVlRFVk1CTUdBMVVFQ0I0TUJCd0VQZ1JCQkRvRU1nUXdNUlV3RXdZRFZRUUhIZ3dFSEFRKwpCRUVFT2dReUJEQXhOVEF6QmdOVkJBb2VMQVFlQkJBRUhnQWdCQkVFTUFROUJEb0FJQUFpQkNRRUdnQWdCQjRFClFnUTZCRUFFU3dSQ0JEZ0VOUUFpTVY4d1hRWURWUVFESGxZRUl3UTBCRDRFUVFSQ0JENEVNZ1ExQkVBRVR3Uk8KQkVrRU9BUTVBQ0FFSmdRMUJEMEVRZ1JBQUNBRUhnUVFCQjRBSUFRUkJEQUVQUVE2QUNBQUlnUWtCQm9BSUFRZQpCRUlFT2dSQUJFc0VRZ1E0QkRVQUlqRVpNQmNHQ1NxR1NJYjNEUUVKQVJZS2NHdHBRRzltWXk1eWRUQWVGdzB4Ck5ERXdNRFl3TnpFd016SmFGdzB4TlRFeU1UQXdOekV3TXpKYU1JSGFNUXN3Q1FZRFZRUUdFd0pTVlRFVk1CTUcKQTFVRUNCNE1CQndFSGdRaEJCb0VFZ1FRTVNrd0p3WURWUVFLSGlBRUdBUWZBQ0FFSHdRMUJFSUVRQVErQkRJRQpPQVJIQUNBRU9BQWdCQm9FUGpFUE1BMEdBMVVFQ3g0R0FFUUFRZ0JQTVVVd1F3WURWUVFNSGp3RUdBUTlCRFFFCk9BUXlCRGdFTkFSREJEQUVPd1JNQkQwRVN3UTVBQ0FFUHdSQUJEVUVOQVEvQkVBRU9BUTlCRGdFUEFRd0JFSUUKTlFRN0JFd3hNVEF2QmdOVkJBTWVLQVFmQkRVRVFnUkFCRDRFTWdBZ0JCOEVOUVJDQkVBQUlBUWZCRFVFUWdSQQpCRDRFTWdRNEJFY3dYakFXQmdvckJnRUVBYTFaQVFZQ0JnZ3Foa2pPUFFNQkJ3TkVBQVJCQks4eDZDZ09aYmJRCkd2eDVZQm1LbDRWdFo5UkhzbnQzK2wwS0k3eWt6RGFWOGRmVldONjN0eE5xSWJTOUNIQ1lQNU1ZZzZINFdCRWMKR1F4bGMxVU9YVU9qZ2dIcE1JSUI1VEFkQmdOVkhRNEVGZ1FVTHhCZlFUSGFWQ3BJRmtOVzZPa0p4NWNJYi9BdwpnZ0VrQmdOVkhTTUVnZ0ViTUlJQkY0QVVTZDlUNVQyMkZkTTk4TUJ0M1puWk9ldGw5bG1oZ2ZTa2dmRXdnZTR4CkN6QUpCZ05WQkFZVEFsSlZNUlV3RXdZRFZRUUlIZ3dFSEFRK0JFRUVPZ1F5QkRBeEZUQVRCZ05WQkFjZURBUWMKQkQ0RVFRUTZCRElFTURFMU1ETUdBMVVFQ2g0c0JCNEVFQVFlQUNBRUVRUXdCRDBFT2dBZ0FDSUVKQVFhQUNBRQpIZ1JDQkRvRVFBUkxCRUlFT0FRMUFDSXhYekJkQmdOVkJBTWVWZ1FqQkRRRVBnUkJCRUlFUGdReUJEVUVRQVJQCkJFNEVTUVE0QkRrQUlBUW1CRFVFUFFSQ0JFQUFJQVFlQkJBRUhnQWdCQkVFTUFROUJEb0FJQUFpQkNRRUdnQWcKQkI0RVFnUTZCRUFFU3dSQ0JEZ0VOUUFpTVJrd0Z3WUpLb1pJaHZjTkFRa0JGZ3B3YTJsQWIyWmpMbkoxZ2dnQgpiQUVCQVE4QkFqQUxCZ05WSFE4RUJBTUNBL2d3Z1k0R0ExVWRJQVNCaGpDQmd6Q0JnQVlLS3dZQkJBR0NuQVVCCkFUQnlNREVHQ0NzR0FRVUZCd0lCRmlWb2RIUndPaTh2ZDNkM0xtOW1ZeTV5ZFM5aFltOTFkQzlqWVMxeVpXZHMKWVcxbGJuUXZNRDBHQ0NzR0FRVUZCd0lDTURFYUw5SG84ZkxsN1BzZzVPang4dUR0OXVqdTdlM3U0KzRnNGVEdAo2dTdpOGVydTQrNGc3dUh4Ni9QbTZPTGc3ZWovTUE0R0Npc0dBUVFCclZrQkF3SUZBQU5KQURCR0FpRUF3L01MCk9ucWczNDFkOE1IK3NDRlJQOUxtMDMzUDcveDEwckF2TisydytxUUNJUUROQUJnem1yOFNFemtSd1kwKysrOWgKZXRmWGl1MGZSRHNudkk0QlhWRTZZdz09PC9lZG86Q2VydGlmaWNhdGU+CiAgICAgICAgPC9lZG86R3JvdXBTaWduYXR1cmVzPgogICAgICA8L2VkbzpDdXN0b21lclNpZ25hdHVyZT4KICAgIDwvZWRvOkNyeXB0b1BhcmFtZXRlcnM+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjAxIi8+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjAyIi8+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjAzIi8+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjA0Ij4KICAgICAgPGVkbzpTaWduZWQ+CiAgICAgICAgPGVkbzpSdWxlU2lnbmF0dXJlcz4oMCk8L2VkbzpSdWxlU2lnbmF0dXJlcz4KICAgICAgPC9lZG86U2lnbmVkPgogICAgPC9lZG86RG9jdW1lbnQ+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjA1Ij4KICAgICAgPGVkbzpTaWduZWQ+CiAgICAgICAgPGVkbzpSdWxlU2lnbmF0dXJlcz4oMCk8L2VkbzpSdWxlU2lnbmF0dXJlcz4KICAgICAgPC9lZG86U2lnbmVkPgogICAgPC9lZG86RG9jdW1lbnQ+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjA2Ii8+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjEwIj4KICAgICAgPGVkbzpTaWduZWQ+CiAgICAgICAgPGVkbzpSdWxlU2lnbmF0dXJlcz4oMCk8L2VkbzpSdWxlU2lnbmF0dXJlcz4KICAgICAgPC9lZG86U2lnbmVkPgogICAgPC9lZG86RG9jdW1lbnQ+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjE0Ij4KICAgICAgPGVkbzpTaWduZWQ+CiAgICAgICAgPGVkbzpSdWxlU2lnbmF0dXJlcz4oMCk8L2VkbzpSdWxlU2lnbmF0dXJlcz4KICAgICAgPC9lZG86U2lnbmVkPgogICAgPC9lZG86RG9jdW1lbnQ+CiAgICA8ZWRvOkRvY3VtZW50IGRvY0tpbmQ9IjE1Ii8+CiAgPC9lZG86RGF0YT4KPC9lZG86U2V0dGluZ3M+Cg==</Data>
+        		</GetSettingsResponse>
+	</Success>
+</ResultBank>
+
 ```

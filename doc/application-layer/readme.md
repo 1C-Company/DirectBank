@@ -4,28 +4,27 @@
 
 [TOC]
 
-## Настройка обмена электронными документами.
+## <a name="1"></a> Настройка обмена электронными документами.
 Для начала использования прямого обмена электронными документами из решений  «1С:Предприятие 8» с банковской системой Клиент должен получить параметры обмена данными из Банка – в «1С:Предприятии 8» будут автоматически созданы настройки ЭДО с Банком.
 
 Порядок действий Клиента по орг.части и способ получения настроек обмена определяет сам Банк, например, надо ли в личном кабинете Клиента включать опцию использования нового сервиса и сохранять файл настроек на диск или же заключить доп.соглашение с Банком по обслуживанию через новый сервис и получить настройки в автомат.режиме.
 
-#### Получение настроек обмена с банком в автоматическом режиме.
+#### <a name="1.1"></a>  Получение настроек обмена с банком в автоматическом режиме.
 
 При запросе настроек обмена в автоматическом режиме система «1С:Предприятие 8» передает в Банк номер расчетного счета Клиента (отправка производится HTTP-методом POST - метод GetSettings). Банковский сервис по номеру расчетному счета клиента формирует файл настроек (XML-файл, соответствующий XML-схеме настроек обмена с банком) и в синхронном режиме возвращается в «1С:Предприятие 8» (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
 
-![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Setting%20up%20a%20direct%20exchange.png)
+![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Setting up a direct exchange.png)
 
 Результатом неуспешного запроса настроек обмена будет ошибка, возвращаемая банковской системой также в синхронном режиме (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
 
 Особенностью данного процесса является то, что на момент первого запроса настроек обмена с банком в системе «1С:Предприятие 8» неизвестен уникальный идентификатор Клиента в банковской системе. В этом случае следует использовать «0» в качестве значения этого реквизита.
 
-#### Загрузка настроек обмена с банком из файла.
-	
+#### <a name="1.2"></a> Загрузка настроек обмена с банком из файла.
 Файл настроек обмена (XML-файл, соответствующий XML-схеме настроек обмена с банком) предварительно получается Клиентом из банковской системы по каналам связи, которые определяет сам Банк. После получения файла настроек Клиент указывает его в помощнике создания настроек и система «1С:Предприятие 8» создает настройку согласно данным файла.
 
-![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Load%20settings%20from%20a%20file.png)
+![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Load settings from a file.png)
 
-#### Пример XML-файла настроек обмена с банком:
+#### <a name="1.3"></a>  Пример XML-файла настроек обмена с банком:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Settings xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
@@ -54,14 +53,14 @@ creationDate="2016-04-22T09:38:51" userAgent="DemoBankService">
 
 - - -
 
-## Порядок обмена электронными документами.
+## <a name="2"></a> Порядок обмена электронными документами.
 Отправителем и получателем электронного документа могут быть как Клиент (Организация), работающий на системе «1С:Предприятие 8», так и Банк (роли участников обмена зависят от конкретной бизнес-операции). При этом инициатором обмена всегда выступает система «1С:Предприятие 8».
 
 Общий принцип работы на прикладном уровне может быть представлен в виде схемы:
 
-![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Procedure%20for%20electronic%20document%20exchange.png)
+![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Procedure for electronic document exchange.png)
 
-#### Проверка работоспособности обмена электронными документами.
+#### <a name="2.1"></a> Проверка работоспособности обмена электронными документами.
 - На этапе отладки или профилактических работ часто возникает потребность проверить доступность банковского сервиса, не приступая к штатному обмену электронными документами. Для таких целей предназначен специальный вид электронного документа.
 - По команде в «1С:Предприятии 8» формируется электронный документ «Запрос-зонд» (XML-файл, соответствующий XML-схеме запроса-зонда).
 - Если используется электронная подпись на стороне «1С:Предприятия 8» (см. раздел «Обеспечение безопасности данных»), то система предложит пользователю подписать электронный документ.
@@ -77,15 +76,21 @@ creationDate="2016-04-22T09:38:51" userAgent="DemoBankService">
 - Далее получение данных из Банка проходит согласно протоколу, описанному в разделе «Порядок взаимодействия на транспортном уровне».
 - Статус запроса-зонда система «1С:Предприятие 8» сообщит пользователю после успешного разбора входящего транспортного контейнера из Банка.
 
-#### Пример XML-файла запроса-зонда
+#### <a name="2.2"></a> Пример XML-файла запроса-зонда
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Probe xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="eafa28b5-6600-424c-b0d3-3785274d570d" formatVersion="2.1.1" creationDate="2016-04-22T09:33:57" userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
 <Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name=" ДЕМО-БАНК "/>
-<Digest>
-        <Data algorithmVersion="1.0.1"> 0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3QNCtCt0YLQviDQv9GA0LjQvNC10YAg0LfQvdCw0YfQtdC90LjRjyDRjdC70LXQvNC10L3RgtCwIERpZ2VzdA0K0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3Q=</Data>
+	<Digest>
+        <Data algorithmVersion="1.0.1"> 0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN
+        0LvQtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Q
+        u9C10LzQtdC90YLQsCBEaWdlc3QNCtCt0YLQviDQv9GA0LjQvNC10YAg0LfQvdCw0YfQtdC90LjRjyDRjdC7
+        0LXQvNC10L3Rgt CwIERpZ2VzdA0K0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0Lv
+        QtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Qu9C
+        10LzQtdC90YLQsCBEaWdlc3Q=
+ 		</Data>
     </Digest>
 </Probe>
 ```

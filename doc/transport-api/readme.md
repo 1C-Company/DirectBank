@@ -85,7 +85,7 @@ Content: < XML-файл, соответствующий XML-схеме отве�
 ![Аутентификация по закрытому ключу электронной подписи](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/LogonCert.png)
 
 **Пример запроса** аутентификации по закрытому ключу:
-```http
+```xml
 POST https://dbogate.demobank.ru/LogonCert HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
@@ -96,7 +96,13 @@ Content-Type: application/xml; charset=utf-8
 Content-Length: 2294
 
 <?xml version="1.0" encoding="UTF-8"?>
-<X509Data xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="d50eb1dd-52cc-487f-a504-9a2e31b9b741" formatVersion="2.1.1" creationDate="2015-02-19T09:28:03" userAgent="1С - БЭД: 1.3">
+<X509Data xmlns="http://directbank.1c.ru/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    id="d50eb1dd-52cc-487f-a504-9a2e31b9b741"
+    formatVersion="2.1.1"
+    creationDate="2015-02-19T09:28:03"
+    userAgent="1С - БЭД: 1.3">
 	<X509IssuerName>Удостоверяющий Центр Банка</X509IssuerName>
 	<X509SerialNumber>022C03015B03010F022FE2</X509SerialNumber>
 	<X509Certificate>
@@ -129,7 +135,7 @@ Content-Length: 2294
 ```
 
 **Пример успешного ответа** на запрос аутентификации по закрытому ключу:
-```http
+```xml
 HTTP/1.1 200 OK
 Content-Type: application/xml;charset=UTF-8
 Content-Length: 1145

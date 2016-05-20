@@ -473,7 +473,7 @@ Content-Length: 2145
 - отправка транспортного контейнера в Банк и обработка ответа;
 
 
-## <a name="2.3.1"></a> Метод  SendPack (HTTP-метод POST)
+## <a name="2.3.1"></a> Метод SendPack (HTTP-метод POST)
 
 **Заголовки:**
 - Host: <Адрес ресурса банка>
@@ -578,5 +578,188 @@ Content-Length: 145
 	<ID>50214584626</ID>
         </SendPacketResponse>
     </Success>
+</ResultBank>
+```
+
+### <a name="2.4"></a> Получение электронных документов в 1С
+
+Получение электронных документов в 1С выполняется в 3 этапа:
+- аутентификация Клиента на стороне Банка (если нет ранее открытой сессии);
+- запрос у Банка списка подготовленных к передаче транспортных контейнеров, содержащих электронные документы для Клиента;
+- запрос у Банка транспортного контейнера по его уникальному идентификатору и разбор в 1С.
+
+
+## <a name="2.4.1"></a> Метод GetPackList (HTTP-метод GET) 
+
+**Заголовки:**
+- Host: <Адрес ресурса банка>
+- Content-Type: application/xml; charset=utf-8
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
+- SID: <Идентификатор авторизованной сессии>
+- APIVersion: <Версия API обмена данными>
+
+**Адрес запроса:**
+- https://<Адрес ресурса банка>/GetPackList?date=<Отметка времени>
+(Отметка времени в формате «dd.MM.yyyy HH:mm:ss», где dd – день числом, MM – месяц числом, yyyy – год числом, HH – часы в формате 24, mm – минуты, ss – секунды.)
+
+**Тело запроса:**
+- < XML-файл, соответствующий XML-схеме транспортного контейнера>
+
+
+**Успешный ответ:**
+- HTTP/1.1 200 OK
+- Content-Type: application/xml; charset=utf-8
+- Content: < XML-файл, соответствующий XML-схеме ответа банк.сервиса>
+
+
+**Параметры запроса:**
+
+| Параметр   | Тип               | Кратность | Описание                                                         |
+|------------|-------------------|-----------|------------------------------------------------------------------|
+| Host       | string            | [1]       | Адрес ресурса банка                                              |
+| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| SID        | IDType            | [1]       | Идентификатор авторизованной сессии                              |
+| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                        |
+| Packet     | Packet            | [1]       | Пакет электронных документов                                     |
+
+**Параметры ответа:**
+
+| Параметр                         | Тип               | Кратность | Описание                        |
+|----------------------------------|-------------------|-----------|---------------------------------|
+| Тип значения: ResultBank (выбор) |                   |           |                                 |
+| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
+| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+
+**Описание:**
+
+- Проходит аутентификация на стороне Банка согласно протоколу, описанному в разделе «Порядок взаимодействия на уровне аутентификации».
+- Если аутентификация пройдена успешно, система «1С:Предприятия 8» запрашивает Банк на наличие подготовленных транспортных контейнеров для Клиента (запрос на ресурс Банка производится HTTP-методом GET – метод GetPackList). В синхронном режиме банковская система возвращает либо ошибку, либо список уникальных идентификаторов транспортных контейнеров, готовых к передаче со стороны Банка и отметку времени, равную дате и времени формирования (передаются значения даты и времени сервера Банка) самого последнего транспортного контейнера, входящего в этот список (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
+ - Если в запросе из «1С:Предприятия 8» о готовых к передаче транспортных контейнерах указать «Отметку времени» (указывается значение даты и времени сервера Банка с точностью до секунды), то именно с этого момента времени будет формироваться список уникальных идентификаторов (в формате GUID), подготовленных к передаче в хронологическом порядке.
+
+   Для того чтобы получить список GUID всех, когда-либо сформированных транспортных контейнеров на банковской стороне, параметр «Отметка времени» в запросе не передается.
+
+![Получение электронных документов в 1С. GetPackList](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/GetPackList.png)
+
+**Пример запроса** получения списка уникальных идентификаторов транспортных контейнеров:
+```http
+GET https://dbogate.demobank.ru/GetPackList?date=16.02.2015%2011:25:32 HTTP/1.1
+Host: dbogate.demobank.ru
+Accept: */*
+SID: 8867755b6fbb4ae296aa0ac6b179ae88
+CustomerID: 502036
+APIVersion: 2.1.1
+User-Agent: 1C+Enterprise/8.3
+```
+
+**Пример успешного ответа** на запрос получения списка уникальных идентификаторов:
+```xml
+HTTP/1.1 200 OK
+Content-Type: application/xml;charset=UTF-8
+Content-Length: 145
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
+    <Success>
+        <GetPacketListResponse TimeStampLastPacket="2015-02-19T11:15:42">
+	<PacketID>50214585876</PacketID>
+        </GetPacketListResponse>
+    </Success>
+</ResultBank>
+```
+Система «1С:Предприятие 8» после получения списка GUID готовых к передаче транспортных контейнеров запрашивает конкретный транспортный контейнер по его GUID (запрос на ресурс Банка производится HTTP-методом GET – метод [GetPack](#2.4.1)). В синхронном режиме банковская система возвращает либо ошибку, либо транспортный контейнер (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
+Далее происходит разбор содержимого транспортного контейнера уже в системе «1С:Предприятие 8».
+
+
+## <a name="2.4.2"></a> Метод GetPack (HTTP-метод GET)
+
+**Заголовки:**
+- Host: <Адрес ресурса банка>
+- Content-Type: application/xml; charset=utf-8
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
+- SID: <Идентификатор авторизованной сессии>
+- APIVersion: <Версия API обмена данными>
+
+
+**Адрес запроса:**
+- https://<Адрес ресурса банка>/GetPack?id=< GUID транспортного контейнера>
+
+**Тело запроса:**
+- ПУСТО
+
+
+**Успешный ответ:**
+- HTTP/1.1 200 OK
+- Content-Type: application/xml; charset=utf-8
+- Content: < XML-файл, соответствующий XML-схеме ответа банк.сервиса>
+
+
+**Параметры запроса:**
+
+| Параметр   | Тип               | Кратность | Описание                                                         |
+|------------|-------------------|-----------|------------------------------------------------------------------|
+| Host       | string            | [1]       | Адрес ресурса банка                                              |
+| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| SID        | IDType            | [1]       | Идентификатор авторизованной сессии                              |
+| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                        |
+
+
+**Параметры ответа:**
+
+| Параметр                         | Тип               | Кратность | Описание                        |
+|----------------------------------|-------------------|-----------|---------------------------------|
+| Тип значения: ResultBank (выбор) |                   |           |                                 |
+| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
+| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+
+**Пример запроса** получения транспортного контейнера:
+```http
+GET https://dbogate.demobank.ru/GetPack?id=50214585876 HTTP/1.1
+Host: dbogate.demobank.ru
+Accept: */*
+SID: 8867755b6fbb4ae296aa0ac6b179ae88
+CustomerID: 502036
+APIVersion: 2.1.1
+User-Agent: 1C+Enterprise/8.3
+```
+
+**Пример успешного ответа** на запрос получения транспортного контейнера:
+```xml
+HTTP/1.1 200 OK
+Content-Type: application/xml;charset=UTF-8
+Content-Length: 2502
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
+    <Success>
+	<GetPacketResponse userAgent="Back Office"
+        creationDate="2015-02-19T11:15:42"
+        formatVersion="2.1.1"
+        id="0ef6778b-4a2c-717c-e053-248c410af4aa">
+    	<Sender>
+			<Bank bic="044525888"/>
+	    </Sender>
+        <Recipient>
+			<Customer id="502036"/>
+	    </Recipient>
+        <Document notifyRequired="false"
+        signResponse="false"
+        encrypted="false"
+        compressed="false"
+        testOnly="false"
+        formatVersion="2.02"
+        dockind="01"
+        id="0f6d6032-31b0-8337-e053-248c410a1832">
+        		<Data contentType="text/xml"fileName="">
+				PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFN0YXR1c1BhY2tldE5vdGljZSB4bWxucz0iaHR0cDovL2JhbmsuMWMucnUvWE1MU2NoZW1hIiBpZD0iMGY2ZDYwMzItMzFiMC04MzM3LWUwNTMtMjQ4YzQxMGExODMyIiBmb3JtYXRWZXJzaW9uPSIyLjAyIiBjcmVhdGlvbkRhdGU9IjIwMTUtMDItMTlUMTE6MDM6NDgiPgogIDxTZW5kZXI+CiAgICA8QmFuayBiaWM9IjA0NDUyNTk4NSIvPgogIDwvU2VuZGVyPgogIDxSZWNpcGllbnQ+CiAgICA8Q3VzdG9tZXIgaWQ9IjUwMjAzNjI3MTIxIi8+CiAgPC9SZWNpcGllbnQ+CiAgPElEUmVzdWx0U3VjY2Vzc1Jlc3BvbnNlPjUwMjE0NTgwODM4PC9JRFJlc3VsdFN1Y2Nlc3NSZXNwb25zZT4KICA8UmVzdWx0PgogICAgPFN0YXR1cz4KICAgICAgPENvZGU+MDE8L0NvZGU+CiAgICAgIDxOYW1lPtCf0YDQuNC90Y/RgjwvTmFtZT4KICAgIDwvU3RhdHVzPgogIDwvUmVzdWx0Pgo8L1N0YXR1c1BhY2tldE5vdGljZT4K
+         		</Data>
+         		<Signature x509SerialNumber="076C03010BBF0109029965"
+            x509IssuerName="CN=Удостоверяющий Центр БАНКа">
+            		<SignedData>
+					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
+            		</SignedData>
+         		</Signature>
+        	</Document>
+    	</GetPacketResponse>
+	</Success>
 </ResultBank>
 ```

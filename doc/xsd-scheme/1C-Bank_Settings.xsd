@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:edo="http://directbank.1c.ru/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
+	<xsd:element name="Settings" type="edo:Settings">
+		<xsd:annotation>
+			<xsd:documentation>Настройки обмена клиента с банком</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="Settings">
+		<xsd:annotation>
+			<xsd:documentation>Настройки обмена клиента с банком</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Sender" type="edo:BankPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Отправитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Recipient" type="edo:CustomerPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Получатель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Data">
+				<xsd:annotation>
+					<xsd:documentation>Параметры обмена</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="CustomerID" type="edo:IDCustomerType">
+							<xsd:annotation>
+								<xsd:documentation>Уникальный идентификатор клиента в банке</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="BankServerAddress">
+							<xsd:annotation>
+								<xsd:documentation>Адрес ресурса банка </xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:minLength value="1"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="FormatVersion" type="edo:FormatVersionType">
+							<xsd:annotation>
+								<xsd:documentation>Актуальная версия формата обмена данными</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Encoding" default="UTF-8">
+							<xsd:annotation>
+								<xsd:documentation>Кодировка файлов обмена</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="UTF-8"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Compress" type="xsd:boolean" default="false" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Признак сжатия электронных документов при обмене</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Logon">
+							<xsd:annotation>
+								<xsd:documentation>Способ аутентификации на ресурсе банка</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:choice>
+									<xsd:element name="Login">
+										<xsd:annotation>
+											<xsd:documentation>По логину и паролю</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="User">
+													<xsd:annotation>
+														<xsd:documentation>Логин пользователя</xsd:documentation>
+													</xsd:annotation>
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:maxLength value="50"/>
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="Certificate">
+										<xsd:annotation>
+											<xsd:documentation>По сертификату электронной подписи</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="EncryptingAlgorithm">
+													<xsd:annotation>
+														<xsd:documentation>Алгоритм шифрования, например, GOST 28147-89</xsd:documentation>
+													</xsd:annotation>
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string">
+															<xsd:maxLength value="50"/>
+														</xsd:restriction>
+													</xsd:simpleType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:choice>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="CryptoParameters" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Настройки криптографии</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="CSPName">
+										<xsd:annotation>
+											<xsd:documentation>Имя CSP (cryptographic service provider)</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="256"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="CSPType" type="xsd:int">
+										<xsd:annotation>
+											<xsd:documentation>Тип CSP (cryptographic service provider)</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="SignAlgorithm">
+										<xsd:annotation>
+											<xsd:documentation>Алгоритм подписи, например, GOST R 34.10-2001</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="50"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="HashAlgorithm">
+										<xsd:annotation>
+											<xsd:documentation>Алгоритм хэширования, например, GOST R 34.11-94</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:maxLength value="50"/>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:sequence>
+										<xsd:element name="Encrypted" minOccurs="0">
+											<xsd:annotation>
+												<xsd:documentation>Применение шифрования данных на прикладном уровне</xsd:documentation>
+											</xsd:annotation>
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="EncryptAlgorithm">
+														<xsd:annotation>
+															<xsd:documentation>Алгоритм шифрования, например, GOST 28147-89</xsd:documentation>
+														</xsd:annotation>
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:maxLength value="50"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:element>
+												</xsd:sequence>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+									<xsd:element name="BankTrustedRootCertificate" type="xsd:base64Binary" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Доверенный корневой сертификат УЦ банка</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="BankCertificate" type="xsd:base64Binary" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Сертификат электронной подписи банка</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="CustomerSignature">
+										<xsd:annotation>
+											<xsd:documentation>Карточка электронных подписей клиента</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="GroupSignatures" maxOccurs="unbounded">
+													<xsd:annotation>
+														<xsd:documentation>Группа электронных подписей</xsd:documentation>
+													</xsd:annotation>
+													<xsd:complexType>
+														<xsd:sequence>
+															<xsd:element name="Certificate" type="xsd:base64Binary" maxOccurs="9">
+																<xsd:annotation>
+																	<xsd:documentation>Сертификаты электронных подписей сотрудников клиента</xsd:documentation>
+																</xsd:annotation>
+															</xsd:element>
+														</xsd:sequence>
+														<xsd:attribute name="numberGroup" use="required">
+															<xsd:annotation>
+																<xsd:documentation>Номер группы электронных подписей</xsd:documentation>
+															</xsd:annotation>
+															<xsd:simpleType>
+																<xsd:restriction base="xsd:integer"/>
+															</xsd:simpleType>
+														</xsd:attribute>
+													</xsd:complexType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="URLAddinInfo" type="xsd:string" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Адрес-ссылка, откуда надо будет загружаться файл описания внешн.модуля, если он используется в обмене</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Document" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Настройки по видам электронных документов, которыми возможен обмен с банком</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="Signed" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Применение электронной подписи для данного вида электронного документа</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:element name="RuleSignatures">
+													<xsd:annotation>
+														<xsd:documentation>Правило, задающее наличие электронных подписей для данного вида электронного документа</xsd:documentation>
+													</xsd:annotation>
+													<xsd:simpleType>
+														<xsd:restriction base="xsd:string"/>
+													</xsd:simpleType>
+												</xsd:element>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+								<xsd:attribute name="docKind" type="edo:DocKindType" use="required">
+									<xsd:annotation>
+										<xsd:documentation>Код вида электронного документа, как он задан в описании к стандарту</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="edo:IDType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Идентификатор набора данных</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Версия формата</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="creationDate" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Дата и время формирования</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Наименование и версия программы</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

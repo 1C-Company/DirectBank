@@ -80,7 +80,7 @@ API обмена данными – уровень который описыва
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: ResultBank (выбор) |                   |           |                                 |
+| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
 | formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
 | userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
 
@@ -690,7 +690,6 @@ Content-Length: 145
 - HTTP/1.1 200 OK
 - Content-Type: application/xml; charset=utf-8
 - Content: < XML-файл, соответствующий XML-схеме ответа банк.сервиса>
-
 
 **Параметры запроса:**
 

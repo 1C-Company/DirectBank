@@ -65,24 +65,24 @@ API обмена данными – уровень который описыва
 
 | Параметр         | Тип               | Кратность | Описание                                                              |
 |------------------|-------------------|:---------:|-----------------------------------------------------------------------|
-| Host             | string            | [1]       | Адрес ресурса банка                                                   |
-| CustomerID       | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы      |
-| APIVersion       | FormatVersionType | [1]       | Версия API обмена данными                                             |
-| id               | IDType            | [1]       | Идентификатор набора данных                                           |
-| formatVersion    | FormatVersionType | [1]       | Версия формата                                                        |
-| creationDate     | dateTime          | [1]       | Дата и время формирования                                             |
-| userAgent        | UserAgentType     | [0-1]     | Наименование и версия программы                                       |
-| X509IssuerName   | string            | [1]       | Имя издателя сертификата электронной подписи  (значение атрибута"CN") |
-| X509SerialNumber | hexBinary         | [1]       | Серийный номер сертификата электронной подписи                        |
-| X509Certificate  | base64Binary      | [1]       | Двоичные данные сертификата электронной подписи                       |
+| Host             | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                                   |
+| CustomerID       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы      |
+| APIVersion       | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                             |
+| id               | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор набора данных                                           |
+| formatVersion    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                                                        |
+| creationDate     | [dateTime](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#dateTime)          | [1]       | Дата и время формирования                                             |
+| userAgent        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы                                       |
+| X509IssuerName   | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Имя издателя сертификата электронной подписи  (значение атрибута"CN") |
+| X509SerialNumber | [hexBinary](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#hexBinary)         | [1]       | Серийный номер сертификата электронной подписи                        |
+| X509Certificate  | [base64Binary](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#base64Binary)      | [1]       | Двоичные данные сертификата электронной подписи                       |
 
 **Параметры ответа:**
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
 | Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
-| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
+| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
 
 **Описание:**
 
@@ -220,18 +220,18 @@ Content-Length: 1145
 
 | Параметр      | Тип               | Кратность | Описание                                                         |
 |---------------|-------------------|:---------:|------------------------------------------------------------------|
-| Host          | string            | [1]       | Адрес ресурса банка                                              |
-| CustomerID    | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
-| Authorization | base64Binary      | [1]       | «логин + пароль» в соответствии с Basic access authentication    |
-| APIVersion    | FormatVersionType | [1]       | Версия API обмена данными                                        |
+| Host          | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
+| CustomerID    | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| Authorization | [base64Binary](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#base64Binary)      | [1]       | «логин + пароль» в соответствии с Basic access authentication    |
+| APIVersion    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
 
 **Параметры ответа:**
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
 | Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
-| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
+| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
 
 **Пример запроса** аутентификации по **логину и паролю**:
 ```http
@@ -301,19 +301,19 @@ Content-Length: 176
 
 | Параметр   | Тип               | Кратность | Описание                                                         |
 |------------|-------------------|:---------:|------------------------------------------------------------------|
-| Host       | string            | [1]       | Адрес ресурса банка                                              |
-| SID        | IDType            | [1]       | Идентификатор неавторизованной сессии                            |
-| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
-| OTP        | int               | [1]       | Пользовательский OTP - целые числа 6-7 знаков                    |
-| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                        |
+| Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
+| SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор неавторизованной сессии                            |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| OTP        | [int](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#int)               | [1]       | Пользовательский OTP - целые числа 6-7 знаков                    |
+| APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
 
 **Параметры ответа:**
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
-| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)  |                   |           |                                 |
+| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) | [1]       | Версия формата                  |
+| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)     | [0-1]     | Наименование и версия программы |
 
 
 **Пример запроса** передачи **OTP**:
@@ -405,19 +405,19 @@ Content-Length: 145
 
 | Параметр   | Тип               | Кратность | Описание                                                                                                                                   |
 |------------|-------------------|:---------:|--------------------------------------------------------------------------------------------------------------------------------------------|
-| Host       | string            | [1]       | Адрес ресурса банка                                                                                                                        |
-| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Если идентификатор неизвестен (первый запрос настроек), то передается «0 |
-| Account    | AccNumType        | [1]       | Номер расчетного счета Клиента                                                                                                             |
-| Bic        | string (9)        | [1]       | БИК Банка                                                                                                                                  |
-| SID        | IDType            | [1]       | Идентификатор авторизованной сессии                                                                                                        |
-| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                                                                                                  |
+| Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                                                                                                        |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Если идентификатор неизвестен (первый запрос настроек), то передается «0 |
+| Account    | [AccNumType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#AccNumType)        | [1]       | Номер расчетного счета Клиента                                                                                                             |
+| Bic        | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (9)        | [1]       | БИК Банка                                                                                                                                  |
+| SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                                                                                                        |
+| APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                                                                                                  |
 **Параметры ответа:**
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
-| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
+| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
+| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
 
 **Описание:**
 
@@ -495,19 +495,19 @@ Content-Length: 2145
 
 | Параметр   | Тип               | Кратность | Описание                                                         |
 |------------|-------------------|:---------:|------------------------------------------------------------------|
-| Host       | string            | [1]       | Адрес ресурса банка                                              |
-| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
-| SID        | IDType            | [1]       | Идентификатор авторизованной сессии                              |
-| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                        |
-| Packet     | Packet            | [1]       | Пакет электронных документов                                     |
+| Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                              |
+| APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
+| Packet     | [Packet](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#Packet)            | [1]       | Пакет электронных документов                                     |
 
 **Параметры ответа:**
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
-| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
+| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
+| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
 
 **Описание:**
 
@@ -615,19 +615,19 @@ Content-Length: 145
 
 | Параметр   | Тип               | Кратность | Описание                                                         |
 |------------|-------------------|:---------:|------------------------------------------------------------------|
-| Host       | string            | [1]       | Адрес ресурса банка                                              |
-| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
-| SID        | IDType            | [1]       | Идентификатор авторизованной сессии                              |
-| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                        |
-| Packet     | Packet            | [1]       | Пакет электронных документов                                     |
+| Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                              |
+| APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
+| Packet     | [Packet](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#Packet)            | [1]       | Пакет электронных документов                                     |
 
 **Параметры ответа:**
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
-| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
+| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
+| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
 
 **Описание:**
 
@@ -696,19 +696,19 @@ Content-Length: 145
 
 | Параметр   | Тип               | Кратность | Описание                                                         |
 |------------|-------------------|:---------:|------------------------------------------------------------------|
-| Host       | string            | [1]       | Адрес ресурса банка                                              |
-| CustomerID | string            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
-| SID        | IDType            | [1]       | Идентификатор авторизованной сессии                              |
-| APIVersion | FormatVersionType | [1]       | Версия API обмена данными                                        |
+| Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                              |
+| APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
 
 
 **Параметры ответа:**
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | FormatVersionType | [1]       | Версия формата                  |
-| userAgent                        | UserAgentType     | [0-1]     | Наименование и версия программы |
+| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)  |                   |           |                                 |
+| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
+| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
 
 **Пример запроса** получения транспортного контейнера:
 ```http

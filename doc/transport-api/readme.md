@@ -34,6 +34,7 @@ API обмена данными – уровень который описыва
  + [Таблица кодов ошибок и их описание, которые может возвращать банковский сервис в «1С:Предприятие 8»](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md#-Таблица-кодов-ошибок-и-их-описание-которые-может-возвращать-банковский-сервис-в-1СПредприятие-8)
 + [Таблицы типов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md)
 + [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)
+
 - - - -
 
 ## <a name="1"></a> Порядок взаимодействия на уровне аутентификации.

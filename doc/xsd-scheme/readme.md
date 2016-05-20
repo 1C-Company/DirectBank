@@ -19,15 +19,15 @@
 
 ## <a name="1C-Bank_Packet"></a> XML-схема транспортного контейнера: *1C-Bank_Packet.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_Packet.xsd
+[Скачать](https://) файл схемы 1C-Bank_Packet.xsd
 
 ## <a name="1C-Bank_ResultBank"></a> XML-схема **ответа банковского сервиса**: *1C-Bank_ResultBank.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_ResultBank.xsd
+[Скачать](https://) файл схемы 1C-Bank_ResultBank.xsd
 
 ## <a name="1C-Bank_Probe"></a> XML-схема **запроса-зонда**: *1C-Bank_Probe.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_Probe.xsd
+[Скачать](https://) файл схемы 1C-Bank_Probe.xsd
 
 ##### Описание:
 
@@ -43,11 +43,11 @@
 
 ## <a name="1C-Bank_StatusPacketNotice"></a> XML-схема **извещения о состояния обработки транспортного контейнера**: *1C-Bank_StatusPacketNotice.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_StatusPacketNotice.xsd
+[Скачать](https://) файл схемы 1C-Bank_StatusPacketNotice.xsd
 
 ## <a name="1C-Bank_PayDocRu"></a> XML-схема **платежного поручения**: *1C-Bank_PayDocRu.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_PayDocRu.xsd
+[Скачать](https://) файл схемы 1C-Bank_PayDocRu.xsd
 
 ##### Описание:
 
@@ -65,7 +65,7 @@
 
 ## <a name="1C-Bank_PayRequest"></a> XML-схема **платежного требования**: *1C-Bank_PayRequest.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_PayRequest.xsd
+[Скачать](https://) файл схемы 1C-Bank_PayRequest.xsd
 
 ##### Описание:
 
@@ -83,7 +83,7 @@
 
 ## <a name="1C-Bank_StatusDocNotice"></a> XML-схема **извещения о состоянии электронного документа**: *1C-Bank_StatusDocNotice.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_StatusDocNotice.xsd
+[Скачать](https://) файл схемы 1C-Bank_StatusDocNotice.xsd
 
 ##### Описание:
 
@@ -101,7 +101,7 @@
 
 ## <a name="1C-Bank_StatementRequest"></a> XML-схема **запроса выписки**: *1C-Bank_StatementRequest.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_StatementRequest.xsd
+[Скачать](https://) файл схемы 1C-Bank_StatementRequest.xsd
 
 ##### Описание:
 
@@ -128,7 +128,7 @@
 
 ## <a name="1C-Bank_Statement"></a> XML-схема **выписки банка**: *1C-Bank_Statement.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_Statement.xsd
+[Скачать](https://) файл схемы 1C-Bank_Statement.xsd
 
 ##### Описание:
 
@@ -194,7 +194,7 @@
 
 ## <a name="1C-Bank_StatusRequest"></a> XML-схема **запроса о состоянии электронного документа**: *1C-Bank_StatusRequest.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_StatusRequest.xsd
+[Скачать](https://) файл схемы 1C-Bank_StatusRequest.xsd
 
 ##### Описание:
 
@@ -210,7 +210,7 @@
 
 ## <a name="1C-Bank_CancelationRequest"></a> XML-схема **запрос об отзыве электронного документа**: *1C-Bank_CancelationRequest.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_CancelationRequest.xsd
+[Скачать](https://) файл схемы 1C-Bank_CancelationRequest.xsd
 
 ##### Описание:
 
@@ -227,7 +227,7 @@
 
 ## <a name="1C-Bank_Settings"></a> XML-схема **настроек обмена с банком**: *1C-Bank_Settings.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_Settings.xsd
+[Скачать](https://) файл схемы 1C-Bank_Settings.xsd
 
 ##### Описание:
 
@@ -314,14 +314,14 @@
 
 ## <a name="1C-Bank_AuthSign"></a> XML-схема **данных для аутентификации по закр.ключу**: *1C-Bank_AuthSign.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_AuthSign.xsd
+[Скачать](https://) файл схемы 1C-Bank_AuthSign.xsd
 
 ## <a name="1C-Bank_Exch-Common"></a> XML-схема **описания общих типов**: *1C-Bank_Exch-Common.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_Exch-Common.xsd
+[Скачать](https://) файл схемы 1C-Bank_Exch-Common.xsd
 
 ## <a name="1C-Bank_Library"></a> XML-схема **библиотеки**: *1C-Bank_Library.xsd*
 
-[++Скачать++](https://) файл схемы 1C-Bank_Library.xsd
+[Скачать](https://) файл схемы 1C-Bank_Library.xsd
 
 

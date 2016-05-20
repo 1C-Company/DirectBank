@@ -731,24 +731,24 @@ Content-Length: 2502
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
     <Success>
-	<GetPacketResponse userAgent="Back Office"
+		<GetPacketResponse userAgent="Back Office"
         creationDate="2015-02-19T11:15:42"
         formatVersion="2.1.1"
         id="0ef6778b-4a2c-717c-e053-248c410af4aa">
-    	<Sender>
-			<Bank bic="044525888"/>
-	    </Sender>
-        <Recipient>
-			<Customer id="502036"/>
-	    </Recipient>
-        <Document notifyRequired="false"
-        signResponse="false"
-        encrypted="false"
-        compressed="false"
-        testOnly="false"
-        formatVersion="2.02"
-        dockind="01"
-        id="0f6d6032-31b0-8337-e053-248c410a1832">
+    		<Sender>
+				<Bank bic="044525888"/>
+	   		</Sender>
+        	<Recipient>
+				<Customer id="502036"/>
+	    	</Recipient>
+        	<Document notifyRequired="false"
+        	signResponse="false"
+        	encrypted="false"
+        	compressed="false"
+        	testOnly="false"
+        	formatVersion="2.02"
+        	dockind="01"
+        	id="0f6d6032-31b0-8337-e053-248c410a1832">
         		<Data contentType="text/xml"fileName="">
 				PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFN0YXR1c1BhY2tldE5vdGljZSB4bWxucz0iaHR0cDovL2JhbmsuMWMucnUvWE1MU2NoZW1hIiBpZD0iMGY2ZDYwMzItMzFiMC04MzM3LWUwNTMtMjQ4YzQxMGExODMyIiBmb3JtYXRWZXJzaW9uPSIyLjAyIiBjcmVhdGlvbkRhdGU9IjIwMTUtMDItMTlUMTE6MDM6NDgiPgogIDxTZW5kZXI+CiAgICA8QmFuayBiaWM9IjA0NDUyNTk4NSIvPgogIDwvU2VuZGVyPgogIDxSZWNpcGllbnQ+CiAgICA8Q3VzdG9tZXIgaWQ9IjUwMjAzNjI3MTIxIi8+CiAgPC9SZWNpcGllbnQ+CiAgPElEUmVzdWx0U3VjY2Vzc1Jlc3BvbnNlPjUwMjE0NTgwODM4PC9JRFJlc3VsdFN1Y2Nlc3NSZXNwb25zZT4KICA8UmVzdWx0PgogICAgPFN0YXR1cz4KICAgICAgPENvZGU+MDE8L0NvZGU+CiAgICAgIDxOYW1lPtCf0YDQuNC90Y/RgjwvTmFtZT4KICAgIDwvU3RhdHVzPgogIDwvUmVzdWx0Pgo8L1N0YXR1c1BhY2tldE5vdGljZT4K
          		</Data>

@@ -262,7 +262,7 @@
 |----------|----------------|:---------:|--------------------|
 | User     | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (до 50) |    [1]    | Логин пользователя |
 
->>>>###### <a name="1C-Bank_Settings_Data_Logon_Certificate"></a> Certificate:
+>>>###### <a name="1C-Bank_Settings_Data_Logon_Certificate"></a> Certificate:
 | Параметр            | Тип            | Кратность | Описание                                     |
 |---------------------|----------------|:---------:|----------------------------------------------|
 | EncryptingAlgorithm | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (до 50) |    [1]    | Алгоритм шифрования, например, GOST 28147-89 |

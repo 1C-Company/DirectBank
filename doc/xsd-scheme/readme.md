@@ -228,6 +228,7 @@
 ## <a name="1C-Bank_Settings"></a> XML-схема **настроек обмена с банком**: *1C-Bank_Settings.xsd*
 
 [Скачать](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/1C-Bank_Settings.xsd) файл схемы 1C-Bank_Settings.xsd
+[Скачать](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/xsd-scheme/1C-Bank_Settings.xsd)
 
 ##### Описание:
 

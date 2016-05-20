@@ -130,12 +130,12 @@
 | SID       | [IDType](#IDType)    |    [1]    | Идентификатор сессии                                                            |
 | ExtraAuth | [ExtraAuth](#edo-LogonResponseType_ExtraAuth) |   [0-1]   | Дополнительная аутентификация. Указывается, если требуется доп. аутентификация) |
 
-###### <a name="edo-LogonResponseType_ExtraAuth"></a> ExtraAuth
+>###### <a name="edo-LogonResponseType_ExtraAuth"></a> ExtraAuth
 | Параметр | Тип | Кратность | Описание                                                       |
 |----------|-----|:---------:|----------------------------------------------------------------|
 | OTP      | [OTP](#edo-LogonResponseType_ExtraAuth_OTP) |    [1]    | Параметры доп.аутентификации, которые будут направлены клиенту |
 
-###### <a name="edo-LogonResponseType_ExtraAuth_OTP"></a> OTP
+>>###### <a name="edo-LogonResponseType_ExtraAuth_OTP"></a> OTP
 | Параметр  | Тип         | Кратность | Описание                                                 |
 |-----------|-------------|:---------:|----------------------------------------------------------|
 | phoneMask | [string](#string) (12) |   [0-1]   | Маска телефона или номер  клиента                        |
@@ -157,7 +157,7 @@
 | userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
 | Data          | [Data](#edo-GetSettingsResponse_Data)              |    [1]    | Настройки обмена с банком       |
 
-###### <a name="edo-GetSettingsResponse_Data"></a> Data
+>###### <a name="edo-GetSettingsResponse_Data"></a> Data
 | Параметр                   | Тип         | Кратность | Описание                                                             |
 |----------------------------|-------------|:---------:|----------------------------------------------------------------------|
 | Тип значения: [base64Binary](#base64Binary) |             |           |                                                                      |
@@ -214,16 +214,14 @@
 | Data           | [Data](#edo-DocumentType_Data)              |    [1]    | Данные электронного документа                                        |
 | Signature      | [Signature](#edo-DocumentType_Signature)         |   [0-n]   | Данные электронных подписей                                          |
 
-###### <a name="edo-DocumentType_Data"></a> Data
-
+>###### <a name="edo-DocumentType_Data"></a> Data
 | Параметр                   | Тип         | Кратность | Описание                         |
 |----------------------------|-------------|:---------:|----------------------------------|
 | Тип значения: base64Binary |             |           |                                  |
 | fileName                   | [string](#string)      |   [0-1]   | Имя файла                        |
 | contentType                | [ContentType](#ContentType) |   [0-1]   | Тип контента передаваемого файла |
 
-###### <a name="edo-DocumentType_Signature"></a> Signature
-
+>###### <a name="edo-DocumentType_Signature"></a> Signature
 | Параметр         | Тип          | Кратность | Описание                                                             |
 |------------------|--------------|:---------:|----------------------------------------------------------------------|
 | x509IssuerName   | [string](#string)       |    [1]    | Имя издателя сертификата открытого ключа ЭП <br> (значение атрибута "CN") |
@@ -236,8 +234,7 @@
 |----------|------|:---------:|---------------------------|
 | Data     | [Data](#edo-DigestType_Data) |   [0-1]   | Данные дайджеста в base64 |
 
-###### <a name="edo-DigestType_Data"></a> Data
-
+>###### <a name="edo-DigestType_Data"></a> Data
 | Параметр                   | Тип               | Кратность | Описание                                |
 |----------------------------|-------------------|:---------:|-----------------------------------------|
 | Тип значения: [base64Binary](#base64Binary) |                   |           |                                         |
@@ -265,8 +262,7 @@
 | Тип значения: [PaymentDataType](#PaymentDataType)                                                                                   |                       |           |                                  |
 | BudgetPaymentInfo                                                                                               | [BudgetPaymentInfoType](#edo-PayDocRuApp_BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа. <br> См.правила заполнения платежных поручений, утвержденные приказом Минфина России от 12 ноября 2013 года № 107н. |
 
-###### <a name="edo-PayDocRuApp_BudgetPaymentInfoType"></a> BudgetPaymentInfoType
-
+>###### <a name="edo-PayDocRuApp_BudgetPaymentInfoType"></a> BudgetPaymentInfoType
 | Параметр     | Тип                 | Кратность | Описание                                                                                          |
 |--------------|---------------------|:---------:|---------------------------------------------------------------------------------------------------|
 | DrawerStatus | [string](#string) <br> (от 1 до 2)  |   [0-1]   | Статус составителя  (поле 101).                                                                   |

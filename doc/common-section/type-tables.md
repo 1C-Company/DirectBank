@@ -1,6 +1,6 @@
 #Приложение. Таблицы типов
 
-+ @[Таблица типов **edo**](#1)
++ [Таблица типов **edo**](#1)
 + [Таблица **прикладных** типов](#2)
 + [Таблица типов **W3C**](#3)
 + [Таблицы **общих комплексных типов edo**](#4)
@@ -28,28 +28,39 @@
 
 
 ## <a name="1"></a> Таблица типов edo
-(http://directbank.1c.ru/XMLSchema)
+(<http://directbank.1c.ru/XMLSchema>)
 
-| Наименование              | Тип                           | Описание                                                                                                       |
-|---------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------|
-| IDType                    | string                        | Уникальный идентификатор                                                                                       |
-| FormatVersionType         | string (до 12)                | Версия формата                                                                                                 |
-| UserAgentType             | string (до 100)               | Версия ПО                                                                                                      |
-| ResultBank                | edo:ResultBank                | Ответ банка                                                                                                    |
-| ErrorType                 | edo:ErrorType                 | Ответ в случае возникновения ошибки                                                                            |
-| SuccessResultType         | edo:SuccessResultType         | Успешный ответ банка                                                                                           |
-| SendPacketResponseType    | edo:SendPacketResponseType    | Отправка пакета в банк                                                                                         |
-| Packet                    | edo:Packet                    | Пакет электронных документов                                                                                   |
-| GetPacketListResponseType | edo:GetPacketListResponseType | Список ID пакетов, готовых к передачи клиенту                                                                  |
-| GetPacketResponse         | edo:Packet                    | Пакет электронных документов для получения клиентом                                                            |
-| LogonResponseType         | edo:LogonResponseType         | Аутентификация по логину + ОТР (опционально)                                                                   |
-| LogonCertResponseType     | edo:LogonCertResponseType     | Аутентификация по сертификату                                                                                  |
-| GetSettingsResponseType   | edo:GetSettingsResponseType   | Получение настроек обмена в автоматическом режиме                                                              |
-| ParticipantType           | edo:ParticipantType           | Одна из сторон, принимающая участие в обмене электронными документами (Участник)                               |
-| BankPartyType             | edo:BankPartyType             | Отправитель                                                                                                    |
-| CustomerPartyType         | edo:CustomerPartyType         | Получатель                                                                                                     |
-| IDCustomerType            | string (от 1 до 50)           | Уникальный идентификатор клиента в банке                                                                       |
-| DocumentType              | edo:DocumentType              | Данные электронного документа                                                                                  |
-| DocKindType               | string (2)                    | Вид электронного документа, как он задан в описании к стандарту                                                |
-| ContentType               | string                        | Тип контента передаваемого файла. Доступные значения:application/xmlapplication/octet-streamtext/plaintext/xml |
-| AccNumType                | string (20)                   | Номер счета (расчетного, корреспондентского).  Макет: [0-9]{20}                                                |
+| Наименование              | Тип                           | Описание                                                                                                                    |
+|---------------------------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| IDType                    | string                        | Уникальный идентификатор                                                                                                    |
+| FormatVersionType         | string (до 12)                | Версия формата                                                                                                              |
+| UserAgentType             | string (до 100)               | Версия ПО                                                                                                                   |
+| ResultBank                | edo:ResultBank                | Ответ банка                                                                                                                 |
+| ErrorType                 | edo:ErrorType                 | Ответ в случае возникновения ошибки                                                                                         |
+| SuccessResultType         | edo:SuccessResultType         | Успешный ответ банка                                                                                                        |
+| SendPacketResponseType    | edo:SendPacketResponseType    | Отправка пакета в банк                                                                                                      |
+| Packet                    | edo:Packet                    | Пакет электронных документов                                                                                                |
+| GetPacketListResponseType | edo:GetPacketListResponseType | Список ID пакетов, готовых к передачи клиенту                                                                               |
+| GetPacketResponse         | edo:Packet                    | Пакет электронных документов для получения клиентом                                                                         |
+| LogonResponseType         | edo:LogonResponseType         | Аутентификация по логину + ОТР (опционально)                                                                                |
+| LogonCertResponseType     | edo:LogonCertResponseType     | Аутентификация по сертификату                                                                                               |
+| GetSettingsResponseType   | edo:GetSettingsResponseType   | Получение настроек обмена в автоматическом режиме                                                                           |
+| ParticipantType           | edo:ParticipantType           | Одна из сторон, принимающая участие в обмене электронными документами (Участник)                                            |
+| BankPartyType             | edo:BankPartyType             | Отправитель                                                                                                                 |
+| CustomerPartyType         | edo:CustomerPartyType         | Получатель                                                                                                                  |
+| IDCustomerType            | string (от 1 до 50)           | Уникальный идентификатор клиента в банке                                                                                    |
+| DocumentType              | edo:DocumentType              | Данные электронного документа                                                                                               |
+| DocKindType               | string (2)                    | Вид электронного документа, как он задан в описании к стандарту                                                             |
+| ContentType               | string                        | Тип контента передаваемого файла. Доступные значения: • application/xml; <br> • application/octet-stream; <br>  • text/plain; <br> • text/xml |
+| AccNumType                | string (20)                   | Номер счета (расчетного, корреспондентского).  <br>Макет: [0-9]{20}                                                             |
+| DigestType                | edo:DigestType                | Дайджест электронного документа                                                                                             |
+| ResultStatusType          | edo:ResultStatusType (Выбор)  | Состояние электронного документа                                                                                            |
+| StatusType                | edo:StatusType                | Успешный ответ                                                                                                              |
+| DateString                | string                        | Дата строкой в формате ДД.ММ.ГГГГ                                                                                           |
+| PayDocRuApp               | edo:PayDocRuApp               | Данные платежного поручения                                                                                                 |
+| PayRequestApp             | edo:PayRequestApp             | Данные платежного требования                                                                                                |
+| PaymentDataType           | edo:PaymentDataType           | Данные платежного документа                                                                                                 |
+| SumType                   | decimal (18,2)                | Сумма в документе                                                                                                           |
+| CustomerDetailsType       | edo:CustomerDetailsType       | Реквизиты налогоплательщика                                                                                                 |
+| BankType                  | edo:BankType                  | Реквизиты банка                                                                                                             |
+| StatementKindType         | string (1)                    | Тип выписки банкаДоступные значения: 0, 1, 2. <br> • 0 - Окончательная выписка <br> • 1 - Промежуточная выписка <br> • 2 - Текущий остаток на счете |

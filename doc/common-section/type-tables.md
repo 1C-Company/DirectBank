@@ -22,7 +22,7 @@
  + [Тип edo:PayDocRuApp](#edo-PayDocRuApp)
  + [Тип edo:PayRequestApp](#edo-PayRequestApp)
  + [Тип edo:PaymentDataType](#edo-PaymentDataType)
- + [Тип edo:CustomerDetailsType](edo:CustomerDetailsType)
+ + [Тип edo:CustomerDetailsType](#edo-CustomerDetailsType)
  + [Тип edo:BankType](#edo-BankType)
 
 

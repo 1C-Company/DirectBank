@@ -16,3 +16,5 @@
 + XML-схема описания общих типов: 1C-Bank_Exch-Common.xsd
 + XML-схема библиотеки: 1C-Bank_Library.xsd
 
+версия на ветке тест
+

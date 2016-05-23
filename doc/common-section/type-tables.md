@@ -8,6 +8,7 @@
 + [Общие **комплексные типы edo**](#3)
  + [Тип edo:BankPartyType](#edo-BankPartyType)
  + [Тип edo:BankType](#edo-BankType)
+ + [Тип edo:CancelationRequest](#edo-CancelationRequest)
  + [Тип edo:CustomerDetailsType](#edo-CustomerDetailsType)
  + [Тип edo:CustomerPartyType](#edo-CustomerPartyType)
  + [Тип edo:DigestType](#edo-DigestType)
@@ -19,13 +20,20 @@
  + [Тип edo:LogonResponseType](#edo-LogonResponseType)
  + [Тип edo:Packet](#edo-Packet)
  + [Тип edo:ParticipantType](#edo-ParticipantType)
+ + [Тип edo:PayDocRu](#edo-PayDocRu)
  + [Тип edo:PayDocRuApp](#edo-PayDocRuApp)
  + [Тип edo:PaymentDataType](#edo-PaymentDataType)
+ + [Тип edo:PayRequest](#edo-PayRequest)
  + [Тип edo:PayRequestApp](#edo-PayRequestApp)
+ + [Тип edo:Probe](#edo-Probe)
  + [Тип edo:ResultBank](#edo-ResultBank)
  + [Тип edo:ResultStatusType](#edo-ResultStatusType)
  + [Тип edo:SendPacketResponseType](#edo-SendPacketResponseType)
+ + [Тип edo:Statement](#edo-Statement)
+ + [Тип edo:StatementRequest](#edo-StatementRequest)
+ + [Тип edo:StatusDocNotice](#edo-StatusDocNotice)
  + [Тип edo:StatusType](#edo-StatusType)
+ + [Тип edo:StatusRequest](#edo-StatusRequest)
  + [Тип edo:SuccessResultType](#edo-SuccessResultType)
 
 
@@ -100,11 +108,23 @@
 
 | Параметр   | Тип             | Кратность | Описание                       |
 |------------|-----------------|:---------:|--------------------------------|
-| BIC        | [string](#string) (9)      |    [1]    | БИК банка                      |
-|            |                 |           | Макет: [0-9]{9}                |
+| BIC        | [string](#string) (9) <br> фасет: [0-9]{9}     |    [1]    | БИК банка                      |
 | Name       | [string](#string) (до 160) |   [0-1]   | Название банка                 |
 | City       | [string](#string) (до 30)  |   [0-1]   | Город (населенный пункт) банка |
 | CorrespAcc | [AccNumType](#AccNumType)       |   [0-1]   | Коррсчет банка                 |
+
+### <a name="edo-CancelationRequest"></a> Тип edo:CancelationRequest
+
+| Параметр      | Тип               | Кратность | Описание                                                        |
+|---------------|-------------------|:---------:|-----------------------------------------------------------------|
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор запроса                                           |
+| formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                  |
+| creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования                                       |
+| userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы                                 |
+| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                                                     |
+| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                                                      |
+| ExtID         | [IDType](#IDType)            |    [1]    | ID исходного электронного документа, который требуется отозвать |
+| Reason        | [string](#string)            |   [0-1]   | Причина, основание отзыва электронного документа                |
 
 ### <a name="edo-CustomerDetailsType"></a> Тип edo:CustomerDetailsType
 
@@ -121,7 +141,7 @@
 | Параметр | Тип                  | Кратность | Описание                                             |
 |----------|----------------------|:---------:|------------------------------------------------------|
 | id       | [IDCustomerType](#IDCustomerType)       |    [1]    | Идентификатор клиента, как он задан на стороне банка |
-| name     | [string](#string) (до 160)      |   [0-1]   | Название банка                                       |
+| name     | [string](#string) (до 160)      |   [0-1]   | Название клиента                                       |
 | inn      | [string](#string) (от 10 до 12) |   [0-1]   | ИНН клиента                                          |
 | kpp      | [string](#string) (9)           |   [0-1]   | КПП клиента                                          |
 
@@ -132,9 +152,10 @@
 | Data     | [Data](#edo-DigestType_Data) |   [0-1]   | Данные дайджеста в base64 |
 
 >###### <a name="edo-DigestType_Data"></a> Data
+> - Тип значения: [base64Binary](#base64Binary)
+>
 | Параметр                   | Тип               | Кратность | Описание                                |
 |----------------------------|-------------------|:---------:|-----------------------------------------|
-| Тип значения: [base64Binary](#base64Binary) |                   |           |                                         |
 | algorithmVersion           | [FormatVersionType](#FormatVersionType) |   [0-1]   | Версия алгоритма формирования дайджеста |
 
 
@@ -146,18 +167,19 @@
 | dockind        | [DocKindType](#DocKindType)       |    [1]    | Код вида электронного документа, как он задан в описании к стандарту |
 | formatVersion  | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                       |
 | testOnly       | [boolean](#boolean)           |   [0-1]   | Тестовый документ                                                    |
-| compressed     | [boolean](#boolean)[boolean](#boolean)           |   [0-1]   | Документ сжат                                                        |
-| encrypted      | [boolean](#boolean)[boolean](#boolean)           |   [0-1]   | Документ зашифрован                                                  |
-| signResponse   | [boolean](#boolean)[boolean](#boolean)           |   [0-1]   | Требуется ответная подпись                                           |
+| compressed     | [boolean](#boolean)          |   [0-1]   | Документ сжат                                                        |
+| encrypted      | [boolean](#boolean)           |   [0-1]   | Документ зашифрован                                                  |
+| signResponse   | [boolean](#boolean)          |   [0-1]   | Требуется ответная подпись                                           |
 | notifyRequired | [boolean](#boolean)           |   [0-1]   | Требуется извещение о получении                                      |
 | extID          | [IDType](#IDType)            |   [0-1]   | ID исходного документа, если такой был                               |
 | Data           | [Data](#edo-DocumentType_Data)              |    [1]    | Данные электронного документа                                        |
 | Signature      | [Signature](#edo-DocumentType_Signature)         |   [0-n]   | Данные электронных подписей                                          |
 
 >###### <a name="edo-DocumentType_Data"></a> Data
+> - Тип значения: [base64Binary](#base64Binary)
+>
 | Параметр                   | Тип         | Кратность | Описание                         |
 |----------------------------|-------------|:---------:|----------------------------------|
-| Тип значения: base64Binary |             |           |                                  |
 | fileName                   | [string](#string)      |   [0-1]   | Имя файла                        |
 | contentType                | [ContentType](#ContentType) |   [0-1]   | Тип контента передаваемого файла |
 
@@ -194,9 +216,10 @@
 | Data          | [Data](#edo-GetSettingsResponse_Data)              |    [1]    | Настройки обмена с банком       |
 
 >###### <a name="edo-GetSettingsResponse_Data"></a> Data
+> - Тип значения: [base64Binary](#base64Binary)
+>
 | Параметр                   | Тип         | Кратность | Описание                                                             |
-|----------------------------|-------------|:---------:|----------------------------------------------------------------------|
-| Тип значения: [base64Binary](#base64Binary) |             |           |                                                                      |
+|----------------------------|-------------|:---------:|----------------------------------------------------------------------|                                    |
 | dockind                    | [DocKindType](#DocKindType) |    [1]    | Код вида электронного документа, как он задан в описании к стандарту |
 
 ### <a name="edo-LogonCertResponseType"></a> Тип edo:LogonCertResponseType
@@ -242,12 +265,27 @@
 | Customer | [CustomerPartyType](#CustomerPartyType) |    [1]    | Идентификатор пакета |
 | Bank     | [BankPartyType](#BankPartyType)     |    [1]    | Версия формата       |
 
+### <a name="edo-PayDocRu"></a> Тип edo:PayDocRu
+
+| Параметр      | Тип               | Кратность | Описание                        |
+|---------------|-------------------|:---------:|---------------------------------|
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор платежа           |
+| formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
+| creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
+| userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
+| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
+| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                      |
+| Data          | [PayDocRuApp](#PayDocRuApp)       |    [1]    | Данные платежного поручения     |
+| Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
+
+
 ### <a name="edo-PayDocRuApp"></a> Тип edo:PayDocRuApp
+
+- Тип значения: [PaymentDataType](#PaymentDataType)
 
 | Параметр                                                                                                        | Тип                   | Кратность | Описание                         |
 |-----------------------------------------------------------------------------------------------------------------|-----------------------|:---------:|----------------------------------|
-| Тип значения: [PaymentDataType](#PaymentDataType)                                                                                   |                       |           |                                  |
-| BudgetPaymentInfo                                                                                               | [BudgetPaymentInfoType](#edo-PayDocRuApp_BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа. <br> См.правила заполнения платежных поручений, утвержденные приказом Минфина России от 12 ноября 2013 года № 107н. |
+| BudgetPaymentInfo                                                                                               | [BudgetPaymentInfoType](#edo-PayDocRuApp_BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа. <br> См.правила заполнения платежных поручений, утвержденные приказом Минфина России. |
 
 >###### <a name="edo-PayDocRuApp_BudgetPaymentInfoType"></a> BudgetPaymentInfoType
 | Параметр     | Тип                 | Кратность | Описание                                                                                          |
@@ -274,16 +312,42 @@
 | TransitionKind | [string](#string)  (2)   | [0-1] | Вид операции (поле 18). <br> Указывается условное цифровое обозначение документа, согласно установленного ЦБР перечня условных обозначений (шифров) документов, проводимых по счетам в кредитных организациях. |
 | Priority       | [string](#string)  (1)   | [0-1] | Очередность платежа (поле 21).                                                                                                                                                                            |
 | Code           | [string](#string)  (25)  | [0-1] | Уникальный идентификатор платежа (поле 22). <br>  С 31 марта 2014 года согласно Указанию N 3025-У ЦБР.                                                                                                          |
-| Purpose        | [string](#string)  (210) | [0-1] | Назначение платежа (поле 24).                                                                                                                                                                             |
+| Purpose        | [string](#string)  (210) | [0-1] | Назначение платежа (поле 24).                                      
+
+### <a name="edo-PayRequest"></a> Тип edo:PayRequest
+
+| Параметр      | Тип               | Кратность | Описание                        |
+|---------------|-------------------|:---------:|---------------------------------|
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор требования        |
+| formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
+| creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
+| userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
+| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
+| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                      |
+| Data          | [PayRequestApp](#PayRequestApp)     |    [1]    | Данные платежного требования    |
+| Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
 
 ### <a name="edo-PayRequestApp"></a> Тип edo:PayRequestApp
 
+- Тип значения: [PaymentDataType](#PaymentDataType)
+
 | Параметр                      | Тип        | Кратность | Описание                                                                                                     |
 |-------------------------------|------------|:---------:|--------------------------------------------------------------------------------------------------------------|
-| Тип значения: [PaymentDataType](#PaymentDataType) |            |           |                                                                                                              |
 | PaymentCondition              | [string](#string) (1) |    [1]    | Условие оплаты (поле 35): <br> 1 - заранее данный акцепт плательщика; <br> 2 - требуется получение акцепта плательщика |
 | AcceptTerm                    | [byte](#byte)       |   [0-1]   | Срок для акцепта (поле 36): количество дней.                                                                 |
 | DocDispatchDate               | [DateString](DateString) |   [0-1]   | Дата отсылки (вручения) плательщику предусмотренных договором документов (поле 37).                          |
+
+### <a name="edo-Probe"></a> Тип edo:Probe
+
+| Параметр      | Тип               | Кратность | Описание                        |
+|---------------|-------------------|:---------:|---------------------------------|
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор запроса           |
+| formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
+| creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
+| userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
+| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
+| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                      |
+| Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
 
 
 ### <a name="edo-ResultBank"></a> Тип edo:ResultBank
@@ -306,6 +370,187 @@
 |----------|--------|:---------:|------------------------------------------------------------------------|
 | ID       | [IDType](#IDType) |    [1]    | идентификатор пакета (GUID), который был ему назначен на стороне банка |
 
+### <a name="edo-Settings"></a> Тип edo:Settings
+
+| Параметр      | Тип               | Кратность | Описание                        |
+|---------------|-------------------|:---------:|---------------------------------|
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор набора данных     |
+| formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
+| creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
+| userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
+| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
+| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                      |
+| Data          | [Data](#edo-Settings_Data)              |   [1-n]   | Параметры обмена                |
+
+>###### <a name="edo-Settings_Data"></a> Data:
+| Параметр          | Тип               | Кратность | Описание                                                                    |
+|-------------------|-------------------|:---------:|-----------------------------------------------------------------------------|
+| CustomerID        | [IDCustomerType](#IDCustomerType)    |    [1]    | Уникальный идентификатор клиента в банке                                    |
+| BankServerAddress | [string](#string) (от 1)     |    [1]    | Адрес ресурса банка                                                         |
+| FormatVersion     | [FormatVersionType](#FormatVersionType) |    [1]    | Актуальная версия формата обмена данными                                    |
+| Encoding          | [string](#string)            |    [1]    | Кодировка файлов обмена. По умолчанию: "UTF-8"                              |
+| Compress          | [boolean](#boolean)           |   [0-1]   | Признак сжатия электронных документов при обмене. По умолчанию: false       |
+| Logon             | [Logon](#edo-Settings_Data_Logon)             |    [1]    | Способ аутентификации на ресурсе банка                                      |
+| CryptoParameters  | [CryptoParameters](#edo-Settings_Data_CryptoParameters)  |   [0-n]   | Настройки криптографии                                                      |
+| Document          | [Document](#edo-Settings_Data_Document)          |   [1-n]   | Настройки по видам электронных документов, которыми возможен обмен с банком |
+
+
+>>###### <a name="edo-Settings_Data_Logon"></a> Logon:
+| Параметр    | Тип         | Кратность | Описание                           |
+|-------------|-------------|:---------:|------------------------------------|
+| Login       | [Login](#edo-Settings_Data_Logon_Login)       |    [1]    | По логину и паролю                 |
+| Certificate | [Certificate](#edo-Settings_Data_Logon_Certificate) |    [1]    | По сертификату электронной подписи |
+
+
+>>>###### <a name="edo-Settings_Data_Logon_Login"></a> Login:
+| Параметр | Тип            | Кратность | Описание           |
+|----------|----------------|:---------:|--------------------|
+| User     | [string](#string) (до 50) |    [1]    | Логин пользователя |
+
+>>>###### <a name="edo-Settings_Data_Logon_Certificate"></a> Certificate:
+| Параметр            | Тип            | Кратность | Описание                                     |
+|---------------------|----------------|:---------:|----------------------------------------------|
+| EncryptingAlgorithm | [string](#string) (до 50) |    [1]    | Алгоритм шифрования, например, GOST 28147-89 |
+
+>>###### <a name="edo-Settings_Data_CryptoParameters"></a> CryptoParameters:
+| Параметр                   | Тип               | Кратность | Описание                                                                                         |
+|----------------------------|-------------------|:---------:|--------------------------------------------------------------------------------------------------|
+| CSPName                    | [string](#string) (до 256)   |    [1]    | Имя CSP (cryptographic service provider)                                                         |
+| CSPType                    | [int](#int)               |    [1]    | Тип CSP (cryptographic service provider)                                                         |
+| SignAlgorithm              | [string](#string) (до 50)    |    [1]    | Алгоритм подписи, например, GOST R 34.10-2001                                                    |
+| HashAlgorithm              | [string](#string) (до 50)    |    [1]    | Алгоритм хэширования, например, GOST R 34.11-94                                                  |
+| Encrypted                  | [Encrypted](#edo-Settings_Data_CryptoParameters_Encrypted)         |   [1-n]   | Применение шифрования данных на прикладном уровне                                                |
+| BankTrustedRootCertificate | [base64Binary](#base64Binary)      |   [0-1]   | Доверенный корневой сертификат УЦ банка                                                          |
+| BankCertificate            | [base64Binary](#base64Binary)      |   [0-1]   | Сертификат электронной подписи банка                                                             |
+| CustomerSignature          | [CustomerSignature](#edo-Settings_Data_CryptoParameters_CustomerSignature) |   [1-n]   | Карточка электронных подписей клиента                                                            |
+| URLAddinInfo               | [string](#string)            |   [0-1]   | Адрес-ссылка, откуда будет загружаться файл описания внешн.модуля, если он используется в обмене |
+
+>>>###### <a name="edo-Settings_Data_CryptoParameters_Encrypted"></a> Encrypted:
+| Параметр         | Тип            | Кратность | Описание                                     |
+|------------------|----------------|:---------:|----------------------------------------------|
+| EncryptAlgorithm | [string](#string) (до 50) |    [1]    | Алгоритм шифрования, например, GOST 28147-89 |
+
+>>>###### <a name="edo-Settings_Data_CryptoParameters_CustomerSignature"></a> CustomerSignature:
+| Параметр        | Тип             | Кратность | Описание                          |
+|-----------------|-----------------|:---------:|-----------------------------------|
+| numberGroup     | [integer](#integer)         |    [1]    | Номер группы электронных подписей |
+| GroupSignatures | [GroupSignatures](#edo-Settings_Data_CryptoParameters_CustomerSignature_GroupSignatures) |   [1-n]   | Группа электронных подписей       |
+
+>>>>###### <a name="edo-Settings_Data_CryptoParameters_CustomerSignature_GroupSignatures"></a> GroupSignatures:
+| Параметр    | Тип          | Кратность | Описание                                     |
+|-------------|--------------|:---------:|----------------------------------------------|
+| Certificate | [base64Binary](#base64Binary) |    [1]    | Алгоритм шифрования, например, GOST 28147-89 |
+
+>>###### <a name="edo-Settings_Data_Document"></a> Document:
+| Параметр | Тип         | Кратность | Описание                                                               |
+|----------|-------------|:---------:|------------------------------------------------------------------------|
+| docKind  | [DocKindType](#DocKindType) |    [1]    | Код вида электронного документа, как он задан в описании к стандарту   |
+| Signed   | [Signed](#edo-Settings_Data_Document_Signed)      |   [0-1]   | Применение электронной подписи для данного вида электронного документа |
+
+>>>###### <a name="edo-Settings_Data_Document_Signed"></a> Signed:
+| Параметр       | Тип    | Кратность | Описание                                                                               |
+|----------------|--------|:---------:|----------------------------------------------------------------------------------------|
+| RuleSignatures | [string](#string) |   [1-n]   | Правило, задающее наличие электронных подписей для данного вида электронного документа |
+
+
+### <a name="edo-Statement"></a> Тип edo:Statement
+
+| Параметр              | Тип               | Кратность | Описание                                        |
+|-----------------------|-------------------|:---------:|-------------------------------------------------|
+| id                    | [IDType](#IDType)            |    [1]    | Идентификатор выписки                           |
+| formatVersion         | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                  |
+| creationDate          | [dateTime](#dateTime)          |    [1]    | Дата и время формирования                       |
+| userAgent             | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы                 |
+| Sender                | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                                     |
+| Recipient             | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                                      |
+| Data                  | [Data](#edo-Statement_Data)              |    [1]    | Данные выписки по лиц. счету                    |
+| ExtIDStatementRequest | [IDType](#IDType)            |   [0-1]   | ID исходного запроса на выписку, если такой был |
+
+>###### <a name="edo-Statement_Data"></a> Data:
+| Параметр       | Тип               | Кратность | Описание                                                 |
+|----------------|-------------------|:---------:|----------------------------------------------------------|
+| StatementType  | [StatementKindType](#StatementKindType) |    [1]    | Тип выписки                                              |
+| DateFrom       | [dateTime](#dateTime)          |   [0-1]   | Начало периода выписки                                   |
+| DateTo         | [dateTime](#dateTime)          |    [1]    | Конец периода выписки                                    |
+| Account        | [AccNumType](#AccNumType)        |    [1]    | Номер лиц. счета                                         |
+| Bank           | [BankType](#BankType)          |    [1]    | Банк, в котором открыт счет                              |
+| OpeningBalance | [SumType](#SumType)           |   [0-1]   | Остаток на счете на начало периода                       |
+| TotalDebits    | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по дебету счета                   |
+| TotalCredits   | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по кредиту счета                  |
+| ClosingBalance | [SumType](#SumType)           |    [1]    | Общая сумма документов по кредиту счета                  |
+| OperationInfo  | [OperationInfo](#edo-Statement_Data_OperationInfo)     |   [0-n]   | Информация об одной операции по лицевому счету в выписке |
+| Stamp          | [Stamp](#edo-Statement_Data_Stamp)             |   [0-1]   | Данные штампа банка по выписке в целом                   |
+
+>>###### <a name="edo-Statement_Data_OperationInfo"></a> OperationInfo:
+| Параметр | Тип                 | Кратность | Описание                                            |
+|----------|---------------------|:---------:|-----------------------------------------------------|
+| PayDoc   | [PayDoc](#edo-Statement_Data_OperationInfo_PayDoc)              |    [1]    | Данные платежного документа                         |
+| DC       | [string](#string) (1)          |    [1]    | Признак дебета/кредита: <br>  1 - Операция по дебету, <br> 2 - Операция по кредиту                                |
+| Date     | [date](#date)                |    [1]    | Дата проводки документа по лиц. счету               |
+| ExtID    | [IDType](#IDType)              |   [0-1]   | ID исходного платежного документа плательщика       |
+| Stamp    | [OperationInfo_Stamp](#edo-Statement_Data_OperationInfo_OperationInfo_Stamp) |    [1]    | Данные штампа банка по каждому платежному документу |
+
+>>###### <a name="edo-Statement_Data_Stamp"></a> Stamp:
+| Параметр               | Тип             | Кратность | Описание        |
+|------------------------|-----------------|:---------:|-----------------|
+| Тип значения: [BankType](#BankType) |                 |           |                 |
+| Branch                 | [string](#string) (до 255) |    [1]    | Отделение банка |
+
+-----
+
+>>>###### <a name="edo-Statement_Data_OperationInfo_PayDoc"></a> PayDoc:
+| Параметр               | Тип             | Кратность | Описание        |
+|------------------------|-----------------|:---------:|-----------------|
+| Тип значения: [BankType](#BankType) |                 |           |                 |
+| Branch                 | [string](#string) (до 255) |    [1]    | Отделение банка |
+
+
+>>>###### <a name="edo-Statement_Data_OperationInfo_OperationInfo_Stamp"></a> OperationInfo_Stamp:
+| Параметр               | Тип             | Кратность | Описание                            |
+|------------------------|-----------------|:---------:|-------------------------------------|
+| Тип значения: [BankType](#BankType) |                 |           |                                     |
+| Branch                 | [string](#string) (до 255) |    [1]    | Отделение банка                     |
+| Status                 | [StatusType](#StatusType)      |    [1]    | Статус платежного документа в банке |
+
+
+### <a name="edo-StatementRequest"></a> Тип edo:StatementRequest
+
+| Параметр      | Тип               | Кратность | Описание                        |
+|---------------|-------------------|:---------:|---------------------------------|
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор запроса           |
+| formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
+| creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
+| userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
+| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
+| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                      |
+| Data          | [Data](#edo-StatementRequest_Data)              |    [1]    | Данные запроса                  |
+| Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
+
+> ###### <a name="edo-StatementRequest_Data"></a> Data:
+| Параметр      | Тип               | Кратность | Описание                                     |
+|---------------|-------------------|:---------:|----------------------------------------------|
+| StatementType | [StatementKindType](#StatementKindType) |    [1]    | Тип выписки                                  |
+| DateFrom      | [dateTime](#dateTime)          |    [1]    | Начало периода формирования выписки          |
+| DateTo        | [dateTime](#dateTime)          |    [1]    | Конец периода формирования выписки           |
+| Account       | [AccNumType](#AccNumType)        |    [1]    | Номер счета, по которому производится запрос |
+| Bank          | [BankType](#BankType)          |    [1]    | Банк, в котором открыт счет                  |
+
+
+### <a name="edo-StatusDocNotice"></a> Тип edo:StatusDocNotice
+
+| Параметр           | Тип               | Кратность | Описание                                                                |
+|--------------------|-------------------|:---------:|-------------------------------------------------------------------------|
+| id                 | [IDType](#IDType)            |    [1]    | Идентификатор извещения                                                 |
+| formatVersion      | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                          |
+| creationDate       | [dateTime](#dateTime)          |    [1]    | Дата и время формирования                                               |
+| userAgent          | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы                                         |
+| Sender             | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                                                             |
+| Recipient          | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                                                              |
+| ExtID              | [IDType](#IDType)            |    [1]    | ID исходного электронного документа, по которому возвращается состояния |
+| Result             | [ResultStatusType](#ResultStatusType)  |    [1]    | Состояние электронного документа                                        |
+| ExtIDStatusRequest | [IDType](#IDType)            |   [0-1]   | ID запроса о состоянии электронного документа, если был такой           |
+
+
 ### <a name="edo-StatusType"></a> Тип edo:StatusType
 
 | Параметр | Тип            | Кратность | Описание                                                       |
@@ -313,6 +558,19 @@
 | Code     | [string](#string) (2)     |    [1]    | Код статуса, как он задан в описании к стандарту (см. таблицу) |
 | Name     | [string](#string) (до 25) |   [0-1]   | Наименование статуса на стороне банка                          |
 | MoreInfo | [string](#string)         |   [0-1]   | Дополнительная информация к статусу                            |
+
+### <a name="edo-StatusRequest"></a> Тип edo:StatusRequest
+
+| Параметр      | Тип               | Кратность | Описание                                                                |
+|---------------|-------------------|:---------:|-------------------------------------------------------------------------|
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор запроса                                                   |
+| formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                          |
+| creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования                                               |
+| userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы                                         |
+| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                                                             |
+| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                                                              |
+| ExtID         | [IDType](#IDType)            |    [1]    | ID исходного электронного документа, статус которого требуется получить |
+
 
 ### <a name="edo-SuccessResultType"></a> Тип edo:SuccessResultType
 

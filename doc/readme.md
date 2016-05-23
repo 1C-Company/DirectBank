@@ -7,6 +7,8 @@
 + [API прямого обмена данными с банком](https://github.com/1C-Company/DirectBank/blob/master/doc/transport-api/readme.md)
 + [API прямого обмена данными с банком через внешнюю компоненту](https://github.com/1C-Company/DirectBank/blob/master/doc/vk-transport-api/readme.md)
 + [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)
++ [Таблицы кодов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md)
++ [Таблицы типов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md)
 
 
 - - -

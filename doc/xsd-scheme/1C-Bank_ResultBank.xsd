@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
+	<xsd:include schemaLocation="1C-Bank_Packet.xsd"/>
+	<xsd:element name="ResultBank" type="edo:ResultBank"/>
+	<xsd:complexType name="ResultBank">
+		<xsd:choice>
+			<xsd:element name="Success" type="edo:SuccessResultType">
+				<xsd:annotation>
+					<xsd:documentation>Успешный ответ банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Error" type="edo:ErrorType">
+				<xsd:annotation>
+					<xsd:documentation>Ответ банка в случае возникновения ошибки</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Версия формата</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Наименование и версия программы</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="SuccessResultType">
+		<xsd:choice>
+			<xsd:element name="SendPacketResponse" type="edo:SendPacketResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Отправка пакета в банк</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GetPacketListResponse" type="edo:GetPacketListResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Список ID пакетов, готовых к передачи клиенту</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GetPacketResponse" type="edo:GetPacketResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Пакет электронных документов для получения клиентом</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LogonResponse" type="edo:LogonResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Аутентификация по логину + ОТР (опционально)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="LogonCertResponse" type="edo:LogonCertResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Аутентификация по сертификату</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GetSettingsResponse">
+				<xsd:annotation>
+					<xsd:documentation>Получение настроек обмена в автоматическом режиме</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:extension base="edo:GetSettingsResponseType"/>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="SendPacketResponseType">
+		<xsd:sequence>
+			<xsd:element name="ID" type="edo:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Идентификатор пакета (GUID), который был ему назначен на стороне банка</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LogonResponseType">
+		<xsd:sequence>
+			<xsd:element name="SID" type="edo:IDType">
+				<xsd:annotation>
+					<xsd:documentation>Идентификатор сессии</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ExtraAuth" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дополнительная аутентификация. Указывается, если требуется доп. аутентфикация</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="OTP">
+							<xsd:annotation>
+								<xsd:documentation>Параметры доп.аутентификации, которые будут направляны клиенту</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:attribute name="phoneMask" use="optional">
+									<xsd:annotation>
+										<xsd:documentation>Маска телефона или номер  клиента</xsd:documentation>
+									</xsd:annotation>
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="12"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:attribute>
+								<xsd:attribute name="code" use="optional">
+									<xsd:annotation>
+										<xsd:documentation>Короткий код сессии, который будет показан при вводе OTP</xsd:documentation>
+									</xsd:annotation>
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:maxLength value="10"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetPacketListResponseType">
+		<xsd:sequence>
+			<xsd:element name="PacketID" type="edo:IDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>Идентификатор пакета (GUID), по которому его можно получить клиенту</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="TimeStampLastPacket" type="xsd:dateTime" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Метка времени, на которую вернули всю актуальную информацию</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="GetPacketResponseType">
+		<xsd:complexContent>
+			<xsd:extension base="edo:Packet"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LogonCertResponseType">
+		<xsd:sequence>
+			<xsd:element name="EncryptedSID">
+				<xsd:annotation>
+					<xsd:documentation>Зашифрованный Идентификатор сессии</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:base64Binary"/>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GetSettingsResponseType">
+		<xsd:sequence>
+			<xsd:element name="Data">
+				<xsd:annotation>
+					<xsd:documentation>Настройки обмена с банком</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:base64Binary">
+							<xsd:attribute name="dockind" type="edo:DocKindType" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Код вида электронного документа, как он задан в описаниии к стандарту</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="edo:IDType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Идентификатор настроек</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Версия формата</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="creationDate" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Дата и время формирования</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Наименование и версия программы</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

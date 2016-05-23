@@ -260,7 +260,7 @@ Content-Length: 145
 <ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
     <Success>
         <LogonResponse>
-	<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
+			<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
         </LogonResponse>
     </Success>
 </ResultBank>
@@ -276,8 +276,10 @@ Content-Length: 176
 <ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
     <Success>
         <LogonResponse>
-	<SID>7767755b6fbb4ae296aa0ac6b179aef9</SID>
-	<ExtraAuth><OTP phoneMask="7916***6465" /></ExtraAuth>
+            <SID>7767755b6fbb4ae296aa0ac6b179aef9</SID>
+            <ExtraAuth>
+            	<OTP phoneMask="7916***6465" />
+            </ExtraAuth>
         </LogonResponse>
     </Success>
 </ResultBank>
@@ -346,7 +348,7 @@ Content-Length: 145
 <ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
     <Success>
         <LogonResponse>
-	<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
+			<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
         </LogonResponse>
     </Success>
 </ResultBank>
@@ -579,7 +581,7 @@ Content-Length: 145
 <ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
     <Success>
         <SendPacketResponse>
-	<ID>50214584626</ID>
+			<ID>50214584626</ID>
         </SendPacketResponse>
     </Success>
 </ResultBank>
@@ -665,7 +667,7 @@ Content-Length: 145
 <ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
     <Success>
         <GetPacketListResponse TimeStampLastPacket="2015-02-19T11:15:42">
-	<PacketID>50214585876</PacketID>
+			<PacketID>50214585876</PacketID>
         </GetPacketListResponse>
     </Success>
 </ResultBank>
@@ -738,9 +740,9 @@ Content-Length: 2502
         creationDate="2015-02-19T11:15:42"
         formatVersion="2.1.1"
         id="0ef6778b-4a2c-717c-e053-248c410af4aa">
-    		<Sender>
+			<Sender>
 				<Bank bic="044525888"/>
-	   		</Sender>
+			</Sender>
         	<Recipient>
 				<Customer id="502036"/>
 	    	</Recipient>

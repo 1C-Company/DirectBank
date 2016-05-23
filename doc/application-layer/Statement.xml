@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Statement xmlns="http://directbank.1c.ru/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	id="f7cbc6af-33dd-4c37-b67d-7400e1c327ad"
+	formatVersion="2.1.1"
+	creationDate="2016-05-13T13:51:21.829"
+	userAgent="DemoBankService">
+	<Sender name="ДЕМО-БАНК" bic="044525888"/>
+	<Recipient id="c8d57b00-530d-4a2e-86c1-aa9d5e4fafbd" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+	<Data>
+		<StatementType>0</StatementType>
+		<DateFrom>2016-05-04T00:00:00.000</DateFrom>
+		<DateTo>2016-05-13T11:51:13.000</DateTo>
+		<Account>40702810500000000001</Account>
+		<Bank>
+			<BIC>044525888</BIC>
+			<Name>ДЕМО-БАНК"</Name>
+			<City>МОСКВА</City>
+			<CorrespAcc>30101810500000000219</CorrespAcc>
+		</Bank>
+		<OpeningBalance>139280.91</OpeningBalance>
+		<ClosingBalance>88970.02</ClosingBalance>
+		<OperationInfo>
+			<PayDoc id="768" docKind="10">
+				<PayDocRu>
+					<DocNo>768</DocNo>
+					<DocDate>2016-05-04</DocDate>
+					<Sum>14</Sum>
+					<Payer>
+						<Name>Торговый дом Комплексный</Name>
+						<INN>7705260699</INN>
+						<KPP>770501001</KPP>
+						<Account>40702810500000000001</Account>
+						<Bank>
+							<BIC>044525888</BIC>
+							<Name>ДЕМО-БАНК</Name>
+							<City>МОСКВА</City>
+							<CorrespAcc>30101810500000000219</CorrespAcc>
+						</Bank>
+					</Payer>
+					<Payee>
+						<Name>Индивидуальный предприниматель Иванов Иван Иванович</Name>
+						<INN>0</INN>
+						<KPP>0</KPP>
+						<Account>40802810300020007955</Account>
+						<Bank>
+							<BIC>046577413</BIC>
+							<Name>ФИЛИАЛ ДЕМО-БАНК БТВ</Name>
+							<City>ЕКАТЕРИНБУРГ</City>
+							<CorrespAcc>30101810965770000413</CorrespAcc>
+						</Bank>
+					</Payee>
+					<Priority>5</Priority>
+					<Purpose>За транспортные услуги по счету № Ек2Тюм003221 от 18 Апреля 2016г. Сумма 2 999-00руб без НДС</Purpose>
+				</PayDocRu>
+			</PayDoc>
+			<DC>1</DC>
+			<Date>2016-05-04</Date>
+			<Stamp>
+				<BIC>044525888</BIC>
+				<Name>ДЕМО-БАНК</Name>
+				<City>МОСКВА</City>
+				<CorrespAcc>30101810500000000219</CorrespAcc>
+				<Status>
+					<Code>02</Code>
+					<Name>Исполнен</Name>
+					<MoreInfo>Платежный документ исполнен банком</MoreInfo>
+				</Status>
+			</Stamp>
+		</OperationInfo>
+		
+		<Stamp>
+			<BIC>044525888</BIC>
+			<Name>ДЕМО-БАНК</Name>
+			<City>МОСКВА</City>
+			<CorrespAcc>30101810500000000219</CorrespAcc>
+		</Stamp>
+	</Data>
+	<ExtIDStatementRequest>39f9553d-67b1-4314-a2b1-8bddc99e0f42</ExtIDStatementRequest>
+</Statement>

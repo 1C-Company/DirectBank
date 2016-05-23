@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
+	<xsd:element name="PayDocRu" type="edo:PayDocRu">
+		<xsd:annotation>
+			<xsd:documentation>Платежное поручение</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="PayDocRu">
+		<xsd:annotation>
+			<xsd:documentation>Платежное поручение</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Sender" type="edo:CustomerPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Отправитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Recipient" type="edo:BankPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Получатель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Data" type="edo:PayDocRuApp">
+				<xsd:annotation>
+					<xsd:documentation>Данные платежного поручения</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Digest" type="edo:DigestType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Дайджест электронного документа</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="edo:IDType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Идентификатор платежа</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Версия формата</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="creationDate" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Дата и время формирования</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Наименование и версия программы</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

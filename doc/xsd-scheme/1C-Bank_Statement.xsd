@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:edo="http://directbank.1c.ru/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
+	<xsd:element name="Statement" type="edo:Statement">
+		<xsd:annotation>
+			<xsd:documentation>Выписка банка по лицевому счету</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="Statement">
+		<xsd:annotation>
+			<xsd:documentation>Выписка банка по лицевому счету</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Sender" type="edo:BankPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Отправитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Recipient" type="edo:CustomerPartyType">
+				<xsd:annotation>
+					<xsd:documentation>Получатель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Data">
+				<xsd:annotation>
+					<xsd:documentation>Данные выписки по лиц.счету</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="StatementType" type="edo:StatementKindType">
+							<xsd:annotation>
+								<xsd:documentation>Тип выписки</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="DateFrom" type="xsd:dateTime" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Начало периода выписки</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="DateTo" type="xsd:dateTime">
+							<xsd:annotation>
+								<xsd:documentation>Конец периода выписки</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Account" type="edo:AccNumType">
+							<xsd:annotation>
+								<xsd:documentation>Номер лиц.счета</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Bank" type="edo:BankType">
+							<xsd:annotation>
+								<xsd:documentation>Банк, в котором открыт счет</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="OpeningBalance" type="edo:SumType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Остаток на счете на начало периода</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="TotalDebits" type="edo:SumType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Общая сумма документов по дебету счета</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="TotalCredits" type="edo:SumType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Общая сумма документов по кредиту счета</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="ClosingBalance" type="edo:SumType">
+							<xsd:annotation>
+								<xsd:documentation>Остаток на счете на конец периода</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="OperationInfo" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Информация об одной операции по лицевому счету в выписке</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="PayDoc">
+										<xsd:annotation>
+											<xsd:documentation>Данные платежного документа</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:choice>
+												<xsd:element name="PayDocRu" type="edo:PayDocRuApp">
+													<xsd:annotation>
+														<xsd:documentation>Данные платежного поручения</xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+												<xsd:element name="PayRequest" type="edo:PayRequestApp">
+													<xsd:annotation>
+														<xsd:documentation>Данные платежного требования</xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+												<xsd:element name="CollectionOrder" type="edo:CollectionOrderApp">
+													<xsd:annotation>
+														<xsd:documentation>Данные инкассового поручения</xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+												<xsd:element name="PaymentOrder" type="edo:PaymentOrderApp">
+													<xsd:annotation>
+														<xsd:documentation>Данные платежного ордера</xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+												<xsd:element name="BankOrder" type="edo:BankOrderApp">
+													<xsd:annotation>
+														<xsd:documentation>Данные банковского ордера</xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+												<xsd:element name="MemOrder" type="edo:MemOrderApp">
+													<xsd:annotation>
+														<xsd:documentation>Данные мемориального ордера</xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+												<xsd:element name="InnerDoc">
+													<xsd:annotation>
+														<xsd:documentation>Данные внутр.банковского документа</xsd:documentation>
+													</xsd:annotation>
+													<xsd:complexType>
+														<xsd:complexContent>
+															<xsd:extension base="edo:OtherPaymentDataType">
+																<xsd:sequence>
+																	<xsd:element name="InnerDocKind">
+																		<xsd:annotation>
+																			<xsd:documentation>Название типа внутр.банковского документа</xsd:documentation>
+																		</xsd:annotation>
+																		<xsd:simpleType>
+																			<xsd:restriction base="xsd:string">
+																				<xsd:maxLength value="255"/>
+																			</xsd:restriction>
+																		</xsd:simpleType>
+																	</xsd:element>
+																</xsd:sequence>
+															</xsd:extension>
+														</xsd:complexContent>
+													</xsd:complexType>
+												</xsd:element>
+												<xsd:element name="CashContribution" type="edo:CashContributionType">
+													<xsd:annotation>
+														<xsd:documentation>Данные объявления на взнос наличными </xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+												<xsd:element name="Check" type="edo:CheckType">
+													<xsd:annotation>
+														<xsd:documentation>Данные денежного чека</xsd:documentation>
+													</xsd:annotation>
+												</xsd:element>
+											</xsd:choice>
+											<xsd:attribute name="id" type="edo:IDType" use="required">
+												<xsd:annotation>
+													<xsd:documentation>ID платежного документа в банке</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+											<xsd:attribute name="docKind" type="edo:DocKindType" use="required">
+												<xsd:annotation>
+													<xsd:documentation>Код вида электронного документа, как он задан в описании к стандарту</xsd:documentation>
+												</xsd:annotation>
+											</xsd:attribute>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="DC">
+										<xsd:annotation>
+											<xsd:documentation>Признак дебета/кредита: 
+1 - дебет, 2 - кредит</xsd:documentation>
+										</xsd:annotation>
+										<xsd:simpleType>
+											<xsd:restriction base="xsd:string">
+												<xsd:length value="1"/>
+												<xsd:enumeration value="1">
+													<xsd:annotation>
+														<xsd:documentation>Операция по дебету</xsd:documentation>
+													</xsd:annotation>
+												</xsd:enumeration>
+												<xsd:enumeration value="2">
+													<xsd:annotation>
+														<xsd:documentation>Операция по кредиту</xsd:documentation>
+													</xsd:annotation>
+												</xsd:enumeration>
+											</xsd:restriction>
+										</xsd:simpleType>
+									</xsd:element>
+									<xsd:element name="Date" type="xsd:date">
+										<xsd:annotation>
+											<xsd:documentation>Дата проводки документа по лиц.счету</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="ExtID" type="edo:IDType" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>ID исходного платежного документа плательщика</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="Stamp" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>Данные штампа банка по каждому платежному документу</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:complexContent>
+												<xsd:extension base="edo:BankType">
+													<xsd:sequence>
+														<xsd:element name="Branch" minOccurs="0">
+															<xsd:annotation>
+																<xsd:documentation>Отделение банка</xsd:documentation>
+															</xsd:annotation>
+															<xsd:simpleType>
+																<xsd:restriction base="xsd:string">
+																	<xsd:maxLength value="255"/>
+																</xsd:restriction>
+															</xsd:simpleType>
+														</xsd:element>
+														<xsd:element name="Status" type="edo:StatusType">
+															<xsd:annotation>
+																<xsd:documentation>Статус платежного документа в банке</xsd:documentation>
+															</xsd:annotation>
+														</xsd:element>
+													</xsd:sequence>
+												</xsd:extension>
+											</xsd:complexContent>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="Stamp" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Данные штампа банка по выписке в целом</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="edo:BankType">
+										<xsd:sequence>
+											<xsd:element name="Branch" minOccurs="0">
+												<xsd:annotation>
+													<xsd:documentation>Отделение банка</xsd:documentation>
+												</xsd:annotation>
+												<xsd:simpleType>
+													<xsd:restriction base="xsd:string">
+														<xsd:maxLength value="255"/>
+													</xsd:restriction>
+												</xsd:simpleType>
+											</xsd:element>
+										</xsd:sequence>
+									</xsd:extension>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ExtIDStatementRequest" type="edo:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ID исходного запроса на выписку, если такой был</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="edo:IDType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Идентификатор выписки</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Версия формата</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="creationDate" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Дата и время формирования</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Наименование и версия программы</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

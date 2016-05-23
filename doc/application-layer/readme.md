@@ -12,7 +12,7 @@
    + [Пример XML-файла запроса-зонда](#2.1.1)
  + [Отправка платежного документа и изменение статусов](#2.2)
    + [Пример XML-файла платежного поручения](#2.2.1)
-   + [Пример XML-файла платежного требования](#2.2.2)
+    + [Пример XML-файла платежного требования](#2.2.2)
  + [Получение выписки банка и изменение статусов](#2.3)
    + [Пример XML-файла запроса выписки](#2.3.1)
    + [Пример XML-файла выписки банка](#2.3.2)
@@ -57,6 +57,9 @@
 ![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Load settings from a file.png)
 
 ### <a name="1.3"></a>  Пример XML-файла настроек обмена с банком:
+
+- [XML-файл **настроек обмена с банком**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/Settings.xml)
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Settings xmlns="http://directbank.1c.ru/XMLSchema"
@@ -66,7 +69,7 @@
     formatVersion="2.1.1"
 	creationDate="2016-04-22T09:38:51" 
     userAgent="DemoBankService">
-<Sender bic="044525888" name=" ДЕМО-БАНК" />
+	<Sender bic="044525888" name="ДЕМО-БАНК" />
 	<Recipient id="2806" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001" />
 	<Data>
 		<CustomerID>2806</CustomerID>
@@ -114,6 +117,8 @@
 
 #### <a name="2.1.1"></a> Пример XML-файла запроса-зонда
 
+- [XML-файл **запроса-зонда**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/Probe.xml)
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Probe xmlns="http://directbank.1c.ru/XMLSchema" 
@@ -123,17 +128,8 @@
 	formatVersion="2.1.1" 
 	creationDate="2016-04-22T09:33:57" 
 	userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
-<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
-	<Recipient bic="044525888" name=" ДЕМО-БАНК "/>
-	<Digest>
-        <Data algorithmVersion="1.0.1"> 0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN
-        0LvQtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Q
-        u9C10LzQtdC90YLQsCBEaWdlc3QNCtCt0YLQviDQv9GA0LjQvNC10YAg0LfQvdCw0YfQtdC90LjRjyDRjdC7
-        0LXQvNC10L3Rgt CwIERpZ2VzdA0K0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0Lv
-        QtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Qu9C
-        10LzQtdC90YLQsCBEaWdlc3Q=
- 		</Data>
-    </Digest>
+	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+	<Recipient bic="044525888" name="ДЕМО-БАНК "/>
 </Probe>
 ```
 
@@ -152,6 +148,8 @@
 
 #### <a name="2.2.1"></a> Пример XML-файла платежного поручения:
 
+- [XML-файл **платежного поручения**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/PayDocRu.xml)
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <PayDocRu xmlns="http://directbank.1c.ru/XMLSchema" 
@@ -163,7 +161,7 @@
     userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
     <Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
     <Recipient bic="044525888" name="ДЕМО-БАНК"/>
-    <Data>
+	<Data>
         <DocNo>14</DocNo>
         <DocDate>2016-04-22</DocDate>
         <Sum>15</Sum>
@@ -192,22 +190,14 @@
         <TransitionKind>01</TransitionKind>
         <Priority>3</Priority>
         <Purpose>за товар</Purpose>
-    </Data>
-    <Digest>
-        <Data algorithmVersion="1.0.1"> 
-        0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQtdC80
-        LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0L
-        XQvdC40Y8g0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3QNCtCt0YLQviDQv9GA0Lj
-        QvNC10YAg0LfQvdCw0YfQtdC90LjRjyDRjdC70LXQvNC10L3RgtCwIERpZ2Vz
-        dA0K0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQt
-        dC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsN
-        GH0LXQvdC40Y8g0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3Q=
-        </Data>
-    </Digest>
+	</Data>
 </PayDocRu>
 ```
 
 #### <a name="2.2.2"></a> Пример XML-файла платежного требования:
+
+- [XML-файл **платежного требования**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/PayRequest.xml)
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <PayRequest xmlns="http://directbank.1c.ru/XMLSchema"
@@ -217,7 +207,7 @@
     formatVersion="2.1.1" 
     creationDate="2016-04-22T09:50:09" 
     userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
-<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
 		<DocNo>15</DocNo>
@@ -253,18 +243,6 @@
 		<Purpose>за товар</Purpose>
 		<PaymentCondition>1</PaymentCondition>
 	</Data>
-	<Digest>
- 		<Data algorithmVersion="1.0.1">
-       	0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0L
-        vQtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGA
-        INC30L3QsNGH0LXQvdC40Y8g0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3
-        QNCtCt0YLQviDQv9GA0LjQvNC10YAg0LfQvdCw0YfQtdC90LjRjyDR
-        jdC70LXQvNC10L3RgtCwIERpZ2VzdA0K0K3RgtC+INC/0YDQuNC80L
-        XRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQtdC80LXQvdGC0LAgRGln
-        ZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y
-        8g0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3Q=
-        </Data>
-   </Digest>
 </PayRequest>
 ```
 
@@ -283,6 +261,8 @@
 - Статус, что электронный документ «Выписка банка» получен, система «1С:Предприятие 8» назначит после успешного разбора входящего транспортного контейнера из Банка.
 
 #### <a name="2.3.1"></a> Пример XML-файла запроса выписки
+
+- [XML-файл **запроса выписки**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/StatementRequest.xml)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -305,55 +285,94 @@
 			<Name>ДЕМО-БАНК</Name>
 		</Bank>
 	</Data>
-    <Digest>
- 		<Data algorithmVersion="1.0.1">
-        0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQ
-        tdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC3
-        0L3QsNGH0LXQvdC40Y8g0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3QNCtCt
-        0YLQviDQv9GA0LjQvNC10YAg0LfQvdCw0YfQtdC90LjRjyDRjdC70LXQ
-        vNC10L3RgtCwIERpZ2VzdA0K0K3RgtC+INC/0YDQuNC80LXRgCDQt9C9
-        0LDRh9C10L3QuNGPINGN0LvQtdC80LXQvdGC0LAgRGlnZXN0DQrQrdGC
-        0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Qu9C10LzQ
-        tdC90YLQsCBEaWdlc3Q=
-        </Data>
-   </Digest>
 </StatementRequest>
 ```
 
 #### <a name="2.3.2"></a> Пример XML-файла выписки банка
 
+- [XML-файл **выписки банка**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/Statement.xml)
+
 ```xml
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Statement xmlns="http://directbank.1c.ru/XMLSchema"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    id="fefe711d-3033-4d00-a4be-ed5ee34d925e"
-    formatVersion="2.1.1"
-    creationDate="2016-04-22T09:52:41+03:00"
-    userAgent="DemoBankService">
+	id="f7cbc6af-33dd-4c37-b67d-7400e1c327ad"
+	formatVersion="2.1.1"
+	creationDate="2016-05-13T13:51:21.829"
+	userAgent="DemoBankService">
 	<Sender name="ДЕМО-БАНК" bic="044525888"/>
-	<Recipient kpp="770501001" inn="7705260699" id="id:42;s:9999"/>
+	<Recipient id="c8d57b00-530d-4a2e-86c1-aa9d5e4fafbd" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Data>
 		<StatementType>0</StatementType>
-		<DateFrom>2016-04-21T00:00:00+03:00</DateFrom>
-		<DateTo>2016-04-21T23:59:59+03:00</DateTo>
+		<DateFrom>2016-05-04T00:00:00.000</DateFrom>
+		<DateTo>2016-05-13T11:51:13.000</DateTo>
 		<Account>40702810500000000001</Account>
 		<Bank>
 			<BIC>044525888</BIC>
-			<Name>ДЕМО-БАНК</Name>
+			<Name>ДЕМО-БАНК"</Name>
+			<City>МОСКВА</City>
 			<CorrespAcc>30101810500000000219</CorrespAcc>
 		</Bank>
-		<OpeningBalance>100000.00</OpeningBalance>
-		<TotalDebits>0.00</TotalDebits>
-		<TotalCredits>0.00</TotalCredits>
-		<ClosingBalance>100000.00</ClosingBalance>
+		<OpeningBalance>139280.91</OpeningBalance>
+		<ClosingBalance>88970.02</ClosingBalance>
+		<OperationInfo>
+			<PayDoc id="768" docKind="10">
+				<PayDocRu>
+					<DocNo>768</DocNo>
+					<DocDate>2016-05-04</DocDate>
+					<Sum>14</Sum>
+					<Payer>
+						<Name>Торговый дом Комплексный</Name>
+						<INN>7705260699</INN>
+						<KPP>770501001</KPP>
+						<Account>40702810500000000001</Account>
+						<Bank>
+							<BIC>044525888</BIC>
+							<Name>ДЕМО-БАНК</Name>
+							<City>МОСКВА</City>
+							<CorrespAcc>30101810500000000219</CorrespAcc>
+						</Bank>
+					</Payer>
+					<Payee>
+						<Name>Индивидуальный предприниматель Иванов Иван Иванович</Name>
+						<INN>0</INN>
+						<KPP>0</KPP>
+						<Account>40802810300020007955</Account>
+						<Bank>
+							<BIC>046577413</BIC>
+							<Name>ФИЛИАЛ ДЕМО-БАНК БТВ</Name>
+							<City>ЕКАТЕРИНБУРГ</City>
+							<CorrespAcc>30101810965770000413</CorrespAcc>
+						</Bank>
+					</Payee>
+					<Priority>5</Priority>
+					<Purpose>За транспортные услуги по счету № Ек2Тюм003221 от 18 Апреля 2016г. Сумма 2 999-00руб без НДС</Purpose>
+				</PayDocRu>
+			</PayDoc>
+			<DC>1</DC>
+			<Date>2016-05-04</Date>
+			<Stamp>
+				<BIC>044525888</BIC>
+				<Name>ДЕМО-БАНК</Name>
+				<City>МОСКВА</City>
+				<CorrespAcc>30101810500000000219</CorrespAcc>
+				<Status>
+					<Code>02</Code>
+					<Name>Исполнен</Name>
+					<MoreInfo>Платежный документ исполнен банком</MoreInfo>
+				</Status>
+			</Stamp>
+		</OperationInfo>
 		<Stamp>
 			<BIC>044525888</BIC>
 			<Name>ДЕМО-БАНК</Name>
+			<City>МОСКВА</City>
 			<CorrespAcc>30101810500000000219</CorrespAcc>
 		</Stamp>
 	</Data>
-	<ExtIDStatementRequest>da06dc8f-afbe-4172-89c8-0d4492c2dd25</ExtIDStatementRequest>
+	<ExtIDStatementRequest>39f9553d-67b1-4314-a2b1-8bddc99e0f42</ExtIDStatementRequest>
+</Statement>
 ```
 
 ### <a name="2.4"></a> Получение состояния электронного документа
@@ -365,6 +384,9 @@
 - После получения информации об ошибки обработки на стороне Банка система «1С:Предприятие 8» назначит соответствующий статус электронному документу с пояснением причины отказа в обработке Банком.
 
 #### <a name="2.4.1"></a> Пример XML-файла извещения о состоянии электронного документа
+
+- [XML-файл **извещения о состоянии электронного документа**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/StatusDocNotice.xml)
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <StatusDocNotice xmlns="http://directbank.1c.ru/XMLSchema"
@@ -379,12 +401,12 @@
 		<Customer id="id:42;s:9999"/>
 	</Recipient>
 	<ExtID>eafa28b5-6600-424c-b0d3-3785274d570d</ExtID>
-	<Result>
-		<Error>
-			<Code>9999</Code>
-			<Description>Успешная проверка запрос-зонда</Description>
-		</Error>
-	</Result>
+    <Result>
+        <Status>
+            <Code>01</Code>
+            <Name>Подписан</Name>
+        </Status>
+    </Result>
 </StatusDocNotice>
 ```
 ### <a name="2.5"></a> Запрос состояния электронного документа
@@ -403,6 +425,9 @@
 - Текущий статус исходного электронного документа и статус запроса система «1С:Предприятие 8» назначит после успешного разбора входящего транспортного контейнера из Банка.
 
 #### <a name="2.5.1"></a> Пример XML-файла запроса состояния электронного документа
+
+- [XML-файл **запроса состояния электронного документа**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/StatusRequest.xml)
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <StatusRequest xmlns="http://directbank.1c.ru/XMLSchema"
@@ -434,6 +459,9 @@
 - Текущий статус исходного электронного документа и статус запроса система «1С:Предприятие 8» назначит после успешного разбора входящего транспортного контейнера из Банка.
 
 #### <a name="2.6.1"></a> Пример XML-файла запроса состояния электронного документа
+
+- [XML-файл **запроса состояния электронного документа**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/CancelationRequest.xml)
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <CancelationRequest xmlns="http://directbank.1c.ru/XMLSchema"
@@ -447,16 +475,5 @@
     <Recipient bic="044525888" name="ДЕМО-БАНК"/>
     <ExtID>05688096-0806-4ef0-af4c-572f75dbaf7c</ExtID>
     <Reason>Описание причины отзыва</Reason>
-	<Digest>
- 		<Data algorithmVersion="1.0.1">
-        0K3RgtC+INC/0YDQuNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQtdC80LXQvd
-        GC0LAgRGlnZXN0DQrQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g
-        0Y3Qu9C10LzQtdC90YLQsCBEaWdlc3QNCtCt0YLQviDQv9GA0LjQvNC10YAg0LfQvd
-        Cw0YfQtdC90LjRjyDRjdC70LXQvNC10L3RgtCwIERpZ2VzdA0K0K3RgtC+INC/0YDQ
-        uNC80LXRgCDQt9C90LDRh9C10L3QuNGPINGN0LvQtdC80LXQvdGC0LAgRGlnZXN0DQ
-        rQrdGC0L4g0L/RgNC40LzQtdGAINC30L3QsNGH0LXQvdC40Y8g0Y3Qu9C10LzQtdC9
-        0YLQsCBEaWdlc3Q=
-        </Data>
-   </Digest>
 </CancelationRequest>
 ```

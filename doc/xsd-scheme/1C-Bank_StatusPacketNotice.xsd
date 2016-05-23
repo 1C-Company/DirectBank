@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
+	<xsd:element name="StatusPacketNotice" type="edo:StatusPacketNotice">
+		<xsd:annotation>
+			<xsd:documentation>Извещение о состоянии пакета</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="StatusPacketNotice">
+		<xsd:annotation>
+			<xsd:documentation>Извещение о состоянии пакета</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Sender" type="edo:ParticipantType">
+				<xsd:annotation>
+					<xsd:documentation>Отправитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Recipient" type="edo:ParticipantType">
+				<xsd:annotation>
+					<xsd:documentation>Получатель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="IDResultSuccessResponse" type="edo:IDType">
+				<xsd:annotation>
+					<xsd:documentation>ID, который сервис вернул в ответ после получения пакета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Result" type="edo:ResultStatusType">
+				<xsd:annotation>
+					<xsd:documentation>Состояние пакета</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ExtIDPacket" type="edo:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ID исходного пакета, по которому возвращается состояния</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="edo:IDType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Идентификатор извещения</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Версия формата</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="creationDate" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Дата и время формирования</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Наименование и версия программы</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

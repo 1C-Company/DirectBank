@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://directbank.1c.ru/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
+    formatVersion="2.1.1"
+    creationDate="2016-04-22T09:38:51" 
+    userAgent="DemoBankService">
+	<Sender bic="044525888" name="ДЕМО-БАНК" />
+    <Recipient id="2806" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001" />
+    <Data>
+        <CustomerID>2806</CustomerID>
+        <BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
+        <FormatVersion>2.1.1</FormatVersion>
+        <Encoding>UTF-8</Encoding>
+        <Logon>
+            <Login>
+                <User>user_login</User>
+            </Login>
+        </Logon>
+        <Document docKind="03" />
+        <Document docKind="05" />
+        <Document docKind="06" />
+        <Document docKind="10" />
+        <Document docKind="14" />
+    </Data>
+</Settings>

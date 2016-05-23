@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:edo="http://directbank.1c.ru/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
+	<xsd:element name="X509Data" type="edo:X509Data">
+		<xsd:annotation>
+			<xsd:documentation>Описание набора данных по сертификату</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="X509Data">
+		<xsd:annotation>
+			<xsd:documentation>Описание набора данных по сертификату</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="X509IssuerName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Имя издателя сертификата электронной подписи  (значение атрибута"CN").</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="X509SerialNumber" type="xsd:hexBinary">
+				<xsd:annotation>
+					<xsd:documentation>Серийный номер сертификата электронной подписи</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="X509Certificate" type="xsd:base64Binary">
+				<xsd:annotation>
+					<xsd:documentation>Двоичные данные сертификата электронной подписи</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="edo:IDType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Идентификатор набора данных</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Версия формата</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="creationDate" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Дата и время формирования</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Наименование и версия программы</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+</xsd:schema>

@@ -17,4 +17,4 @@
 #### - [API прямого обмена данными с банком](https://github.com/1C-Company/DirectBank/blob/master/doc/api.md)
 ###### - [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)  
 ###### - [Классификаторы](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md)
-###### - [Описание типов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md)
+###### - [Описание типов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md) 

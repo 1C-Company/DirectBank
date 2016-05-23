@@ -29,13 +29,13 @@ API обмена данными – уровень который описыва
  + [Криптооперации, выполняемые на стороне Клиента и Банка](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/data-security.md#-Криптооперации-выполняемые-на-стороне-Клиента-и-Банка)
  + [Защита электронных документов с помощью электронной подписи](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/data-security.md#-Защита-электронных-документов-с-помощью-электронной-подписи)
 + [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)
-+ [Таблицы кодов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md)
++ [Классификаторы](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md)
  + [Таблица кодов статусов транспортных контейнеров](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md#-Таблица-кодов-статусов-транспортных-контейнеров)
  + [Таблица кодов видов электронных документов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md#-Таблица-кодов-видов-электронных-документов)
  + [Таблица кодов статусов электронных документов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md#-Таблица-кодов-статусов-электронных-документов)
  + [Таблица типов выписок банка](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md#-Таблица-типов-выписок-банка)
  + [Таблица кодов ошибок и их описание, которые может возвращать банковский сервис в «1С:Предприятие 8»](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md#-Таблица-кодов-ошибок-и-их-описание-которые-может-возвращать-банковский-сервис-в-1СПредприятие-8)
-+ [Таблицы типов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md)
++ [Описание типов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md)
 
 - - - -
 

@@ -9,6 +9,8 @@
  + [Тип edo:BankPartyType](#edo-BankPartyType)
  + [Тип edo:BankType](#edo-BankType)
  + [Тип edo:CancelationRequest](#edo-CancelationRequest)
+ + [Тип edo:CashContributionType](#edo-CashContributionType)
+ + [Тип edo:CheckType](#edo-CheckType)
  + [Тип edo:CollectionOrderApp](#edo-CollectionOrderApp)
  + [Тип edo:CustomerDetailsType](#edo-CustomerDetailsType)
  + [Тип edo:CustomerPartyType](#edo-CustomerPartyType)
@@ -70,6 +72,8 @@
 | <a name="BudgetPaymentInfoType"></a> BudgetPaymentInfoType                                   | [edo:BudgetPaymentInfoType](#edo-BudgetPaymentInfoType)                                   | Реквизиты бюджетного документа.  См.правила заполнения платежных поручений, утвержденные приказом Минфина России                                                                                                                                            |
 | <a name="CollectionOrderApp"></a> CollectionOrderApp               | [edo:CollectionOrderApp](#edo-CollectionOrderApp)               | Данные инкассового поручения   |
 | <a name="ContentType"></a> ContentType                             | [string](#string)                                               | Тип контента передаваемого файла. <br> Доступные значения: <br> • application/xml; <br> • application/octet-stream; <br>  • text/plain; <br> • text/xml   |
+| <a name="CashContributionType"></a> CashContributionType                             | [edo:CashContributionType](#edo-CashContributionType)                                               | Данные объявления на взнос наличными   |
+| <a name="CheckType"></a> CheckType                             | [edo:CheckType](#edo-CheckType)                                               | Данные денежного чека   |
 | <a name="CustomerDetailsType"></a> CustomerDetailsType             | [edo:CustomerDetailsType](#edo-CustomerDetailsType)             | Реквизиты налогоплательщика                                                                                                                               |
 | <a name="CustomerPartyType"></a> CustomerPartyType                 | [edo:CustomerPartyType](#edo-CustomerPartyType)                 | Получатель                                                                                                                                                |
 | <a name="DateString"></a> DateString                               | [string](#string)                                               | Дата строкой в формате ДД.ММ.ГГГГ                                                                                                                         |

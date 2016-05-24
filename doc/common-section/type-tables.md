@@ -1,5 +1,5 @@
 # ВНИМАНИЕ! Это не финальная версия, раздел может быть дополнен.
- 
+
 #Описание типов
 
 
@@ -644,7 +644,7 @@
 >>>>
 | Параметр         | Тип                   | Кратность | Описание                             |
 |------------------|-----------------------|:---------:|--------------------------------------|
-| InnerDocKind     | [string](#string)(255)|    [1]    |  Название типа внутр.банковского документа  |
+| InnerDocKind     | [string](#string) (255)|    [1]    |  Название типа внутр.банковского документа  |
 
 >>>###### <a name="edo-Statement_Data_OperationInfo_OperationInfo_Stamp"></a> OperationInfo_Stamp:
 >>> - Базовый тип: [BankType](#BankType)
@@ -663,8 +663,8 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
 | creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
 | userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
-| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
-| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                      |
+| Sender        | [CustomerPartyType](#CustomerPartyType)     |    [1]    | Отправитель                     |
+| Recipient     | [BankPartyType](#BankPartyType) |    [1]    | Получатель                      |
 | Data          | [Data](#edo-StatementRequest_Data)              |    [1]    | Данные запроса                  |
 | Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
 
@@ -686,8 +686,8 @@
 | formatVersion      | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                          |
 | creationDate       | [dateTime](#dateTime)          |    [1]    | Дата и время формирования                                               |
 | userAgent          | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы                                         |
-| Sender             | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                                                             |
-| Recipient          | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                                                              |
+| Sender             | [ParticipantType](#ParticipantType)     |    [1]    | Отправитель                                                             |
+| Recipient          | [ParticipantType](#ParticipantType) |    [1]    | Получатель                                                              |
 | ExtID              | [IDType](#IDType)            |    [1]    | ID исходного электронного документа, по которому возвращается состояния |
 | Result             | [ResultStatusType](#ResultStatusType)  |    [1]    | Состояние электронного документа                                        |
 | ExtIDStatusRequest | [IDType](#IDType)            |   [0-1]   | ID запроса о состоянии электронного документа, если был такой           |
@@ -709,8 +709,8 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                          |
 | creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования                                               |
 | userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы                                         |
-| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                                                             |
-| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                                                              |
+| Sender        | [CustomerPartyType](#CustomerPartyType)     |    [1]    | Отправитель                                                             |
+| Recipient     | [BankPartyType](#BankPartyType) |    [1]    | Получатель                                                              |
 | ExtID         | [IDType](#IDType)            |    [1]    | ID исходного электронного документа, статус которого требуется получить |
 
 
@@ -718,9 +718,9 @@
 
 | Параметр              | Тип                       | Кратность | Описание                                            |
 |-----------------------|---------------------------|:---------:|-----------------------------------------------------|
-| SendPacketResponse    | [SendPacketResponseType](#SendPacketResponseType)    |    [1]    | Отправка пакета в банк                              |
-| GetPacketListResponse | [GetPacketListResponseType](#GetPacketListResponseType) |    [1]    | Список ID пакетов, готовых к передачи клиенту       |
-| GetPacketResponse     | [GetPacketResponseType](#GetPacketResponseType)     |    [1]    | Пакет электронных документов для получения клиентом |
-| LogonResponse         | [LogonResponseType](#LogonResponseType)         |    [1]    | Аутентификация по логину + ОТР (опционально)        |
-| LogonCertResponse     | [LogonCertResponseType](#LogonCertResponseType)     |    [1]    | Аутентификация по сертификату                       |
-| GetSettingsResponse   | [GetSettingsResponseType](#GetSettingsResponseType)       |    [1]    | Получение настроек обмена в автоматическом режиме   |
+| SendPacketResponse    | [SendPacketResponseType](#SendPacketResponseType)    |    выбор <br> [1]    | Отправка пакета в банк                              |
+| GetPacketListResponse | [GetPacketListResponseType](#GetPacketListResponseType) |    выбор <br> [1]    | Список ID пакетов, готовых к передачи клиенту       |
+| GetPacketResponse     | [GetPacketResponseType](#GetPacketResponseType)     |    выбор <br> [1]    | Пакет электронных документов для получения клиентом |
+| LogonResponse         | [LogonResponseType](#LogonResponseType)         |    выбор <br> [1]    | Аутентификация по логину + ОТР (опционально)        |
+| LogonCertResponse     | [LogonCertResponseType](#LogonCertResponseType)     |    выбор <br> [1]    | Аутентификация по сертификату                       |
+| GetSettingsResponse   | [GetSettingsResponseType](#GetSettingsResponseType)       |    выбор <br> [1]    | Получение настроек обмена в автоматическом режиме   |

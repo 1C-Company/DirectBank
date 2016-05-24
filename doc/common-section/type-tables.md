@@ -325,7 +325,7 @@
 >###### <a name="edo-LogonResponseType_ExtraAuth"></a> ExtraAuth
 | Параметр | Тип | Кратность | Описание                                                       |
 |----------|-----|:---------:|----------------------------------------------------------------|
-| OTP      | [OTP](#edo-LogonResponseType_ExtraAuth_OTP) |    [1]    | Параметры доп.аутентификации, которые будут направлены клиенту |
+| OTP      | [OTP](#edo-LogonResponseType_ExtraAuth_OTP) |    выбор <br> [1]    | Параметры доп.аутентификации, которые будут направлены клиенту |
 
 >>###### <a name="edo-LogonResponseType_ExtraAuth_OTP"></a> OTP
 | Параметр  | Тип         | Кратность | Описание                                                 |
@@ -384,8 +384,8 @@
 
 | Параметр | Тип               | Кратность | Описание             |
 |----------|-------------------|:---------:|----------------------|
-| Customer | [CustomerPartyType](#CustomerPartyType) |    [1]    | Идентификатор пакета |
-| Bank     | [BankPartyType](#BankPartyType)     |    [1]    | Версия формата       |
+| Customer | [CustomerPartyType](#CustomerPartyType) |    выбор <br> [1]    | Идентификатор пакета |
+| Bank     | [BankPartyType](#BankPartyType)     |    выбор <br> [1]    | Версия формата       |
 
 ### <a name="edo-PayDocRu"></a> Тип edo:PayDocRu
 
@@ -479,8 +479,8 @@
 
 | Параметр | Тип               | Кратность | Описание                                  |
 |----------|-------------------|:---------:|-------------------------------------------|
-| Success  | [SuccessResultType](#SuccessResultType) |    [0-1]    | Успешный ответ банка                      |
-| Error    | [ErrorType](#ErrorType)         |    [0-1]    | Ответ банка в случае возникновения ошибки |
+| Success  | [SuccessResultType](#SuccessResultType) |    выбор <br> [1]    | Успешный ответ банка                      |
+| Error    | [ErrorType](#ErrorType)         |    выбор <br> [1]    | Ответ банка в случае возникновения ошибки |
 
 ### <a name="edo-ResultStatusType"></a> Тип edo:ResultStatusType
 
@@ -523,8 +523,8 @@
 >>###### <a name="edo-Settings_Data_Logon"></a> Logon:
 | Параметр    | Тип         | Кратность | Описание                           |
 |-------------|-------------|:---------:|------------------------------------|
-| Login       | [Login](#edo-Settings_Data_Logon_Login)       |    [1]    | По логину и паролю                 |
-| Certificate | [Certificate](#edo-Settings_Data_Logon_Certificate) |    [1]    | По сертификату электронной подписи |
+| Login       | [Login](#edo-Settings_Data_Logon_Login)       |    выбор <br> [1]    | По логину и паролю                 |
+| Certificate | [Certificate](#edo-Settings_Data_Logon_Certificate) |    выбор <br> [1]    | По сертификату электронной подписи |
 
 
 >>>###### <a name="edo-Settings_Data_Logon_Login"></a> Login:

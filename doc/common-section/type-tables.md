@@ -5,7 +5,7 @@
 
 + [Типы **W3C**](#1)
 + [Простые типы **edo**](#2)
-+ [Общие **комплексные типы edo**](#3)
++ [Комплексные типы **edo**](#3)
  + [Тип edo:BankPartyType](#edo-BankPartyType)
  + [Тип edo:BankType](#edo-BankType)
  + [Тип edo:CancelationRequest](#edo-CancelationRequest)
@@ -55,7 +55,6 @@
 | <a name="string"></a> string             	|
 
 ## <a name="2"></a> Простые типы edo
-(<http://directbank.1c.ru/XMLSchema>)
 
 | Наименование                                                       | Тип                                                             | Описание                                                                                                                                                  |
 |--------------------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -149,10 +148,10 @@
 
 | Параметр | Тип  | Кратность | Описание                  |
 |----------|------|:---------:|---------------------------|
-| Data     | [Data](#edo-DigestType_Data) |   [0-1]   | Данные дайджеста в base64 |
+| Data     | [Data](#edo-DigestType_Data) |   [1]   | Данные дайджеста в base64 |
 
 >###### <a name="edo-DigestType_Data"></a> Data
-> - Тип значения: [base64Binary](#base64Binary)
+> - Базовый тип: [base64Binary](#base64Binary)
 >
 | Параметр                   | Тип               | Кратность | Описание                                |
 |----------------------------|-------------------|:---------:|-----------------------------------------|
@@ -176,7 +175,7 @@
 | Signature      | [Signature](#edo-DocumentType_Signature)         |   [0-n]   | Данные электронных подписей                                          |
 
 >###### <a name="edo-DocumentType_Data"></a> Data
-> - Тип значения: [base64Binary](#base64Binary)
+> - Базовый тип: [base64Binary](#base64Binary)
 >
 | Параметр                   | Тип         | Кратность | Описание                         |
 |----------------------------|-------------|:---------:|----------------------------------|
@@ -216,7 +215,7 @@
 | Data          | [Data](#edo-GetSettingsResponse_Data)              |    [1]    | Настройки обмена с банком       |
 
 >###### <a name="edo-GetSettingsResponse_Data"></a> Data
-> - Тип значения: [base64Binary](#base64Binary)
+> - Базовый тип: [base64Binary](#base64Binary)
 >
 | Параметр                   | Тип         | Кратность | Описание                                                             |
 |----------------------------|-------------|:---------:|----------------------------------------------------------------------|                                    |
@@ -273,15 +272,15 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
 | creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
 | userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
-| Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
-| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                      |
+| Sender        | [CustomerPartyType](#CustomerPartyType)     |    [1]    | Отправитель                     |
+| Recipient     | [BankPartyType](#BankPartyType) |    [1]    | Получатель                      |
 | Data          | [PayDocRuApp](#PayDocRuApp)       |    [1]    | Данные платежного поручения     |
 | Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
 
 
 ### <a name="edo-PayDocRuApp"></a> Тип edo:PayDocRuApp
 
-- Тип значения: [PaymentDataType](#PaymentDataType)
+- Базовый тип: [PaymentDataType](#PaymentDataType)
 
 | Параметр                                                                                                        | Тип                   | Кратность | Описание                         |
 |-----------------------------------------------------------------------------------------------------------------|-----------------------|:---------:|----------------------------------|
@@ -329,7 +328,7 @@
 
 ### <a name="edo-PayRequestApp"></a> Тип edo:PayRequestApp
 
-- Тип значения: [PaymentDataType](#PaymentDataType)
+- Базовый тип: [PaymentDataType](#PaymentDataType)
 
 | Параметр                      | Тип        | Кратность | Описание                                                                                                     |
 |-------------------------------|------------|:---------:|--------------------------------------------------------------------------------------------------------------|
@@ -491,24 +490,27 @@
 | Stamp    | [OperationInfo_Stamp](#edo-Statement_Data_OperationInfo_OperationInfo_Stamp) |    [1]    | Данные штампа банка по каждому платежному документу |
 
 >>###### <a name="edo-Statement_Data_Stamp"></a> Stamp:
+>> - Базовый тип: [BankType](#BankType)
+>>
 | Параметр               | Тип             | Кратность | Описание        |
 |------------------------|-----------------|:---------:|-----------------|
-| Тип значения: [BankType](#BankType) |                 |           |                 |
 | Branch                 | [string](#string) (до 255) |    [1]    | Отделение банка |
 
 -----
 
 >>>###### <a name="edo-Statement_Data_OperationInfo_PayDoc"></a> PayDoc:
+>>> - Базовый тип: [BankType](#BankType)
+>>>
 | Параметр               | Тип             | Кратность | Описание        |
 |------------------------|-----------------|:---------:|-----------------|
-| Тип значения: [BankType](#BankType) |                 |           |                 |
 | Branch                 | [string](#string) (до 255) |    [1]    | Отделение банка |
 
 
 >>>###### <a name="edo-Statement_Data_OperationInfo_OperationInfo_Stamp"></a> OperationInfo_Stamp:
+>>> - Базовый тип: [BankType](#BankType)
+>>>
 | Параметр               | Тип             | Кратность | Описание                            |
 |------------------------|-----------------|:---------:|-------------------------------------|
-| Тип значения: [BankType](#BankType) |                 |           |                                     |
 | Branch                 | [string](#string) (до 255) |    [1]    | Отделение банка                     |
 | Status                 | [StatusType](#StatusType)      |    [1]    | Статус платежного документа в банке |
 

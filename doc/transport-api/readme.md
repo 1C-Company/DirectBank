@@ -63,17 +63,18 @@ API обмена данными – уровень который описыва
 ## <a name="1"></a> Порядок взаимодействия на уровне аутентификации.
 
 Аутентификация Клиента с целью создания сессии на сервисе Банка может проходить:
-- либо по закрытому ключу электронной подписи (LogonCert);
-- либо по логину и паролю + дополнительный OTP («one time password», опционально) (Logon).
+- либо по закрытому ключу электронной подписи ([LogonCert](#1.1.1));
+- либо по логину и паролю + дополнительный OTP («one time password», опционально) ([Logon](#1.2.1)).
 
 ### <a name="1.1"></a> Аутентификация по закрытому ключу электронной подписи
 
-Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе (строка может содержать только ANSI-символы в соответствии с [RFC 2616](http://tools.ietf.org/html/rfc2616) для передачи значений в HTTP-заголовке), а также серийный номер сертификата, имя издателя сертификата и файл открытой части ключа электронной подписи Клиента, импортированный в систему «1С:Предприятие 8» на этапе настроек обмена (отправка производится HTTP-методом POST - метод LogonCert, передается XML-файл, соответствующий [XML-схеме данных для аутентификации по закр.ключу](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_AuthSign)).
+Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе (строка может содержать только ANSI-символы в соответствии с [RFC 2616](http://tools.ietf.org/html/rfc2616) для передачи значений в HTTP-заголовке), а также серийный номер сертификата, имя издателя сертификата и файл открытой части ключа электронной подписи Клиента, импортированный в систему «1С:Предприятие 8» на этапе настроек обмена (отправка производится HTTP-методом POST - метод [LogonCert](#1.1.1), передается XML-файл, соответствующий [XML-схеме данных для аутентификации по закр.ключу](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_AuthSign)).
 
-## <a name="1.1.1"></a> Метод LogonCert (HTTP-метод POST)
+#### <a name="1.1.1"></a> Метод LogonCert (HTTP-метод POST)
+
+- Host: <Адрес ресурса банка>
 
 **Заголовки:**
-- Host: <Адрес ресурса банка>
 - Content-Type: application/xml; charset=utf-8
 - CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
 - APIVersion: <Версия API обмена данными>
@@ -106,9 +107,7 @@ API обмена данными – уровень который описыва
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
-| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
-| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
+| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 **Описание:**
 
@@ -116,7 +115,7 @@ API обмена данными – уровень который описыва
 
 Банковский сервис по идентификатору клиента, серийному номеру сертификата и имени издателя выполняет поиск сертификата электронной подписи Клиента (при необходимости получить другие данные по сертификату задействует файл сертификата открытой части ключа), если находит, то возвращает уникальный идентификатор (например, идентификатор неавторизованной сессии на стороне Банка) - «маркер» (строка в формате BASE64), зашифрованный с использованием открытого ключа электронной подписи Клиента (формат зашифрованных данных - PKCS#7). Если не находит, то возвращает ошибку аутентификации (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
 
-Полученный маркер должен быть расшифрован на стороне «1С:Предприятия 8» с использованием закрытого ключа электронной подписи. В дальнейшем, расшифрованный уникальный идентификатор должен быть указан в каждом HTTP-запросе для обмена данными на транспортном уровне (в заголовке SID).
+Полученный маркер должен быть расшифрован на стороне «1С:Предприятия 8» с использованием закрытого ключа электронной подписи. В дальнейшем, расшифрованный уникальный идентификатор будет указан в каждом HTTP-запросе для обмена данными на транспортном уровне (в заголовке SID).
 
 ![Аутентификация по закрытому ключу электронной подписи](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/LogonCert.png)
 
@@ -216,9 +215,9 @@ Content-Length: 1145
 
 Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе и введенный OTP (отправка производится HTTP-методом POST - метод LogonOTP). В случае успешного завершения процесса банковский сервис возвращает идентификатор авторизованной сессии в «1С:Предприятия 8» в синхронном режиме (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
 
-В дальнейшем, идентификатор авторизованной сессии должен быть указан в каждом HTTP-запросе для обмена данными на транспортном уровне (в заголовке SID).
+В дальнейшем, идентификатор авторизованной сессии будет указан в каждом HTTP-запросе для обмена данными на транспортном уровне (в заголовке SID).
 
-Результатом неуспешной аутентификации будет ошибка, возвращаемая банковской системой в синхронном режиме (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
+Результатом неуспешной аутентификации должна быть ошибка, возвращаемая банковской системой в синхронном режиме (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
 
 ![Аутентификация по логину и паролю. LogonOTP](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/LogonOTP.png)
 
@@ -255,9 +254,8 @@ Content-Length: 1145
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: ResultBank (выбор) |                   |           |                                 |
-| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
-| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
+| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+
 
 **Пример запроса** аутентификации по **логину и паролю**:
 ```http
@@ -339,9 +337,7 @@ Content-Length: 176
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)  |                   |           |                                 |
-| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) | [1]       | Версия формата                  |
-| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)     | [0-1]     | Наименование и версия программы |
+| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 **Пример запроса** передачи **OTP**:
@@ -413,8 +409,9 @@ Content-Length: 145
 **Заголовки:**
 - Host: <Адрес ресурса банка>
 - Content-Type: application/xml; charset=utf-8
-- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы. Если идентификатор неизвестен (первый запрос настроек), то передается «0»>
-- Account: <Номер расчетного счета Клиента>
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0>
+- Account: <Номер расчетного счета Клиента, для зарплатных проектов может отсутствовать>
+- Inn: <Инн организации для которой запрашиваются настройки>
 - Bic: <БИК Банка>
 - SID: <Идентификатор авторизованной сессии>
 - APIVersion: <Версия API обмена данными>
@@ -434,8 +431,9 @@ Content-Length: 145
 | Параметр   | Тип               | Кратность | Описание                                                                                                                                   |
 |------------|-------------------|:---------:|--------------------------------------------------------------------------------------------------------------------------------------------|
 | Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                                                                                                        |
-| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Если идентификатор неизвестен (первый запрос настроек), то передается «0 |
-| Account    | [AccNumType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#AccNumType)        | [1]       | Номер расчетного счета Клиента                                                                                                             |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0 |
+| Account    | [AccNumType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#AccNumType)        | [0-1]       | Номер расчетного счета Клиента, для зарплатных проектов может отсутствовать                                                                                                             |
+| Inn    | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (от 10 до 12)        | [1]       | Инн организации для которой запрашиваются настройки                                                                                                             |
 | Bic        | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (9)        | [1]       | БИК Банка                                                                                                                                  |
 | SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                                                                                                        |
 | APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                                                                                                  |
@@ -443,9 +441,7 @@ Content-Length: 145
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
-| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
-| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
+| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 **Описание:**
 
@@ -465,6 +461,7 @@ Host: dbogate.demobank.ru
 Accept: */*
 CustomerID: 0
 SID: 8867755b6fbb4ae296aa0ac6b179ae88
+Inn: 761700021132
 Bic: 044525888
 Account: 40802810200000099888
 APIVersion: 2.1.1
@@ -533,9 +530,8 @@ Content-Length: 2145
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
-| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
-| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
+| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+
 
 **Описание:**
 
@@ -653,14 +649,16 @@ Content-Length: 145
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank) |                   |           |                                 |
-| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
-| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
+| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+
+**Важно:**
+- Обратите внимание на параметр ***TimeStampLastPacket*** в ответе, это метка времени, на которую вернули всю актуальную информацию.
+
 
 **Описание:**
 
 - Проходит аутентификация на стороне Банка согласно протоколу, описанному в разделе «[Порядок взаимодействия на уровне аутентификации](#1)».
-- Если аутентификация пройдена успешно, система «1С:Предприятия 8» запрашивает Банк на наличие подготовленных транспортных контейнеров для Клиента (запрос на ресурс Банка производится HTTP-методом GET – метод GetPackList). В синхронном режиме банковская система возвращает либо ошибку, либо список уникальных идентификаторов транспортных контейнеров, готовых к передаче со стороны Банка и отметку времени, равную дате и времени формирования (передаются значения даты и времени сервера Банка) самого последнего транспортного контейнера, входящего в этот список (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
+- Если аутентификация пройдена успешно, система «1С:Предприятия 8» запрашивает Банк на наличие подготовленных транспортных контейнеров для Клиента (запрос на ресурс Банка производится HTTP-методом GET – метод GetPackList). В синхронном режиме банковская система возвращает список уникальных идентификаторов транспортных контейнеров, готовых к передаче со стороны Банка и отметку времени, равную дате и времени формирования (передаются значения даты и времени сервера Банка) самого последнего транспортного контейнера, входящего в этот список (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
  - Если в запросе из «1С:Предприятия 8» о готовых к передаче транспортных контейнерах указать «Отметку времени» (указывается значение даты и времени сервера Банка с точностью до секунды), то именно с этого момента времени будет формироваться список уникальных идентификаторов (в формате GUID), подготовленных к передаче в хронологическом порядке.
 
    Для того, чтобы получить список GUID всех когда-либо сформированных транспортных контейнеров на банковской стороне, параметр «Отметка времени» в запросе не передается.
@@ -733,9 +731,7 @@ Content-Length: 145
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| Тип значения: [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)  |                   |           |                                 |
-| formatVersion                    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                  |
-| userAgent                        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы |
+| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 **Пример запроса** получения транспортного контейнера:
 ```http

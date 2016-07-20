@@ -20,8 +20,8 @@
         </Logon>
         <Document docKind="03" />
         <Document docKind="05" />
-        <Document docKind="06" />
         <Document docKind="10" />
+        <Document docKind="11" />		
         <Document docKind="14" />
     </Data>
 </Settings>

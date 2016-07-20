@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://directbank.1c.ru/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
+    formatVersion="2.1.1"
+    creationDate="2016-04-22T09:38:51" 
+    userAgent="DemoBankService">	
+	<Sender bic="044525888"/>
+	<Recipient kpp="770501001" inn="7705260699" id="2806"/>
+	<Data>
+		<CustomerID>2806</CustomerID>
+		<BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
+		<FormatVersion>2.1.1</FormatVersion>
+		<Encoding>UTF-8</Encoding>
+		<Compress>false</Compress>
+		<Logon>
+		  <Certificate>
+			<EncryptingAlgorithm>GOST28147</EncryptingAlgorithm>
+		  </Certificate>
+		</Logon>
+		<CryptoParameters>
+		  <CSPName>Crypto-Pro GOST R 34.10-2001 Cryptographic Service Provider</CSPName>
+		  <CSPType>75</CSPType>
+		  <SignAlgorithm>GOST R 34.10-2001</SignAlgorithm>
+		  <HashAlgorithm>GOST R 34.11-94</HashAlgorithm>
+		  <CustomerSignature>
+			<GroupSignatures numberGroup="1">
+			  <Certificate>
+				0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA0K0KHQtdGA0YLQuNGE0LjQutCw0YIg0Y3Qu9C10LrRgtGA0L7QvdC90L7QuSDQv9C+0LTQv9C40YHQuCDRgdC+0YLRgNGD0LTQvdC40LrQsCDQutC70LjQtdC90YLQsA==
+			  </Certificate>
+			</GroupSignatures>
+		  </CustomerSignature>
+		</CryptoParameters>
+		<Document docKind="03"/>
+		<Document docKind="04">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="05">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="10">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="11">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="14">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+  </Data>
+</Settings>

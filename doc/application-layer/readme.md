@@ -3,7 +3,9 @@
 
 + [Порядок обмена электронными документами](#1)
 + [Получение настроек обмена с банком](#2)
-  + [Пример XML-файла настроек обмена с банком](#2.1)
+  + [Примеры XML-файла настроек обмена с банком](#2.1)
+  	+ [Аутентификация по логину](#2.1.1)
+  	+ [Аутентификация по сертификату](#2.1.2)
 + [Проверка работоспособности обмена электронными документами](#3)
   + [Пример XML-файла запроса-зонда](#3.1)
 + [Отправка платежного документа и изменение статусов](#4)
@@ -35,37 +37,126 @@
 - Получение настроек проходит согласно протоколу, описанному в разделе [«Порядок взаимодействия на транспортном уровне»](https://github.com/1C-Company/DirectBank/blob/master/doc/transport-api/readme.md#2).
 - После получения файла настроек обмена система «1С:Предприятие 8» автоматически настроит систему согласно полученным параметрам.
 
-### <a name="2.1"></a>  Пример XML-файла настроек обмена с банком:
+### <a name="2.1"></a>  Примеры XML-файла настроек обмена с банком:
 
-- [XML-файл **настроек обмена с банком**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/Settings.xml)
+#### <a name="2.1.1"></a>  Аутентификация по логину:
+
+- [XML-файл **настроек обмена с банком с аутентификацией по логину**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/Settings.xml)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Settings xmlns="http://directbank.1c.ru/XMLSchema"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
+    formatVersion="2.1.1"
+    creationDate="2016-04-22T09:38:51" 
+    userAgent="DemoBankService">
+	<Sender bic="044525888" name="ДЕМО-БАНК" />
+    <Recipient id="2806" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001" />
+    <Data>
+        <CustomerID>2806</CustomerID>
+        <BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
+        <FormatVersion>2.1.1</FormatVersion>
+        <Encoding>UTF-8</Encoding>
+        <Logon>
+            <Login>
+                <User>user_login</User>
+            </Login>
+        </Logon>
+        <Document docKind="03" />
+        <Document docKind="05" />
+        <Document docKind="10" />
+        <Document docKind="11" />
+        <Document docKind="14" />
+    </Data>
+</Settings>
+```
+
+#### <a name="2.1.2"></a>  Аутентификация по сертификату:
+
+- [XML-файл **настроек обмена с банком с аутентификацией по сертификату**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/application-layer/Settings_Logon_Certificate.xml)
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://directbank.1c.ru/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
     formatVersion="2.1.1"
-	creationDate="2016-04-22T09:38:51" 
-    userAgent="DemoBankService">
-	<Sender bic="044525888" name="ДЕМО-БАНК" />
-	<Recipient id="2806" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001" />
+    creationDate="2016-04-22T09:38:51" 
+    userAgent="DemoBankService">	
+	<Sender bic="044525888"/>
+	<Recipient kpp="770501001" inn="7705260699" id="2806"/>
 	<Data>
 		<CustomerID>2806</CustomerID>
 		<BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
 		<FormatVersion>2.1.1</FormatVersion>
 		<Encoding>UTF-8</Encoding>
+		<Compress>false</Compress>
 		<Logon>
-			<Login>
-				<User>user_login</User>
-			</Login>
+		  <Certificate>
+			<EncryptingAlgorithm>GOST28147</EncryptingAlgorithm>
+		  </Certificate>
 		</Logon>
-		<Document docKind="03" />
-		<Document docKind="05" />
-		<Document docKind="06" />
-		<Document docKind="10" />
-		<Document docKind="14" />
-	</Data>
+		<CryptoParameters>
+		  <CSPName>Crypto-Pro GOST R 34.10-2001 Cryptographic Service Provider</CSPName>
+		  <CSPType>75</CSPType>
+		  <SignAlgorithm>GOST R 34.10-2001</SignAlgorithm>
+		  <HashAlgorithm>GOST R 34.11-94</HashAlgorithm>
+		  <CustomerSignature>
+			<GroupSignatures numberGroup="1">
+			  <Certificate>
+                MIIDhTCCAzKgAwIBAgILAgEUAlQkAQECYQwwCgYGKoUDAgIDBQAwgeIxCzAJBgNV
+                BAYTAlJVMRUwEwYDVQQIDAzQnNC+0YHQutCy0LAxFTATBgNVBAcMDNCc0L7RgdC6
+                0LLQsDEwMC4GA1UECgwn0J/QkNCeINCR0LDQvdC6ICLQpNCaINCe0YLQutGA0YvR
+                gtC40LUiMVgwVgYDVQQDDE/Qo9C00L7RgdGC0L7QstC10YDRj9GO0YnQuNC5INCm
+                0LXQvdGC0YAg0J/QkNCeINCR0LDQvdC6ICLQpNCaINCe0YLQutGA0YvRgtC40LUi
+                MRkwFwYJKoZIhvcNAQkBFgpwa2lAb2ZjLnJ1MB4XDTE1MTIwMzA3MzQzNloXDTE3
+                MDIwNTA3MzQzNlowgbkxCzAJBgNVBAYTAlJVMRUwEwYDVQQHHgwEHAQ+BEEEOgQy
+                BDAxITAfBgNVBAoeGAQeBB4EHgAgACIEEgQ+BEEEQgQ+BDoAIjEPMA0GA1UECx4G
+                AEQAQgBPMUMwQQYDVQQDHjoEHgRCBDoEQARLBEIEPgQyACAEJAQ1BDQEPgRAACAE
+                GgQ+BD0EQQRCBDAEPQRCBDgEPQQ+BDIEOARHMRowGAYJKoZIhvcNAQkBFgtvZmtA
+                bWFpbC5ydTBjMBwGBiqFAwICEzASBgcqhQMCAiQABgcqhQMCAh4BA0MABEAdGL9U
+                oVW7P8jb3jSomUO5HO+yRul/F5zAL6VqOpzoHJGfCgwC+sIplqb6PkFpSZnyhYUz
+                ktux0monTcjtK3Gvo4HrMIHoMB0GA1UdDgQWBBT2v1NTaoWHLA9NJ7IAchoMFiGc
+                ZTAfBgNVHSMEGDAWgBQSfvuK/RhI/dFpGVzEiB/gG0zcujCBlQYDVR0gBIGNMIGK
+                MIGHBgorBgEEAYKcBQEBMHkwOAYIKwYBBQUHAgEWLGh0dHA6Ly93d3cub3Rrcml0
+                aWVmYy5ydS9hYm91dC9jYS1yZWdsYW1lbnQvMD0GCCsGAQUFBwICMDEaL9Ho8fLl
+                7Psg5Ojx8uDt9uju7e3u4+4g4eDt6u7i8eru4+4g7uHx6/Pm6OLg7ej/MA4GA1Ud
+                DwEB/wQEAwIE8DAKBgYqhQMCAgMFAANBABGGfsrxsm9BIExdpEeFRvwfRvVjgoHL
+                vYWd/OAkfNjSWNX2A/H0eWZmmQxrGkLpQV2FQJES7lR2buCjxx5xVCw=
+			  </Certificate>
+			</GroupSignatures>
+		  </CustomerSignature>
+		</CryptoParameters>
+		<Document docKind="03"/>
+		<Document docKind="04">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="05">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="10">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="11">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+		<Document docKind="14">
+		  <Signed>
+			<RuleSignatures>(0)</RuleSignatures>
+		  </Signed>
+		</Document>
+  </Data>
 </Settings>
 ```
 ### <a name="3"></a> Проверка работоспособности обмена электронными документами.

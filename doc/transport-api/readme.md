@@ -613,7 +613,7 @@ Content-Length: 145
 - запрос у Банка транспортного контейнера по его уникальному идентификатору и разбор в 1С.
 
 
-## <a name="2.4.1"></a> Метод GetPackList (HTTP-метод GET) 
+## <a name="2.4.1"></a> Метод GetPackList (HTTP-метод GET)
 
 **Заголовки:**
 - Host: <Адрес ресурса банка>
@@ -625,10 +625,6 @@ Content-Length: 145
 **Адрес запроса:**
 - https://<Адрес ресурса банка>/GetPackList?date=<Отметка времени>
 (Отметка времени в формате «dd.MM.yyyy HH:mm:ss», где dd – день числом, MM – месяц числом, yyyy – год числом, HH – часы в формате 24, mm – минуты, ss – секунды.)
-
-**Тело запроса:**
-- < XML-файл, соответствующий [XML-схеме транспортного контейнера](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Packet)>
-
 
 **Успешный ответ:**
 - HTTP/1.1 200 OK
@@ -644,7 +640,6 @@ Content-Length: 145
 | CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
 | SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                              |
 | APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
-| Packet     | [Packet](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#Packet)            | [1]       | Пакет электронных документов                                     |
 
 **Параметры ответа:**
 

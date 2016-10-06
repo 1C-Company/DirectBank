@@ -205,9 +205,7 @@ API обмена данными – уровень который описыва
 
 
 | Параметр                         | Тип               | Кратность | Описание                        |
-
 |----------------------------------|-------------------|:---------:|---------------------------------|
-
 | ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 
@@ -499,9 +497,7 @@ Content-Length: 1145
 
 
 | Параметр                         | Тип               | Кратность | Описание                        |
-
 |----------------------------------|-------------------|:---------:|---------------------------------|
-
 | ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 
@@ -661,9 +657,7 @@ Content-Length: 176
 
 
 | Параметр                         | Тип               | Кратность | Описание                        |
-
 |----------------------------------|-------------------|:---------:|---------------------------------|
-
 | ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 
@@ -1416,9 +1410,7 @@ Content-Length: 145
 
 
 | Параметр                         | Тип               | Кратность | Описание                        |
-
 |----------------------------------|-------------------|:---------:|---------------------------------|
-
 | ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 

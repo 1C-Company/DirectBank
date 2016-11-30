@@ -109,7 +109,7 @@
 
 ## <a name="3"></a> Комплексные типы edo
 
-### <a name="edo-BankPartyType"></a> Тип edo:BankPartyType [1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)
+### <a name="edo-BankPartyType"></a> Тип edo:BankPartyType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип             | Кратность | Описание       |
 |----------|-----------------|:---------:|----------------|

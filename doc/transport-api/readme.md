@@ -2,9 +2,11 @@
 
 
 
-API обмена данными – уровень который описывает подходы и методы осуществления операций обмена данными, он в свою очередь делится на следующие уровни:
+API обмена данными – уровень, который описывает подходы и методы осуществления операций обмена данными, он в свою очередь делится на следующие уровни:
 
-- Уровень аутентификации;
+- Уровень аутентификации
+
+- Настройка обмена
 
 - Транспортный уровень
 
@@ -12,17 +14,7 @@ API обмена данными – уровень который описыва
 
 - - -
 
-+ [Настройка обмена электронными документами](#0)
-
- + [Получение настроек обмена с банком в автоматическом режиме](#0.1)
-
- + [Загрузка настроек обмена с банком из файла](#0.2)
-
 + [Порядок взаимодействия на уровне аутентификации](#1)
-
- + [Аутентификация по закрытому ключу электронной подписи](#1.1)
-
-   + [Метод **LogonCert** (HTTP-метод POST)](#1.1.1)
 
  + [Аутентификация по логину и паролю](#1.2)
 
@@ -32,13 +24,15 @@ API обмена данными – уровень который описыва
 
  + [Рекомендации для банковского сервиса](#1.3)
 
-+ [Порядок взаимодействия на транспортном уровне](#2)
-
- + [Формирование и разбор транспортного контейнера](#2.1)
++ [Настройка обмена электронными документами](#0)
 
  + [Получение настроек обмена с банком в автоматическом режиме](#2.2)
 
    + [Метод **GetSettings** (HTTP-метод POST)](#2.2.1)
+
++ [Порядок взаимодействия на транспортном уровне](#2)
+
+ + [Формирование и разбор транспортного контейнера](#2.1)
 
  + [Отправка электронных документов из 1С](#2.3)
 
@@ -79,321 +73,11 @@ API обмена данными – уровень который описыва
 - - - -
 
 
-
-## <a name="0"></a> Настройка обмена электронными документами.
-
-Для начала использования прямого обмена электронными документами из решений  «1С:Предприятие 8» с банковской системой Клиент должен получить параметры обмена данными из Банка – в «1С:Предприятии 8» будут автоматически созданы настройки ЭДО с Банком.
-
-
-
-Порядок действий Клиента по орг.части и способ получения настроек обмена определяет сам Банк, например, надо ли в личном кабинете Клиента включать опцию использования нового сервиса и сохранять файл настроек на диск или же заключить доп.соглашение с Банком по обслуживанию через новый сервис и получить настройки в автомат.режиме.
-
-
-
-### <a name="0.1"></a>  Получение настроек обмена с банком в автоматическом режиме.
-
-
-
-При запросе настроек обмена в автоматическом режиме система «1С:Предприятие 8» передает в Банк номер расчетного счета Клиента (отправка производится HTTP-методом POST - метод [GetSettings](https://github.com/1C-Company/DirectBank/blob/master/doc/transport-api/readme.md#2.2)). Банковский сервис по номеру расчетного счета клиента формирует файл настроек (XML-файл, соответствующий [XML-схеме настроек обмена с банком](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Settings)) и в синхронном режиме возвращает в «1С:Предприятие 8» (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
-
-
-
-![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Setting up a direct exchange.png)
-
-
-
-Результатом неуспешного запроса настроек обмена будет ошибка, возвращаемая банковской системой также в синхронном режиме (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
-
-
-
-Особенностью данного процесса является то, что на момент первого запроса настроек обмена с банком в системе «1С:Предприятие 8» неизвестен уникальный идентификатор Клиента в банковской системе. В этом случае следует использовать «0» в качестве значения этого реквизита.
-
-
-
-### <a name="0.2"></a> Загрузка настроек обмена с банком из файла.
-
-Файл настроек обмена (XML-файл, соответствующий [XML-схеме настроек обмена с банком](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Settings)) предварительно получается Клиентом из банковской системы по каналам связи, которые определяет сам Банк. После получения файла настроек Клиент указывает его в помощнике создания настроек и система «1С:Предприятие 8» создает настройку согласно данным файла.
-
-
-
-![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Load settings from a file.png)
-
-
-
-
-
 ## <a name="1"></a> Порядок взаимодействия на уровне аутентификации.
 
 
 
-Аутентификация Клиента с целью создания сессии на сервисе Банка может проходить:
-
-- либо по закрытому ключу электронной подписи ([LogonCert](#1.1.1));
-
-- либо по логину и паролю + дополнительный OTP («one time password», опционально) ([Logon](#1.2.1)).
-
-
-
-### <a name="1.1"></a> Аутентификация по закрытому ключу электронной подписи
-
-
-
-Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе (строка может содержать только ANSI-символы в соответствии с [RFC 2616](http://tools.ietf.org/html/rfc2616) для передачи значений в HTTP-заголовке), а также серийный номер сертификата, имя издателя сертификата и файл открытой части ключа электронной подписи Клиента, импортированный в систему «1С:Предприятие 8» на этапе настроек обмена (отправка производится HTTP-методом POST - метод [LogonCert](#1.1.1), передается XML-файл, соответствующий [XML-схеме данных для аутентификации по закр.ключу](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_AuthSign)).
-
-
-
-#### <a name="1.1.1"></a> Метод LogonCert (HTTP-метод POST)
-
-
-
-- Host: <Адрес ресурса банка>
-
-
-
-**Заголовки:**
-
-- Content-Type: application/xml; charset=utf-8
-
-- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
-
-- APIVersion: <Версия API обмена данными>
-
-- AvailableAPIVersion: <Доступная версия API обмена данными>
-
-
-
-**Тело запроса:**
-
-- Content: < XML-файл, соответствующий [XML-схеме данных для аутентификации по закр.ключу](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_AuthSign)>
-
-
-
-
-
-**Успешный ответ:**
-
-- HTTP/1.1 200 OK
-
-- Content-Type: application/xml; charset=utf-8
-
-- Content: < XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)>
-
-
-
-**Параметры запроса:**
-
-
-
-| Параметр         | Тип               | Кратность | Описание                                                              |
-|------------------|-------------------|:---------:|-----------------------------------------------------------------------|
-| Host             | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                                   |
-| CustomerID       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы      |
-| APIVersion       | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                             |
-| AvailableAPIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [0-1]       | Максимальная доступная для текущей информационной базы версия API обмена данными                                                                                                                  |
-| id               | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор набора данных                                           |
-| formatVersion    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия формата                                                        |
-| creationDate     | [dateTime](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#dateTime)          | [1]       | Дата и время формирования                                             |
-| userAgent        | [UserAgentType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#UserAgentType)     | [0-1]     | Наименование и версия программы                                       |
-| X509IssuerName   | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Имя издателя сертификата электронной подписи  (значение атрибута"CN") |
-| X509SerialNumber | [hexBinary](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#hexBinary)         | [1]       | Серийный номер сертификата электронной подписи                        |
-| X509Certificate  | [base64Binary](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#base64Binary)      | [1]       | Двоичные данные сертификата электронной подписи                       |
-
-
-
-**Параметры ответа:**
-
-
-
-| Параметр                         | Тип               | Кратность | Описание                        |
-|----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
-
-
-
-**Описание:**
-
-
-
-Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе (строка может содержать только ANSI-символы в соответствии с [RFC 2616](http://tools.ietf.org/html/rfc2616) для передачи значений в HTTP-заголовке), а также серийный номер сертификата, имя издателя сертификата и файл открытой части ключа электронной подписи Клиента, импортированный в систему «1С:Предприятие 8» на этапе настроек обмена (отправка производится HTTP-методом POST - метод [LogonCert](#1.1.1), передается XML-файл, соответствующий [XML-схеме данных для аутентификации по закр.ключу](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_AuthSign)).
-
-
-
-Банковский сервис по идентификатору клиента, серийному номеру сертификата и имени издателя выполняет поиск сертификата электронной подписи Клиента (при необходимости получить другие данные по сертификату задействует файл сертификата открытой части ключа), если находит, то возвращает уникальный идентификатор (например, идентификатор неавторизованной сессии на стороне Банка) - «маркер» (строка в формате BASE64), зашифрованный с использованием открытого ключа электронной подписи Клиента (формат зашифрованных данных - PKCS#7). Если не находит, то возвращает ошибку аутентификации (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
-
-
-
-Полученный маркер должен быть расшифрован на стороне «1С:Предприятия 8» с использованием закрытого ключа электронной подписи. В дальнейшем, расшифрованный уникальный идентификатор будет указан в каждом HTTP-запросе для обмена данными на транспортном уровне (в заголовке SID).
-
-
-
-![Аутентификация по закрытому ключу электронной подписи](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/LogonCert.png)
-
-
-
-**Пример запроса** аутентификации по закрытому ключу:
-
-```xml
-
-POST https://dbogate.demobank.ru/LogonCert HTTP/1.1
-
-Host: dbogate.demobank.ru
-
-Accept: */*
-
-CustomerID: 502036
-
-APIVersion: 2.1.1
-
-AvailableAPIVersion: 2.1.1
-
-User-Agent: 1C+Enterprise/8.3
-
-Content-Type: application/xml; charset=utf-8
-
-Content-Length: 2294
-
-
-
-<?xml version="1.0" encoding="UTF-8"?>
-
-<X509Data xmlns="http://directbank.1c.ru/XMLSchema"
-
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-
-    id="d50eb1dd-52cc-487f-a504-9a2e31b9b741"
-
-    formatVersion="2.1.1"
-
-    creationDate="2015-02-19T09:28:03"
-
-    userAgent="1С - БЭД: 1.3">
-
-	<X509IssuerName>Удостоверяющий Центр Банка</X509IssuerName>
-
-	<X509SerialNumber>022C03015B03010F022FE2</X509SerialNumber>
-
-	<X509Certificate>
-
-	MIIEvDCCBF2gAwIBAgILAWwDAVsDAQ8CH+YwDgYKKwYBBAGtWQEDAgUAMIHuMQs
-
-	wCQYDVQQGEwJSVTEVMBMGA1UECB4MBBwEPgRBBDoEMgQwMRUwEwYDVQQHHgwEHAQ+
-
-	BEEEOgQyBDAxNTAzBgNVBAoeLAQeBBAEHgAgBBEEMAQ9BDoAIAAiBCQEGgAgBB4E
-
-	QgQ6BEAESwRCBDgENQAiMV8wXQYDVQQDHlYEIwQ0BD4EQQRCBD4EMgQ1BEAETwRO
-
-	BEkEOAQ5ACAEJgQ1BD0EQgRAACAEHgQQBB4AIAQRBDAEPQQ6ACAAIgQkBBoAIAQe
-
-	BEIEOgRABEsEQgQ4BDUAIjEZMBcGCSqGSIb3DQEJARYKcGtpQG9mYy5ydTAeFw0x
-
-	NDEwMDYwNzEwMzJaFw0xNTEyMTAwNzEwMzJaMIHaMQswCQYDVQQGEwJSVTEVMBMG
-
-    OARHACAEOAAgBBoEPjEPMA0GA1UECx4GAEQAQgBPMUUwQwYDVQQMHjwEGAQ9BDQE
-
-    OAQyBDgENARDBDAEOwRMBD0ESwQ5ACAEPwRABDUENAQ/BEAEOAQ9BDgEPAQwBEIE
-
-    NQQ7BEwxMTAvBgNVBAMeKAQfBDUEQgRABD4EMgAgBB8ENQRCBEAAIAQfBDUEQgRA
-
-    BD4EMgQ4BEcwXjAWBgorBgEEAa1ZAQYCBggqhkjOPQMBBwNEAARBBK8x6CgOZbbQ
-
-    Gvx5YBmKl4VtZ9RHsnt3+l0KI7ykzDaV8dfVWN63txNqIbS9CHCYP5MYg6H4WBEc
-
-    GQxlc1UOXUOjggHpMIIB5TAdBgNVHQ4EFgQULxBfQTHaVCpIFkNW6OkJx5cIb/Aw
-
-    ggEkBgNVHSMEggEbMIIBF4AUSd9T5T22FdM98MBt3ZnZOetl9lmhgfSkgfEwge4x
-
-    CzAJBgNVBAYTAlJVMRUwEwYDVQQIHgwEHAQ+BEEEOgQyBDAxFTATBgNVBAceDAQc
-
-    BD4EQQQ6BDIEMDE1MDMGA1UECh4sBB4EEAQeACAEEQQwBD0EOgAgACIEJAQaACAE
-
-    HgRCBDoEQARLBEIEOAQ1ACIxXzBdBgNVBAMeVgQjBDQEPgRBBEIEPgQyBDUEQARP
-
-    BE4ESQQ4BDkAIAQmBDUEPQRCBEAAIAQeBBAEHgAgBBEEMAQ9BDoAIAAiBCQEGgAg
-
-    BB4EQgQ6BEAESwRCBDgENQAiMRkwFwYJKoZIhvcNAQkBFgpwa2lAb2ZjLnJ1gggB
-
-    bAEBAQ8BAjALBgNVHQ8EBAMCA/gwgY4GA1UdIASBhjCBgzCBgAYKKwYBBAGCnAUB
-
-    ATByMDEGCCsGAQUFBwIBFiVodHRwOi8vd3d3Lm9mYy5ydS9hYm91dC9jYS1yZWds
-
-    YW1lbnQvMD0GCCsGAQUFBwICMDEaL9Ho8fLl7Psg5Ojx8uDt9uju7e3u4+4g4eDt
-
-    6u7i8eru4+4g7uHx6/Pm6OLg7ej/MA4GCisGAQQBrVkBAwIFAANJADBGAiEAw/ML
-
-	etfXiu0fRDsnvI4BXVE6Yw==
-
-	</X509Certificate>
-
-</X509Data>
-
-```
-
-
-
-**Пример успешного ответа** на запрос аутентификации по закрытому ключу:
-
-```xml
-
-HTTP/1.1 200 OK
-
-Content-Type: application/xml;charset=UTF-8
-
-Content-Length: 1145
-
-
-
-<?xml version="1.0" encoding="UTF-8"?>
-
-<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" formatVersion="2.1.1">
-
-    <Success>
-
-        <LogonCertResponse>
-
-        	<EncryptedSID>
-
-       		    MIAGCSqGSIb3DQEHA6CAMIACAQAxggHTMIIBzwIBADCB/jCB7jELMAkGA
-
-  	    	    1UEBhMCUlUxFTATBgNVBAgeDAQcBD4EQQQ6BDIEMDEVMBMGA1UEBx4MBB
-
-	            wEPgRBBDoEMgQwMTUwMwYDVQQKHiwEHgQQBB4AIAQRBDAEPQQ6ACAAIgQ
-
-	            kBBoAIAQeBEIEOgRABEsEQgQ4BDUAIjFfMF0GA1UEAx5WBCMENAQ+BEEE
-
-	            QgQ+BDIENQRABE8ETgRJBDgEOQAgBCYENQQ9BEIEQAAgBB4EEAQeACAEE
-
-	            QQwBD0EOgAgACIEJAQaACAEHgRCBDoEQARLBEIEOAQ1ACIxGTAXBgkqhk
-
-	            iG9w0BCQEWCnBraUBvZmMucnUCCwFsAwFbAwEPAh/mMBYGCisGAQQBrVk
-
-	            BBgIGCCqGSM49AwEHBIGwMIGtAgEDoFihVjAOBgorBgEEAa1ZAQYCBQAD
-
-	            RAAEQQQotO2E39p4EZFUBdAcBe7AYYtq5Yub7FmoP07IhTDMI+nRlGJt+
-
-	            95CZiwu7IUAlR0ldudpUOIeNCDAswUSUQzDMBwGCisGAQQBrVkBCAMwDg
-
-	            YKKwYBBAGtWQEEAgUABDCQRpcoionI87dfDGkiG4mTUla34G1soJF8vj8
-
-	            P1hyRX+ugfvCkjj7/zmVP39kwDrUwgAYJKoZIhvcNAQcBMB0GBiqFAwIC
-
-            	FTATBAiZQUbDcZec7gYHKoUDAgIfAaCABEBvGw18jSvnUNSSphPzS6aa7
-
-            	C+BIkUkU139E6Owmnpjz9sb1sWzhSnb3GX8GJIhaamBewT4BWyb2dwgEQ
-
-                2YQywHAAAAAAAAAAAAAA==
-
-            </EncryptedSID>
-
-        </LogonCertResponse>
-
-    </Success>
-
-</ResultBank>
-
-```
-
+Аутентификация Клиента с целью создания сессии на сервисе Банка может проходить по логину и паролю + дополнительный OTP («one time password», опционально) ([Logon](#1.2.1)).
 
 
 ### <a name="1.2"></a> Аутентификация по логину и паролю
@@ -402,7 +86,7 @@ Content-Length: 1145
 
 Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе (строка может содержать только ANSI-символы в соответствии с [RFC 2616](http://tools.ietf.org/html/rfc2616) для передачи значений в HTTP-заголовке) и строку, содержащую «логин + пароль» (строка «Basic логин:пароль» в формате BASE64 в соответствии с [Basic access authentication](http://tools.ietf.org/html/rfc2617)) (отправка производится HTTP-методом POST - метод [Logon](#1.2.1)).
 
-
+Особенностью данного процесса является то, что в момент первой аутентификации уникальный идентификатор Клиента неизвестен, тогда следует передавать «0».
 
 В случае использования однофакторной аутентификации на стороне Банка и успешного завершения процесса сервис возвращает идентификатор сессии («маркер») в «1С:Предприятия 8» в синхронном режиме (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
 
@@ -422,7 +106,7 @@ Content-Length: 1145
 
 Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе и введенный OTP (отправка производится HTTP-методом POST - метод LogonOTP). В случае успешного завершения процесса банковский сервис возвращает идентификатор авторизованной сессии в «1С:Предприятия 8» в синхронном режиме (XML-файл, соответствующий [XML-схеме ответа банк.сервиса](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)).
 
-
+Особенностью данного процесса является то, что в момент первой аутентификации уникальный идентификатор Клиента неизвестен, тогда следует передавать «0».
 
 В дальнейшем, идентификатор авторизованной сессии будет указан в каждом HTTP-запросе для обмена данными на транспортном уровне (в заголовке SID).
 
@@ -448,7 +132,7 @@ Content-Length: 1145
 
 - Content-Type: application/xml; charset=utf-8
 
-- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0, если CustomerID еще неизвестен>
 
 - Authorization: Basic <логин:пароль>
 
@@ -485,7 +169,7 @@ Content-Length: 1145
 | Параметр      | Тип               | Кратность | Описание                                                         |
 |---------------|-------------------|:---------:|------------------------------------------------------------------|
 | Host          | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
-| CustomerID    | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| CustomerID    | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0, если CustomerID еще неизвестен |
 | Authorization | [base64Binary](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#base64Binary)      | [1]       | «логин + пароль» в соответствии с [Basic access authentication](http://tools.ietf.org/html/rfc2617)    |
 | APIVersion    | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
 | AvailableAPIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [0-1]       | Максимальная доступная для текущей информационной базы версия API обмена данными                                                                                                                  |
@@ -610,7 +294,7 @@ Content-Length: 176
 
 - Content-Type: application/xml; charset=utf-8
 
-- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы>
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0, если CustomerID еще неизвестен>
 
 - SID: <Идентификатор неавторизованной сессии>
 
@@ -646,7 +330,7 @@ Content-Length: 176
 |------------|-------------------|:---------:|------------------------------------------------------------------|
 | Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
 | SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор неавторизованной сессии                            |
-| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0, если CustomerID еще неизвестен |
 | OTP        | [int](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#int)               | [1]       | Пользовательский OTP - целые числа 6-7 знаков                    |
 | APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
 
@@ -746,38 +430,9 @@ Content-Length: 145
 
 
 
-## <a name="2"></a> Порядок взаимодействия на транспортном уровне
+## <a name="0"></a> Настройка обмена электронными документами
 
-
-
-Данный уровень позволяет отправлять и получать электронные документы между системой «1С:Предприятие 8» Клиента и Банком по согласованным между сторонами обмена настройкам, используя шифрованный канал (протокол TLS 1.0/1.2) (подробнее см. раздел [«Обеспечение безопасности данных»](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/data-security.md#-Обеспечение-безопасности-данных)).
-
-
-
-Инициатором сеанса обмена всегда выступает система «1С:Предприятие 8».
-
-Для отправки и получения всех электронных документов используется единый адрес ресурса банка вида: `https://<host>:<port>`.
-
-
-
-Для передачи электронных документов между участниками обмена используется «транспортный контейнер» - XML-файл, сформированный по определенному формату ([XML-схема транспортного контейнера](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Packet)).
-
-
-
-Отправителем и получателем транспортного контейнера могут быть как Клиент (Организация), работающий на системе «1С:Предприятие 8», так и Банк (роли участников обмена зависят от конкретной бизнес-операции).
-
-
-
-### <a name="2.1"></a> Формирование и разбор транспортного контейнера
-
-
-
-Формирование и разбор транспортного контейнер зависит от настроек обмена с конкретным банковским сервисом и может быть представлен в виде схем:
-
-
-
-![Формирование и разбор транспортного контейнера](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/shipping container write and read rules.png)
-
+Для начала использования прямого обмена электронными документами из решений  «1С:Предприятие 8» с банковской системой Клиент должен получить параметры обмена данными из Банка – в «1С:Предприятии 8» будут автоматически созданы настройки ЭДО с Банком.
 
 
 ### <a name="2.2"></a> Получение настроек обмена с банком в автоматическом режиме
@@ -804,11 +459,11 @@ Content-Length: 145
 
 - Content-Type: application/xml; charset=utf-8
 
-- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0>
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0, если CustomerID еще неизвестен>
 
 - Account: <Номер расчетного счета Клиента, для зарплатных проектов может отсутствовать>
 
-- Inn: <Инн организации для которой запрашиваются настройки>
+- Inn: <Инн организации, для которой запрашиваются настройки>
 
 - Bic: <БИК Банка>
 
@@ -847,9 +502,9 @@ Content-Length: 145
 | Параметр   | Тип               | Кратность | Описание                                                                                                                                   |
 |------------|-------------------|:---------:|--------------------------------------------------------------------------------------------------------------------------------------------|
 | Host       | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                                                                                                        |
-| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0 |
+| CustomerID | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. Передается 0, если CustomerID еще неизвестен |
 | Account    | [AccNumType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#AccNumType)        | [0-1]       | Номер расчетного счета Клиента, для зарплатных проектов может отсутствовать                                                                                                             |
-| Inn    | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (от 10 до 12)        | [1]       | Инн организации для которой запрашиваются настройки                                                                                                             |
+| Inn    | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (от 10 до 12)        | [1]       | Инн организации, для которой запрашиваются настройки                                                                                                             |
 | Bic        | [string](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#string) (9)        | [1]       | БИК Банка                                                                                                                                  |
 | SID        | [IDType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                                                                                                        |
 | APIVersion | [FormatVersionType](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                                                                                                  |
@@ -881,7 +536,8 @@ Content-Length: 145
 
 
 
-Особенностью данного процесса является то, что на момент первого запроса настроек обмена с банком в системе «1С:Предприятие 8» неизвестен уникальный идентификатор Клиента в банковской системе. В этом случае следует использовать «0» в качестве значения этого реквизита.
+Особенностью данного процесса является то, что на момент первого запроса настроек обмена с банком в системе «1С:Предприятие 8» неизвестен уникальный идентификатор Клиента в банковской системе. 
+В этом случае следует использовать «0» в качестве значения этого реквизита.
 
 
 
@@ -956,6 +612,42 @@ Content-Length: 2145
 </ResultBank>
 
 ```
+
+
+
+## <a name="2"></a> Порядок взаимодействия на транспортном уровне
+
+
+
+Данный уровень позволяет отправлять и получать электронные документы между системой «1С:Предприятие 8» Клиента и Банком по согласованным между сторонами обмена настройкам, используя шифрованный канал (протокол TLS 1.0/1.2) (подробнее см. раздел [«Обеспечение безопасности данных»](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/data-security.md#-Обеспечение-безопасности-данных)).
+
+
+
+Инициатором сеанса обмена всегда выступает система «1С:Предприятие 8».
+
+Для отправки и получения всех электронных документов используется единый адрес ресурса банка вида: `https://<host>:<port>`.
+
+
+
+Для передачи электронных документов между участниками обмена используется «транспортный контейнер» - XML-файл, сформированный по определенному формату ([XML-схема транспортного контейнера](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Packet)).
+
+
+
+Отправителем и получателем транспортного контейнера могут быть как Клиент (Организация), работающий на системе «1С:Предприятие 8», так и Банк (роли участников обмена зависят от конкретной бизнес-операции).
+
+
+
+### <a name="2.1"></a> Формирование и разбор транспортного контейнера
+
+
+
+Формирование и разбор транспортного контейнер зависит от настроек обмена с конкретным банковским сервисом и может быть представлен в виде схем:
+
+
+
+![Формирование и разбор транспортного контейнера](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/shipping container write and read rules.png)
+
+
 
 
 

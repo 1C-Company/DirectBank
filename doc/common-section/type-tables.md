@@ -117,7 +117,7 @@
 | name     | [string](#string) (до 160) |   [0-1]   | Название банка |
 
 
-### <a name="edo-BankType"></a> Тип edo:BankType
+### <a name="edo-BankType"></a> Тип edo:BankType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр   | Тип             | Кратность | Описание                       |
 |------------|-----------------|:---------:|--------------------------------|
@@ -126,7 +126,7 @@
 | City       | [string](#string) (до 30)  |   [0-1]   | Город (населенный пункт) банка |
 | CorrespAcc | [AccNumType](#AccNumType)       |   [0-1]   | Коррсчет банка                 |
 
-### <a name="edo-CashContributionType"></a> Тип edo:CashContributionType
+### <a name="edo-CashContributionType"></a> Тип edo:CashContributionType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 - Базовый тип: [OtherPaymentDataType](#OtherPaymentDataType)
 
@@ -143,7 +143,7 @@
 | FullName         | [string](#string) (до 255) |   [0-1]   | ФИО вносителя                     |
 | IdentityDocument | [string](#string) (до 255) |   [0-1]   | Документ, удостоверяющий личность |
 
-### <a name="edo-CheckType"></a> Тип edo:CheckType
+### <a name="edo-CheckType"></a> Тип edo:CheckType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 - Базовый тип: [OtherPaymentDataType](#OtherPaymentDataType)
 
@@ -175,7 +175,7 @@
 | Purpose 			| [string](#string) (до 255) |   [0-1]   | Указываются направления (цели) выдачи наличных денег в соответствии с содержанием символов отчетности по форме 0409202 и содержанием операции |
 | Sum 				| [SumType](#SumType) |   [1]   | Номер чека |
 
-### <a name="edo-BudgetPaymentInfoType"></a> Тип edo:BudgetPaymentInfoType
+### <a name="edo-BudgetPaymentInfoType"></a> Тип edo:BudgetPaymentInfoType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр     | Тип                 | Кратность | Описание                                                                                          |
 |--------------|---------------------|:---------:|---------------------------------------------------------------------------------------------------|
@@ -188,7 +188,7 @@
 | DocDate      | [DateString](#DateString) (от 1 до 10)          |   [0-1]   | Дата налогового документа или 0 (ноль) (поле 109).                                                |
 | PayType      | [string](#string) <br>(от 1 до 2)  |   [0-1]   | Тип платежа (поле 110).                                                                           |
 
-### <a name="edo-CancelationRequest"></a> Тип edo:CancelationRequest
+### <a name="edo-CancelationRequest"></a> Тип edo:CancelationRequest (*[1C-Bank_CancelationRequest.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_CancelationRequest)*)
 
 | Параметр      | Тип               | Кратность | Описание                                                        |
 |---------------|-------------------|:---------:|-----------------------------------------------------------------|
@@ -202,7 +202,7 @@
 | Reason        | [string](#string)            |   [0-1]   | Причина, основание отзыва электронного документа                |
 | Digest        | [DigestType](#DigestType)            |   [0-1]   | Дайджест запроса               |
 
-### <a name="edo-CollectionOrderApp"></a> Тип edo:CollectionOrderApp
+### <a name="edo-CollectionOrderApp"></a> Тип edo:CollectionOrderApp (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 - Базовый тип: [PaymentDataType](#PaymentDataType)
 
@@ -211,7 +211,7 @@
 | BudgetPaymentInfo          | [BudgetPaymentInfoType](#edo-BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа.  См.правила заполнения платежных поручений, утвержденные приказом Минфина России |
 
 
-### <a name="edo-CustomerDetailsType"></a> Тип edo:CustomerDetailsType
+### <a name="edo-CustomerDetailsType"></a> Тип edo:CustomerDetailsType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип                | Кратность | Описание                                                                                     |
 |----------|--------------------|:---------:|----------------------------------------------------------------------------------------------|
@@ -221,7 +221,7 @@
 | Account  | [AccNumType](#AccNumType)         |    [1]    | Расчетный счет клиента в его банке, независимо от того, прямые расчеты у этого банка или нет |
 | Bank     | [BankType](#BankType)           |    [1]    | Реквизиты банка                                                                              |
 
-### <a name="edo-CustomerPartyType"></a> Тип edo:CustomerPartyType
+### <a name="edo-CustomerPartyType"></a> Тип edo:CustomerPartyType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип                  | Кратность | Описание                                             |
 |----------|----------------------|:---------:|------------------------------------------------------|
@@ -230,7 +230,7 @@
 | inn      | [string](#string) (от 10 до 12) |   [0-1]   | ИНН клиента                                          |
 | kpp      | [string](#string) (9)           |   [0-1]   | КПП клиента                                          |
 
-### <a name="edo-DigestType"></a> Тип edo:DigestType
+### <a name="edo-DigestType"></a> Тип edo:DigestType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип  | Кратность | Описание                  |
 |----------|------|:---------:|---------------------------|
@@ -244,7 +244,7 @@
 | algorithmVersion           | [FormatVersionType](#FormatVersionType) |   [0-1]   | Версия алгоритма формирования дайджеста |
 
 
-### <a name="edo-DocumentType"></a> Тип edo:DocumentType
+### <a name="edo-DocumentType"></a> Тип edo:DocumentType (*[1C-Bank_Packet.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Packet)*)
 
 | Параметр       | Тип               | Кратность | Описание                                                             |
 |----------------|-------------------|:---------:|----------------------------------------------------------------------|
@@ -275,7 +275,7 @@
 | x509SerialNumber | [hexBinary](#hexBinary)    |    [1]    | Серийный номер сертификата открытого ключа ЭП                        |
 | SignedData       | [base64Binary](#base64Binary) |    [1]    | Электронная подпись                                                  |
 
-### <a name="edo-ErrorType"></a> Тип edo:ErrorType
+### <a name="edo-ErrorType"></a> Тип edo:ErrorType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр    | Тип             | Кратность | Описание                                                             |
 |-------------|-----------------|:---------:|----------------------------------------------------------------------|
@@ -283,14 +283,14 @@
 | Description | [string](#string) (до 255) |   [1]   | Описание ошибки, как оно задано в описании к стандарту (см. [таблицу](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md#5)) |
 | MoreInfo    | [string](#string)          |   [0-1]   | Подробное пояснение к ошибке для пользователя                        |
 
-### <a name="edo-GetPacketListResponseType"></a> Тип edo:GetPacketListResponseType
+### <a name="edo-GetPacketListResponseType"></a> Тип edo:GetPacketListResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
 | Параметр            | Тип      | Кратность | Описание                                                            |
 |---------------------|----------|:---------:|---------------------------------------------------------------------|
 | TimeStampLastPacket | [dateTime](#dateTime) |   [0-1]   | Метка времени, на которую вернули всю актуальную информацию         |
 | PacketID            | [IDType](#IDType)   |   [0-n]   | Идентификатор пакета (GUID), по которому его можно получить клиенту |
 
-### <a name="edo-GetSettingsResponseType"></a> Тип edo:GetSettingsResponseType
+### <a name="edo-GetSettingsResponseType"></a> Тип edo:GetSettingsResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
@@ -307,13 +307,13 @@
 |----------------------------|-------------|:---------:|----------------------------------------------------------------------|                                    |
 | dockind                    | [DocKindType](#DocKindType) |    [1]    | Код вида электронного документа, как он задан в описании к стандарту |
 
-### <a name="edo-LogonCertResponseType"></a> Тип edo:LogonCertResponseType
+### <a name="edo-LogonCertResponseType"></a> Тип edo:LogonCertResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
 | Параметр     | Тип          | Кратность | Описание                           |
 |--------------|--------------|:---------:|------------------------------------|
 | EncryptedSID | [base64Binary](#base64Binary) |    [1]    | Зашифрованный Идентификатор сессии |
 
-### <a name="edo-LogonResponseType"></a> Тип edo:LogonResponseType
+### <a name="edo-LogonResponseType"></a> Тип edo:LogonResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
 | Параметр  | Тип       | Кратность | Описание                                                                        |
 |-----------|-----------|:---------:|---------------------------------------------------------------------------------|
@@ -331,7 +331,7 @@
 | phoneMask | [string](#string) (12) |   [0-1]   | Маска телефона или номер  клиента                        |
 | code      | [string](#string) (10) |   [0-1]   | Короткий код сессии, который будет показан при вводе OTP |
 
-### <a name="edo-MemOrderApp"></a> Тип edo:MemOrderApp
+### <a name="edo-MemOrderApp"></a> Тип edo:MemOrderApp (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр              | Тип      | Кратность | Описание                                   |
 |-----------------------|----------|:---------:|--------------------------------------------|
@@ -343,7 +343,7 @@
 | TransitionContent     | [string](#string)   |   [0-1]   | Содержание операции (поле 16)              |
 | AddInfo               | [string](#string)   |   [0-n]   | Дополнительная информация (свободные поля) |
 
-### <a name="edo-OtherCustomerDetailsType"></a> Тип edo:OtherCustomerDetailsType
+### <a name="edo-OtherCustomerDetailsType"></a> Тип edo:OtherCustomerDetailsType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип                | Кратность | Описание                                                                                     |
 |----------|--------------------|:---------:|----------------------------------------------------------------------------------------------|
@@ -353,7 +353,7 @@
 | Account  | [AccNumType](#AccNumType)         |    [0-1]    | Расчетный счет клиента в его банке, независимо от того, прямые расчеты у этого банка или нет |
 | Bank     | [BankType](#BankType)           |    [0-1]    | Реквизиты банка                                        |
 
-### <a name="edo-OtherPaymentDataType"></a> Тип edo:OtherPaymentDataType
+### <a name="edo-OtherPaymentDataType"></a> Тип edo:OtherPaymentDataType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр       | Тип                      | Кратность | Описание                         |
 |----------------|--------------------------|:---------:|----------------------------------|
@@ -366,7 +366,7 @@
 | Code           | [string](#string)  (до 25)           |   [0-1]   | Уникальный идентификатор платежа |
 | Purpose        | [string](#string)                    |   [0-1]   | Назначение                       |
 
-### <a name="edo-Packet"></a> Тип edo:Packet
+### <a name="edo-Packet"></a> Тип edo:Packet (*[1C-Bank_Packet.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Packet)*)
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
@@ -378,14 +378,14 @@
 | Recipient     | [ParticipantType](#ParticipantType)   |    [1]    | Получатель                      |
 | Document      | [DocumentType](#DocumentType)      |   [1-n]   | Электронный документ            |
 
-### <a name="edo-ParticipantType"></a> Тип edo:ParticipantType
+### <a name="edo-ParticipantType"></a> Тип edo:ParticipantType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип               | Кратность | Описание             |
 |----------|-------------------|:---------:|----------------------|
 | Customer | [CustomerPartyType](#CustomerPartyType) |    выбор <br> [1]    | Идентификатор пакета |
 | Bank     | [BankPartyType](#BankPartyType)     |    выбор <br> [1]    | Версия формата       |
 
-### <a name="edo-PayDocRu"></a> Тип edo:PayDocRu
+### <a name="edo-PayDocRu"></a> Тип edo:PayDocRu (*[1C-Bank_PayDocRu.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_PayDocRu)*)
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
@@ -399,7 +399,7 @@
 | Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
 
 
-### <a name="edo-PayDocRuApp"></a> Тип edo:PayDocRuApp
+### <a name="edo-PayDocRuApp"></a> Тип edo:PayDocRuApp (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 - Базовый тип: [PaymentDataType](#PaymentDataType)
 
@@ -407,7 +407,7 @@
 |-----------------------------------------------------------------------------------------------------------------|-----------------------|:---------:|----------------------------------|
 | BudgetPaymentInfo                                                                                               | [BudgetPaymentInfoType](#edo-BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа. <br> См.правила заполнения платежных поручений, утвержденные приказом Минфина России. |
 
-### <a name="edo-PaymentDataType"></a> Тип edo:PaymentDataType
+### <a name="edo-PaymentDataType"></a> Тип edo:PaymentDataType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр    | Тип                 | Кратность | Описание                                                                                                                |
 |-------------|---------------------|:---------:|-------------------------------------------------------------------------------------------------------------------------|
@@ -422,7 +422,7 @@
 | Code           | [string](#string)  (25)  | [0-1] | Уникальный идентификатор платежа (поле 22). <br>  С 31 марта 2014 года согласно Указанию N 3025-У ЦБР.                                                                                                          |
 | Purpose        | [string](#string)  (210) | [1] | Назначение платежа (поле 24). |
 
-### <a name="edo-PaymentOrderApp"></a> Тип edo:PaymentOrderApp
+### <a name="edo-PaymentOrderApp"></a> Тип edo:PaymentOrderApp (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 - Базовый тип: [PaymentDataType](#PaymentDataType)
 
@@ -437,7 +437,7 @@
 | BudgetPaymentInfo     | [BudgetPaymentInfoType](#BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа.  См.правила заполнения платежных поручений, утвержденные приказом Минфина России |
 
 
-### <a name="edo-PayRequest"></a> Тип edo:PayRequest
+### <a name="edo-PayRequest"></a> Тип edo:PayRequest (*[1C-Bank_PayRequest.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_PayRequest)*)
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
@@ -450,7 +450,7 @@
 | Data          | [PayRequestApp](#PayRequestApp)     |    [1]    | Данные платежного требования    |
 | Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
 
-### <a name="edo-PayRequestApp"></a> Тип edo:PayRequestApp
+### <a name="edo-PayRequestApp"></a> Тип edo:PayRequestApp (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 - Базовый тип: [PaymentDataType](#PaymentDataType)
 
@@ -460,7 +460,7 @@
 | AcceptTerm                    | [byte](#byte)       |   [0-1]   | Срок для акцепта (поле 36): количество дней.                                                                 |
 | DocDispatchDate               | [DateString](#DateString) |   [0-1]   | Дата отсылки (вручения) плательщику предусмотренных договором документов (поле 37).                          |
 
-### <a name="edo-Probe"></a> Тип edo:Probe
+### <a name="edo-Probe"></a> Тип edo:Probe (*[1C-Bank_Probe.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Probe)*)
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
@@ -473,27 +473,27 @@
 | Digest        | [DigestType](#DigestType)        |   [0-1]   | Дайджест электронного документа |
 
 
-### <a name="edo-ResultBank"></a> Тип edo:ResultBank
+### <a name="edo-ResultBank"></a> Тип edo:ResultBank (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
 | Параметр | Тип               | Кратность | Описание                                  |
 |----------|-------------------|:---------:|-------------------------------------------|
 | Success  | [SuccessResultType](#SuccessResultType) |    выбор <br> [1]    | Успешный ответ банка                      |
 | Error    | [ErrorType](#ErrorType)         |    выбор <br> [1]    | Ответ банка в случае возникновения ошибки |
 
-### <a name="edo-ResultStatusType"></a> Тип edo:ResultStatusType
+### <a name="edo-ResultStatusType"></a> Тип edo:ResultStatusType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип        | Кратность | Описание                            |
 |----------|------------|:---------:|-------------------------------------|
 | Error    | [ErrorType](#ErrorType)  |   [0-1]   | Ответ в случае возникновения ошибки |
 | Status   | [StatusType](#StatusType) |   [0-1]   | Успешный ответ                      |
 
-### <a name="edo-SendPacketResponseType"></a> Тип edo:SendPacketResponseType
+### <a name="edo-SendPacketResponseType"></a> Тип edo:SendPacketResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
 | Параметр | Тип    | Кратность | Описание                                                               |
 |----------|--------|:---------:|------------------------------------------------------------------------|
 | ID       | [IDType](#IDType) |    [1]    | идентификатор пакета (GUID), который был ему назначен на стороне банка |
 
-### <a name="edo-Settings"></a> Тип edo:Settings
+### <a name="edo-Settings"></a> Тип edo:Settings (*[1C-Bank_Settings.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Settings)*)
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
@@ -576,7 +576,7 @@
 | RuleSignatures | [string](#string) |   [1]   | Правило, задающее наличие электронных подписей для данного вида электронного документа |
 
 
-### <a name="edo-Statement"></a> Тип edo:Statement
+### <a name="edo-Statement"></a> Тип edo:Statement (*[1C-Bank_Statement.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Statement)*)
 
 | Параметр              | Тип               | Кратность | Описание                                        |
 |-----------------------|-------------------|:---------:|-------------------------------------------------|
@@ -620,8 +620,6 @@
 |------------------------|-----------------|:---------:|-----------------|
 | Branch                 | [string](#string) (до 255) |    [0-1]    | Отделение банка |
 
-
-
 >>>###### <a name="edo-Statement_Data_OperationInfo_PayDoc"></a> PayDoc:
 >>>
 | Параметр         | Тип                   | Кратность | Описание                             |
@@ -653,7 +651,7 @@
 | Status                 | [StatusType](#StatusType)      |    [1]    | Статус платежного документа в банке |
 
 
-### <a name="edo-StatementRequest"></a> Тип edo:StatementRequest
+### <a name="edo-StatementRequest"></a> Тип edo:StatementRequest (*[1C-Bank_StatementRequest.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_StatementRequest)*)
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
@@ -676,7 +674,7 @@
 | Bank          | [BankType](#BankType)          |    [1]    | Банк, в котором открыт счет                  |
 
 
-### <a name="edo-StatusDocNotice"></a> Тип edo:StatusDocNotice
+### <a name="edo-StatusDocNotice"></a> Тип edo:StatusDocNotice (*[1C-Bank_StatusDocNotice.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_StatusDocNotice)*)
 
 | Параметр           | Тип               | Кратность | Описание                                                                |
 |--------------------|-------------------|:---------:|-------------------------------------------------------------------------|
@@ -691,7 +689,7 @@
 | ExtIDStatusRequest | [IDType](#IDType)            |   [0-1]   | ID запроса о состоянии электронного документа, если был такой           |
 
 
-### <a name="edo-StatusType"></a> Тип edo:StatusType
+### <a name="edo-StatusType"></a> Тип edo:StatusType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип            | Кратность | Описание                                                       |
 |----------|----------------|:---------:|----------------------------------------------------------------|
@@ -699,7 +697,7 @@
 | Name     | [string](#string) (до 25) |   [0-1]   | Наименование статуса на стороне банка                          |
 | MoreInfo | [string](#string)         |   [0-1]   | Дополнительная информация к статусу                            |
 
-### <a name="edo-StatusRequest"></a> Тип edo:StatusRequest
+### <a name="edo-StatusRequest"></a> Тип edo:StatusRequest (*[1C-Bank_StatusRequest.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_StatusRequest)*)
 
 | Параметр      | Тип               | Кратность | Описание                                                                |
 |---------------|-------------------|:---------:|-------------------------------------------------------------------------|
@@ -712,7 +710,7 @@
 | ExtID         | [IDType](#IDType)            |    [1]    | ID исходного электронного документа, статус которого требуется получить |
 
 
-### <a name="edo-SuccessResultType"></a> Тип edo:SuccessResultType
+### <a name="edo-SuccessResultType"></a> Тип edo:SuccessResultType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
 | Параметр              | Тип                       | Кратность | Описание                                            |
 |-----------------------|---------------------------|:---------:|-----------------------------------------------------|

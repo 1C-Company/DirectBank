@@ -31,17 +31,17 @@
 		<xsd:choice>
 			<xsd:element name="SendPacketResponse" type="edo:SendPacketResponseType">
 				<xsd:annotation>
-					<xsd:documentation>Отправка пакета в банк</xsd:documentation>
+					<xsd:documentation>Отправка транспортного контейнера в банк</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="GetPacketListResponse" type="edo:GetPacketListResponseType">
 				<xsd:annotation>
-					<xsd:documentation>Список ID пакетов, готовых к передачи клиенту</xsd:documentation>
+					<xsd:documentation>Список ID транспортных контейнеров, готовых к передачи клиенту</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="GetPacketResponse" type="edo:GetPacketResponseType">
 				<xsd:annotation>
-					<xsd:documentation>Пакет электронных документов для получения клиентом</xsd:documentation>
+					<xsd:documentation>Транспортный контейнер с данными электронных документов для получения клиентом</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="LogonResponse" type="edo:LogonResponseType">
@@ -70,7 +70,7 @@
 		<xsd:sequence>
 			<xsd:element name="ID" type="edo:IDType">
 				<xsd:annotation>
-					<xsd:documentation>Идентификатор пакета (GUID), который был ему назначен на стороне банка</xsd:documentation>
+					<xsd:documentation>Идентификатор транспортного контейнера (GUID), который был ему назначен на стороне банка</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -124,7 +124,7 @@
 		<xsd:sequence>
 			<xsd:element name="PacketID" type="edo:IDType" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>Идентификатор пакета (GUID), по которому его можно получить клиенту</xsd:documentation>
+					<xsd:documentation>Идентификатор транспортного контейнера (GUID), по которому его можно получить клиенту</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

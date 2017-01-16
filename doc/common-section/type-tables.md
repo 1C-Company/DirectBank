@@ -80,8 +80,8 @@
 | <a name="DocumentType"></a> DocumentType                           | [edo:DocumentType](#edo-DocumentType)                           | Данные электронного документа                                                                                                                             |
 | <a name="ErrorType"></a> ErrorType                                 | [edo:ErrorType](#edo-ErrorType)                                 | Ответ в случае возникновения ошибки                                                                                                                       |
 | <a name="FormatVersionType"></a> FormatVersionType                 | [string](#string) (до 12)                                       | Версия формата                                                                                                                                            |
-| <a name="GetPacketListResponseType"></a> GetPacketListResponseType | [edo:GetPacketListResponseType](#edo-GetPacketListResponseType) | Список ID пакетов, готовых к передачи клиенту                                                                                                             |
-| <a name="GetPacketResponse"></a> GetPacketResponse                 | [edo:Packet](#edo-Packet)                                       | Пакет электронных документов для получения клиентом                                                                                                       |
+| <a name="GetPacketListResponseType"></a> GetPacketListResponseType | [edo:GetPacketListResponseType](#edo-GetPacketListResponseType) | Список ID транспортных контейнеров, готовых к передачи клиенту                                                                                                             |
+| <a name="GetPacketResponse"></a> GetPacketResponse                 | [edo:Packet](#edo-Packet)                                       | Транспортный контейнер с данными электронных документов для получения клиентом                                                                                                       |
 | <a name="GetSettingsResponseType"></a> GetSettingsResponseType     | [edo:GetSettingsResponseType](#edo-GetSettingsResponseType)     | Получение настроек обмена в автоматическом режиме                                                                                                         |
 | <a name="IDCustomerType"></a> IDCustomerType                       | [string](#string) (от 1 до 50)                                  | Уникальный идентификатор клиента в банке                                                                                                                  |
 | <a name="IDType"></a> IDType                                       | [string](#string)                                               | Уникальный идентификатор                                                                                                                                  |
@@ -90,7 +90,7 @@
 | <a name="MemOrderApp"></a> MemOrderApp                 | [edo:MemOrderApp](#edo-MemOrderApp)                 | Данные мемориального ордера                                                                                                              |
 | <a name="OtherCustomerDetailsType"></a> OtherCustomerDetailsType                 | [edo:OtherCustomerDetailsType](#edo-OtherCustomerDetailsType)                 | Реквизиты прочих плательщиков                                                                                                              |
 | <a name="OtherPaymentDataType"></a> OtherPaymentDataType                 | [edo:OtherPaymentDataType](#edo-OtherPaymentDataType)                 | Реквизиты иных банковских документов                                                                                                              |
-| <a name="Packet"></a> Packet                                       | [edo:Packet](#edo-Packet)                                       | Пакет электронных документов                                                                                                                              |
+| <a name="Packet"></a> Packet                                       | [edo:Packet](#edo-Packet)                                       | Транспортный контейнер с данными электронных документов                                                                                                                              |
 | <a name="ParticipantType"></a> ParticipantType                     | [ edo:ParticipantType](#edo-ParticipantType)                    | Одна из сторон, принимающая участие в обмене электронными документами (Участник)                                                                          |
 | <a name="PayDocRuApp"></a> PayDocRuApp                             | [edo:PayDocRuApp](#edo-PayDocRuApp)                             | Данные платежного поручения                                                                                                                               |
 | <a name="PaymentDataType"></a> PaymentDataType                     | [edo:PaymentDataType](#edo-PaymentDataType)                     | Данные платежного документа                                                                                                                               |
@@ -98,7 +98,7 @@
 | <a name="PayRequestApp"></a> PayRequestApp                         | [edo:PayRequestApp](#edo-PayRequestApp)                         | Данные платежного требования                                                                                                                              |
 | <a name="ResultBank"></a> ResultBank                               | [edo:ResultBank](#edo-ResultBank)                               | Ответ банка                                                                                                                                               |
 | <a name="ResultStatusType"></a> ResultStatusType                   | [edo:ResultStatusType](#edo-ResultStatusType) (Выбор)           | Состояние электронного документа                                                                                                                          |
-| <a name="SendPacketResponseType"></a> SendPacketResponseType       | [edo:SendPacketResponseType](#edo-SendPacketResponseType)       | Отправка пакета в банк                                                                                                                                    |
+| <a name="SendPacketResponseType"></a> SendPacketResponseType       | [edo:SendPacketResponseType](#edo-SendPacketResponseType)       | Отправка транспортного контейнера в банк                                                                                                                                    |
 | <a name="StatementKindType"></a> StatementKindType                 | [string](#string) (1)                                           | Тип выписки банка <br> Доступные значения: 0, 1, 2. <br> • 0 - Окончательная выписка <br> • 1 - Промежуточная выписка <br> • 2 - Текущий остаток на счете |
 | <a name="StatusType"></a> StatusType                               | [edo:StatusType](#edo-StatusType)                               | Успешный ответ                                                                                                                                            |
 | <a name="SuccessResultType"></a> SuccessResultType                 | [edo:SuccessResultType](#edo-SuccessResultType)                 | Успешный ответ банка                                                                                                                                      |
@@ -288,7 +288,7 @@
 | Параметр            | Тип      | Кратность | Описание                                                            |
 |---------------------|----------|:---------:|---------------------------------------------------------------------|
 | TimeStampLastPacket | [dateTime](#dateTime) |   [0-1]   | Метка времени, на которую вернули всю актуальную информацию         |
-| PacketID            | [IDType](#IDType)   |   [0-n]   | Идентификатор пакета (GUID), по которому его можно получить клиенту |
+| PacketID            | [IDType](#IDType)   |   [0-n]   | Идентификатор транспортного контейнера (GUID), по которому его можно получить клиенту |
 
 ### <a name="edo-GetSettingsResponseType"></a> Тип edo:GetSettingsResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
@@ -370,7 +370,7 @@
 
 | Параметр      | Тип               | Кратность | Описание                        |
 |---------------|-------------------|:---------:|---------------------------------|
-| id            | [IDType](#IDType)            |    [1]    | Идентификатор пакета            |
+| id            | [IDType](#IDType)            |    [1]    | Идентификатор транспортного контейнера            |
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
 | creationDate  | [dateTime](#dateTime)          |    [1]    | Дата и время формирования       |
 | userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
@@ -382,7 +382,7 @@
 
 | Параметр | Тип               | Кратность | Описание             |
 |----------|-------------------|:---------:|----------------------|
-| Customer | [CustomerPartyType](#CustomerPartyType) |    выбор <br> [1]    | Идентификатор пакета |
+| Customer | [CustomerPartyType](#CustomerPartyType) |    выбор <br> [1]    | Идентификатор транспортного контейнера |
 | Bank     | [BankPartyType](#BankPartyType)     |    выбор <br> [1]    | Версия формата       |
 
 ### <a name="edo-PayDocRu"></a> Тип edo:PayDocRu (*[1C-Bank_PayDocRu.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_PayDocRu)*)
@@ -491,7 +491,7 @@
 
 | Параметр | Тип    | Кратность | Описание                                                               |
 |----------|--------|:---------:|------------------------------------------------------------------------|
-| ID       | [IDType](#IDType) |    [1]    | идентификатор пакета (GUID), который был ему назначен на стороне банка |
+| ID       | [IDType](#IDType) |    [1]    | идентификатор транспортного контейнера (GUID), который был ему назначен на стороне банка |
 
 ### <a name="edo-Settings"></a> Тип edo:Settings (*[1C-Bank_Settings.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Settings)*)
 
@@ -714,9 +714,9 @@
 
 | Параметр              | Тип                       | Кратность | Описание                                            |
 |-----------------------|---------------------------|:---------:|-----------------------------------------------------|
-| SendPacketResponse    | [SendPacketResponseType](#SendPacketResponseType)    |    выбор <br> [1]    | Отправка пакета в банк                              |
-| GetPacketListResponse | [GetPacketListResponseType](#GetPacketListResponseType) |    выбор <br> [1]    | Список ID пакетов, готовых к передачи клиенту       |
-| GetPacketResponse     | [GetPacketResponseType](#GetPacketResponseType)     |    выбор <br> [1]    | Пакет электронных документов для получения клиентом |
+| SendPacketResponse    | [SendPacketResponseType](#SendPacketResponseType)    |    выбор <br> [1]    | Отправка транспортного контейнера в банк                              |
+| GetPacketListResponse | [GetPacketListResponseType](#GetPacketListResponseType) |    выбор <br> [1]    | Список ID транспортных контейнеров, готовых к передачи клиенту       |
+| GetPacketResponse     | [GetPacketResponseType](#GetPacketResponseType)     |    выбор <br> [1]    | Транспортный контейнер с данными электронных документов для получения клиентом |
 | LogonResponse         | [LogonResponseType](#LogonResponseType)         |    выбор <br> [1]    | Аутентификация по логину + ОТР (опционально)        |
 | LogonCertResponse     | [LogonCertResponseType](#LogonCertResponseType)     |    выбор <br> [1]    | Аутентификация по сертификату                       |
 | GetSettingsResponse   | [GetSettingsResponseType](#GetSettingsResponseType)       |    выбор <br> [1]    | Получение настроек обмена в автоматическом режиме   |

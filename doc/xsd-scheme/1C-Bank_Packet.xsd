@@ -22,7 +22,7 @@
 		</xsd:sequence>
 		<xsd:attribute name="id" type="edo:IDType" use="required">
 			<xsd:annotation>
-				<xsd:documentation>Идентификатор пакета</xsd:documentation>
+				<xsd:documentation>Идентификатор транспортного контейнера</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required">

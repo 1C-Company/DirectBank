@@ -3,12 +3,12 @@
 	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
 	<xsd:element name="StatusPacketNotice" type="edo:StatusPacketNotice">
 		<xsd:annotation>
-			<xsd:documentation>Извещение о состоянии пакета</xsd:documentation>
+			<xsd:documentation>Извещение о состоянии транспортного контейнера</xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
 	<xsd:complexType name="StatusPacketNotice">
 		<xsd:annotation>
-			<xsd:documentation>Извещение о состоянии пакета</xsd:documentation>
+			<xsd:documentation>Извещение о состоянии транспортного контейнера</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element name="Sender" type="edo:ParticipantType">
@@ -23,17 +23,17 @@
 			</xsd:element>
 			<xsd:element name="IDResultSuccessResponse" type="edo:IDType">
 				<xsd:annotation>
-					<xsd:documentation>ID, который сервис вернул в ответ после получения пакета</xsd:documentation>
+					<xsd:documentation>ID, который сервис вернул в ответ после получения транспортного контейнера</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="Result" type="edo:ResultStatusType">
 				<xsd:annotation>
-					<xsd:documentation>Состояние пакета</xsd:documentation>
+					<xsd:documentation>Состояние транспортного контейнера</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="ExtIDPacket" type="edo:IDType" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>ID исходного пакета, по которому возвращается состояния</xsd:documentation>
+					<xsd:documentation>ID исходного транспортного контейнера, по которому возвращается состояния</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

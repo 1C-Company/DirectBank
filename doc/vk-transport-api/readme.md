@@ -321,7 +321,8 @@
 Параметры:
 - Пакет - ДвоичныеДанные - транспортный пакет, соотв. схеме [1CBank_Packet.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Packet)
 
-Возвращаемое значение: строка - ответ соответствует XMLсхеме ответа банк.сервиса [1CBank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)
+Возвращаемое значение: строка - ответ соответствует XMLсхеме ответа банк.сервиса [1CBank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank).
+Если пакет был принят, то в ответе банк.сервиса должен быть заполнен элемент SendPacketResponse.
 
 ### <a name="5.7"></a> Функция ПолучитьСписокПакетов(ОтметкаВремени)
 Получает список пакетов, подготовленных для передачи на стороне банка и внешней компоненты.
@@ -329,7 +330,7 @@
 Параметры:
 - ОтметкаВремени - строка - время, относительно которого необходимо получить новые пакеты в формате 2015-12-06T12:14:57. Если отметка времени не передана, ВК передаст все пакеты из ВК и, при необходимости, с банковского сервера.
 
-Возвращаемое значение: ДвоичныеДанные - ответ соответствует XML-схеме ответа банк.сервиса [1CBank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)
+Возвращаемое значение: ДвоичныеДанные - ответ соответствует XML-схеме ответа банк.сервиса [1CBank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank). Если запрос был принят, то в ответе банк.сервиса должен быть заполнен элемент GetPacketListResponse.
 
 ### <a name="5.8"></a> Функция ПолучитьПакет(ИдПакета)
 Получает пакет (транспортный контейнер) из банка по его идентификатору.
@@ -337,7 +338,7 @@
 Параметры:
 - ИдПакета - строка - транспортный контейнер 
 
-Возвращаемое значение: ДвоичныеДанные - ответ соответствует XMLсхеме ответа банк.сервиса [1CBank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)
+Возвращаемое значение: ДвоичныеДанные - ответ соответствует XMLсхеме ответа банк.сервиса [1CBank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank). Если пакет найден, то в ответе банк.сервиса должен быть заполнен элемент GetPacketResponse.
 
 ### <a name="5.9"></a> Функция НачатьПодтверждениеПлатежногоПоручения(Идентификатор)
 Используется для инициализации сессии подтверждения платежного поручения.

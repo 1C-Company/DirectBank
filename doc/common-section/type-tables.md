@@ -287,7 +287,7 @@
 
 | Параметр            | Тип      | Кратность | Описание                                                            |
 |---------------------|----------|:---------:|---------------------------------------------------------------------|
-| TimeStampLastPacket | [dateTime](#dateTime) |   [0-1]   | Метка времени, на которую вернули всю актуальную информацию         |
+| TimeStampLastPacket | [dateTime](#dateTime) |   [0-1]   | Метка времени, на которую вернули всю актуальную информацию. Значение не должно содержать информацию о часовом поясе. |
 | PacketID            | [IDType](#IDType)   |   [0-n]   | Идентификатор транспортного контейнера (GUID), по которому его можно получить клиенту |
 
 ### <a name="edo-GetSettingsResponseType"></a> Тип edo:GetSettingsResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)

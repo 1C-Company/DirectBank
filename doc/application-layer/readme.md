@@ -25,7 +25,7 @@
 
 Общий принцип работы на прикладном уровне может быть представлен в виде схемы:
 
-![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Procedure for electronic document exchange.png)
+![](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Procedure%20for%20electronic%20document%20exchange.png)
 
 
 ## <a name="2"></a> Получение настроек обмена с банком.

@@ -647,7 +647,7 @@ Content-Length: 2145
 
 
 
-![Формирование и разбор транспортного контейнера](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/shipping container write and read rules.png)
+![Формирование и разбор транспортного контейнера](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/shipping_container_write_and_read_rules.png)
 
 
 
@@ -666,7 +666,7 @@ Content-Length: 2145
 - отправка транспортного контейнера в Банк и обработка ответа;
 
 
-![Отправка электронных документов из 1С в банковский сервис](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Sending packages of electronic documents to the bank.png)
+![Отправка электронных документов из 1С в банковский сервис](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Sending_packages_of_electronic_documents_to_the_bank.png)
 
 При отправке электронных документов из 1С будут последовательно вызваны следующие методы банковского сервиса:
 - Аутентификация:
@@ -895,7 +895,7 @@ Content-Length: 145
 - запрос у Банка транспортного контейнера по его уникальному идентификатору и разбор в 1С.
 
 
-![Получение электронных документов из банковского сервиса в 1С](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Receive packages of electronic documents from the bank.png)
+![Получение электронных документов из банковского сервиса в 1С](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/doc_imgs/Receive_packages_of_electronic_documents_from_the_bank.png)
 
 При получении электронных документов из банковского сервиса в 1С будут последовательно вызваны следующие методы:
 - Аутентификация:

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Anatoly (Private) -->
 <!-- edited with XMLSpy v2016 sp1 (http://www.altova.com) by 1C ("1C-Soft" LLC) -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:edo="http://directbank.1c.ru/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+<xsd:schema targetNamespace="http://directbank.1c.ru/XMLSchema" xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
 	<xsd:annotation>
 		<xsd:documentation>***************************************************************************************************************</xsd:documentation>
 	</xsd:annotation>
@@ -73,9 +74,13 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
-			<xsd:element name="Account" type="edo:AccNumType">
+			<xsd:element name="Account" type="edo:AccNumType" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Расчетный счет клиента в его банке, независимо от того, прямые расчеты у этого банка или нет</xsd:documentation>
+					<xsd:documentation>Расчетный счет клиента в его банке, независимо от того, прямые расчеты у этого банка или нет.
+Номер счета может не указываться в следующих случаях:
+в распоряжении, если получателем средств является кредитная организация, филиал кредитной организации, в том числе в целях выдачи наличных денежных средств получателю средств - физическому лицу без открытия банковского счета;
+в платежном поручении на общую сумму с реестром, в котором указаны получатели средств, обслуживаемые одним банком, составляемом плательщиком;
+в платежном поручении на общую сумму с реестром, в котором указаны плательщики, обслуживаемые одним банком, и получатели средств, обслуживаемые другим банком, составляемом банком плательщика</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="Bank" type="edo:BankType">

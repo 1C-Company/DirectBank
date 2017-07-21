@@ -716,7 +716,7 @@
 |-----------------------|---------------------------|:---------:|-----------------------------------------------------|
 | SendPacketResponse    | [SendPacketResponseType](#SendPacketResponseType)    |    выбор <br> [1]    | Отправка транспортного контейнера в банк                              |
 | GetPacketListResponse | [GetPacketListResponseType](#GetPacketListResponseType) |    выбор <br> [1]    | Список ID транспортных контейнеров, готовых к передачи клиенту       |
-| GetPacketResponse     | [edo:Packet](#Packet)     |    выбор <br> [1]    | Транспортный контейнер с данными электронных документов для получения клиентом |
+| GetPacketResponse     | [edo:Packet](#edo-Packet)     |    выбор <br> [1]    | Транспортный контейнер с данными электронных документов для получения клиентом |
 | LogonResponse         | [LogonResponseType](#LogonResponseType)         |    выбор <br> [1]    | Аутентификация по логину + ОТР (опционально)        |
 | LogonCertResponse     | [LogonCertResponseType](#LogonCertResponseType)     |    выбор <br> [1]    | Аутентификация по сертификату                       |
 | GetSettingsResponse   | [GetSettingsResponseType](#GetSettingsResponseType)       |    выбор <br> [1]    | Получение настроек обмена в автоматическом режиме   |

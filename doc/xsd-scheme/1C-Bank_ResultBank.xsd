@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
+<!-- edited with XML Spy v4.3 U (http://www.xmlspy.com) by Anatoly (Private) -->
+<xsd:schema targetNamespace="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:edo="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.1">
 	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
 	<xsd:include schemaLocation="1C-Bank_Packet.xsd"/>
 	<xsd:element name="ResultBank" type="edo:ResultBank"/>
@@ -39,7 +40,7 @@
 					<xsd:documentation>Список ID транспортных контейнеров, готовых к передачи клиенту</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="GetPacketResponse" type="edo:GetPacketResponseType">
+			<xsd:element name="GetPacketResponse" type="edo:Packet">
 				<xsd:annotation>
 					<xsd:documentation>Транспортный контейнер с данными электронных документов для получения клиентом</xsd:documentation>
 				</xsd:annotation>
@@ -133,11 +134,6 @@
 				<xsd:documentation>Метка времени, на которую вернули всю актуальную информацию</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-	</xsd:complexType>
-	<xsd:complexType name="GetPacketResponseType">
-		<xsd:complexContent>
-			<xsd:extension base="edo:Packet"/>
-		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="LogonCertResponseType">
 		<xsd:sequence>

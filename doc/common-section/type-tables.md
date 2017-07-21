@@ -477,7 +477,7 @@
 
 | Параметр | Тип               | Кратность | Описание                                  |
 |----------|-------------------|:---------:|-------------------------------------------|
-| Success  | [SuccessResultType](#SuccessResultType) |    выбор <br> [1]    | Успешный ответ банка                      |
+| Success  | [SuccessResultType](#edo-SuccessResultType) |    выбор <br> [1]    | Успешный ответ банка                      |
 | Error    | [ErrorType](#ErrorType)         |    выбор <br> [1]    | Ответ банка в случае возникновения ошибки |
 
 ### <a name="edo-ResultStatusType"></a> Тип edo:ResultStatusType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)

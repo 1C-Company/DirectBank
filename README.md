@@ -9,7 +9,7 @@
 ![](http://www.v8.1c.ru/edi/edi_app/bank/images/scheme~.png)
 - - -
 
-#Содержание
+# Содержание
 
 ### [Описание стандарта взаимодействия между «1С:Предприятие 8» и банковским сервисом по технологии DirectBank](https://github.com/1C-Company/DirectBank/blob/master/doc/readme.md)  
 

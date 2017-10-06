@@ -195,23 +195,14 @@ API обмена данными – уровень, который описыв�
 ```http
 
 POST https://dbogate.demobank.ru/Logon HTTP/1.1
-
 Host: dbogate.demobank.ru
-
 Accept: */*
-
 CustomerID: 502036
-
 Authorization: Basic NjY5NzcxNDczMTo5MzcyMjkxMzIx
-
 APIVersion: 2.1.1
-
 AvailableAPIVersion: 2.1.1
-
 User-Agent: 1C+Enterprise/8.3
-
 Content-Type: application/xml; charset=utf-8
-
 Content-Length: 0
 
 ```

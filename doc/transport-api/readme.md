@@ -693,7 +693,7 @@ Content-Length: 2145
 
 **Пример запроса отправки** транспортного контейнера:
 
-```xml
+```http
 
 POST https://dbogate.demobank.ru/SendPack HTTP/1.1
 Host: dbogate.demobank.ru

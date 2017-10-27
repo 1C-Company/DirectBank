@@ -608,7 +608,7 @@
 | PayDoc   | [PayDoc](#edo-Statement_Data_OperationInfo_PayDoc)              |    [1]    | Данные платежного документа                         |
 | DC       | [string](#string) (1)          |    [1]    | Признак дебета/кредита: <br>  1 - Операция по дебету, <br> 2 - Операция по кредиту                                |
 | Date     | [date](#date)                |    [1]    | Дата проводки документа по лиц. счету               |
-| ExtID    | [IDType](#IDType)              |   [0-1]   | ID исходного платежного документа плательщика       |
+| ExtID    | [IDType](#IDType)              |   [0-1]   | ID исходного платежного документа плательщика. Обязателен для заполнения для исходящих платежей. |
 | Stamp    | [OperationInfo_Stamp](#edo-Statement_Data_OperationInfo_OperationInfo_Stamp) |    [0-1]    | Данные штампа банка по каждому платежному документу |
 
 >>###### <a name="edo-Statement_Data_Stamp"></a> Stamp:

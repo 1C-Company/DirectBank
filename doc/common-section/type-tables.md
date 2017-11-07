@@ -596,9 +596,9 @@
 | Account        | [AccNumType](#AccNumType)        |    [1]    | Номер лиц. счета                                         |
 | Bank           | [BankType](#BankType)          |    [1]    | Банк, в котором открыт счет                              |
 | OpeningBalance | [SumType](#SumType)           |   [0-1]   | Остаток на счете на начало периода                       |
-| TotalDebits    | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по дебету счета                   |
-| TotalCredits   | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по кредиту счета                  |
-| ClosingBalance | [SumType](#SumType)           |    [1]    | Общая сумма документов по кредиту счета                  |
+| TotalDebits    | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по дебету счета (списание)                  |
+| TotalCredits   | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по кредиту счета (поступление)            |
+| ClosingBalance | [SumType](#SumType)           |    [1]    | Остаток на счете на конец периода                  |
 | OperationInfo  | [OperationInfo](#edo-Statement_Data_OperationInfo)     |   [0-n]   | Информация об одной операции по лицевому счету в выписке |
 | Stamp          | [Stamp](#edo-Statement_Data_Stamp)             |   [0-1]   | Данные штампа банка по выписке в целом                   |
 
@@ -606,7 +606,7 @@
 | Параметр | Тип                 | Кратность | Описание                                            |
 |----------|---------------------|:---------:|-----------------------------------------------------|
 | PayDoc   | [PayDoc](#edo-Statement_Data_OperationInfo_PayDoc)              |    [1]    | Данные платежного документа                         |
-| DC       | [string](#string) (1)          |    [1]    | Признак дебета/кредита: <br>  1 - Операция по дебету, <br> 2 - Операция по кредиту                                |
+| DC       | [string](#string) (1)          |    [1]    | Признак дебета/кредита: <br>  1 - Операция по дебету (списание со счета), <br> 2 - Операция по кредиту (поступление на счет)                               |
 | Date     | [date](#date)                |    [1]    | Дата проводки документа по лиц. счету               |
 | ExtID    | [IDType](#IDType)              |   [0-1]   | ID исходного платежного документа плательщика. Обязателен для заполнения для исходящих платежей. |
 | Stamp    | [OperationInfo_Stamp](#edo-Statement_Data_OperationInfo_OperationInfo_Stamp) |    [0-1]    | Данные штампа банка по каждому платежному документу |

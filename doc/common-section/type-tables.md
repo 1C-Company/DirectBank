@@ -36,6 +36,7 @@
  + [Тип edo:SendPacketResponseType](#edo-SendPacketResponseType)
  + [Тип edo:Statement](#edo-Statement)
  + [Тип edo:StatementRequest](#edo-StatementRequest)
+ + [Тип edo:StatusPacketNotice](#edo-StatusPacketNotice)
  + [Тип edo:StatusDocNotice](#edo-StatusDocNotice)
  + [Тип edo:StatusType](#edo-StatusType)
  + [Тип edo:StatusRequest](#edo-StatusRequest)
@@ -686,6 +687,19 @@
 | Result             | [ResultStatusType](#ResultStatusType)  |    [1]    | Состояние электронного документа                                        |
 | ExtIDStatusRequest | [IDType](#IDType)            |   [0-1]   | ID запроса о состоянии электронного документа, если был такой           |
 
+### <a name="edo-StatusPacketNotice"></a> Тип edo:StatusPacketNotice (*[1C-Bank_StatusPacketNotice.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_StatusPacketNotice)*)
+
+| Параметр           | Тип               | Кратность | Описание                                                                |
+|--------------------|-------------------|:---------:|-------------------------------------------------------------------------|
+| id                 | [IDType](#IDType)            |    [1]    | Идентификатор извещения                                                 |
+| formatVersion      | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                          |
+| creationDate       | [dateTime](#dateTime)          |    [1]    | Дата и время формирования                                               |
+| userAgent          | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы                                         |
+| Sender             | [ParticipantType](#ParticipantType)     |    [1]    | Отправитель                                                             |
+| Recipient          | [ParticipantType](#ParticipantType) |    [1]    | Получатель                                                              |
+| IDResultSuccessResponse              | [IDType](#IDType)            |    [1]    | ID, который сервис вернул в ответ после получения транспортного контейнера |
+| Result             | [ResultStatusType](#ResultStatusType)  |    [1]    | Состояние электронного документа                                        |
+| ExtIDPacket | [IDType](#IDType)            |   [0-1]   | ID исходного транспортного контейнера, по которому возвращается состояния           |
 
 ### <a name="edo-StatusType"></a> Тип edo:StatusType (*[1C-Bank_Exch-Common.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 

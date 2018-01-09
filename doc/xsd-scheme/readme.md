@@ -80,7 +80,7 @@
 - [Файл схемы **1C-Bank_StatusPacketNotice.xsd**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/xsd-scheme/1C-Bank_StatusPacketNotice.xsd)
 
 ##### Типы
- + edo:StatusPacketNotice
+ + [edo:StatusPacketNotice](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md#edo-StatusPacketNotice) 
 
 ## <a name="1C-Bank_Settings"></a> XML-схема **настроек обмена с банком**: *1C-Bank_Settings.xsd*
 

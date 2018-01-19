@@ -13,8 +13,8 @@
 
 ### [Описание стандарта взаимодействия между «1С:Предприятие 8» и банковским сервисом по технологии DirectBank](https://github.com/1C-Company/DirectBank/blob/master/doc/readme.md)  
 
-#### - [Прикладной уровень](https://github.com/1C-Company/DirectBank/blob/master/doc/application-layer/readme.md)  
 #### - [API взаимодействия с банком](https://github.com/1C-Company/DirectBank/blob/master/doc/api.md)
+#### - [Прикладной уровень](https://github.com/1C-Company/DirectBank/blob/master/doc/application-layer/readme.md)  
 ###### - [Схемы данных](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md)  
 ###### - [Классификаторы](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/tables.md)
 ###### - [Описание типов](https://github.com/1C-Company/DirectBank/blob/master/doc/common-section/type-tables.md)

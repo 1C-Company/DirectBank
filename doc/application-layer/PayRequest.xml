@@ -3,9 +3,9 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     id="a4d4c2ac-26dd-43ae-a98b-cb4cebdbd1db" 
-    formatVersion="2.1.1" 
+    formatVersion="2.1.2" 
     creationDate="2016-04-22T09:50:09" 
-    userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
+    userAgent="1С - БЭД: 1.3.10.10; БиблиотекаЭлектронныхДокументов: 1.3.10.10">
 	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>

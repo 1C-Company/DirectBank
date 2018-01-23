@@ -45,9 +45,9 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     id="05688096-0806-4ef0-af4c-572f75dbaf7c" 
-    formatVersion="2.1.1" 
+    formatVersion="2.1.2" 
     creationDate="2016-04-22T09:38:51" 
-    userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
+    userAgent="1С - БЭД: 1.3.10.10; БиблиотекаЭлектронныхДокументов: 1.3.10.10">
     <Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
     <Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
@@ -93,9 +93,9 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     id="a4d4c2ac-26dd-43ae-a98b-cb4cebdbd1db" 
-    formatVersion="2.1.1" 
+    formatVersion="2.1.2" 
     creationDate="2016-04-22T09:50:09" 
-    userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
+    userAgent="1С - БЭД: 1.3.10.10; БиблиотекаЭлектронныхДокументов: 1.3.10.10">
 	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
@@ -159,9 +159,9 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="da06dc8f-afbe-4172-89c8-0d4492c2dd25"
-    formatVersion="2.1.1"
+    formatVersion="2.1.2"
     creationDate="2016-04-22T09:52:27"
-    userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
+    userAgent="1С - БЭД: 1.3.10.10; БиблиотекаЭлектронныхДокументов: 1.3.10.10">
 	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
@@ -187,7 +187,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	id="f7cbc6af-33dd-4c37-b67d-7400e1c327ad"
-	formatVersion="2.1.1"
+	formatVersion="2.1.2"
 	creationDate="2016-05-13T13:51:21.829"
 	userAgent="DemoBankService">
 	<Sender name="ДЕМО-БАНК" bic="044525888"/>
@@ -280,7 +280,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StatusDocNotice xmlns="http://directbank.1c.ru/XMLSchema"
 	id="204e36e4-6910-416d-99b2-e8109e518744"
-	formatVersion="2.1.1"
+	formatVersion="2.1.2"
     creationDate="2016-04-22T09:34:46+03:00"
     userAgent=" DemoBankService">
 	<Sender>
@@ -323,9 +323,9 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="0fa540c3-1aaa-4e06-8883-2c936fef05a5"
-    formatVersion="2.1.1"
+    formatVersion="2.1.2"
     creationDate="2016-04-22T10:09:11"
-    userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
+    userAgent="1С - БЭД: 1.3.10.10; БиблиотекаЭлектронныхДокументов: 1.3.10.10">
 	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<ExtID>05688096-0806-4ef0-af4c-572f75dbaf7c</ExtID>
@@ -357,9 +357,9 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="e8caa148-82a3-446d-a10f-ff82ad514b7e"
-    formatVersion="2.1.1"
+    formatVersion="2.1.2"
     creationDate="2016-04-22T10:11:25"
-    userAgent="1С - БЭД: 1.3.5.10; БиблиотекаЭлектронныхДокументов: 1.3.5.10">
+    userAgent="1С - БЭД: 1.3.10.10; БиблиотекаЭлектронныхДокументов: 1.3.10.10">
     <Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
     <Recipient bic="044525888" name="ДЕМО-БАНК"/>
     <ExtID>05688096-0806-4ef0-af4c-572f75dbaf7c</ExtID>

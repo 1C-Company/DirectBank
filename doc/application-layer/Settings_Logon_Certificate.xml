@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
-    formatVersion="2.1.1"
+    formatVersion="2.1.2"
     creationDate="2016-04-22T09:38:51" 
     userAgent="DemoBankService">	
 	<Sender bic="044525888"/>
@@ -11,7 +11,7 @@
 	<Data>
 		<CustomerID>2806</CustomerID>
 		<BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
-		<FormatVersion>2.1.1</FormatVersion>
+		<FormatVersion>2.1.2</FormatVersion>
 		<Encoding>UTF-8</Encoding>
 		<Compress>false</Compress>
 		<Logon>

@@ -304,7 +304,7 @@
 > - Базовый тип: [base64Binary](#base64Binary)
 >
 | Параметр                   | Тип         | Кратность | Описание                                                             |
-|----------------------------|-------------|:---------:|----------------------------------------------------------------------|                                    |
+|----------------------------|-------------|:---------:|----------------------------------------------------------------------|         
 | dockind                    | [DocKindType](#DocKindType) |    [1]    | Код вида электронного документа, как он задан в описании к стандарту |
 
 ### <a name="edo-LogonCertResponseType"></a> Тип edo:LogonCertResponseType (*[1C-Bank_ResultBank.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_ResultBank)*)

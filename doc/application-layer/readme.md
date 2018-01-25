@@ -14,6 +14,7 @@
   + [Пример XML-файла запроса состояния электронного документа](#7.1)
 + [Запрос об отзыве электронного документа](#8)
   + [Пример XML-файла запроса состояния электронного документа](#8.1)
++ [Описание формата документа Поручение на перевод валюты.](#camp)
 + [Особенности формирования выписки в формате ISO20022 на стороне банка](#9)
 
 
@@ -368,6 +369,131 @@
     <Reason>Описание причины отзыва</Reason>
 </CancelationRequest>
 ```
+
+## <a name="camp"></a> Описание формата документа Поручение на перевод валюты.
+
+|Элемент | Описание элемента | Тип | Мн.|
+|---------|-------------------|-----|----|
+| CstmrCdtTrfInitn &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|        | CustomerCreditTransferInitiationV03   | [1] |
+| &emsp;	GrpHdr |   Секция: Реквизиты сообщения     | GroupHeader32   | [1] |
+| &emsp;&emsp;	MsgId | Уникальный идентификатор сообщения.| Max35Text | [1] |
+| &emsp;&emsp;	CreDtTm | Дата и время формирования сообщения. | ISODateTime | [1] |
+| &emsp;&emsp;	NbOfTxs | Общее число поручений в сообщении. <br> Всегда содержит значение 1.| Max15NumericText | [1] |
+| &emsp;&emsp;	InitgPty | Секция: Иницииатор(отправитель) сообщения. <br>Всегда пустое.| PartyIdentification32 | [1] |
+| &emsp;	PmtInf | Секция: Реквизиты распоряжения по дебету (списания). <br> Всегда состоит из одного элемента. | PaymentInstructionInformation3 | [1..n] |
+| &emsp;&emsp;	PmtInfId | Уникальный идентификатор распоряжения.<br> Такое же значение должна содержать операция в выписке в поле BkToCstmrStmt.Stmt.Ntry.NtryDtls.TxDtls.Refs.MsgId.  | Max35Text | [1] |
+| &emsp;&emsp; PmtMtd | Всегда содержит значение "TRF"  | PaymentMethod3Code | [1] |
+| &emsp;&emsp; ReqdExctnDt | Дата исполнения. | ISODate | [1] |
+| &emsp;&emsp; Dbtr | Секция: Плательщик | PartyIdentification32 | [1] |
+| &emsp;&emsp;&emsp; Nm | Наименование| Max140Text | [0..1] |
+| &emsp;&emsp;&emsp; PstlAdr | Секция: Адрес | PostalAddress6 | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; PstCd | Индекс | Max16Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; TwnNm | Город | Max35Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; Ctry | Код страны | CountryCode | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; AdrLine | Адрес. <br> Может содержать только один элемент.| Max70Text | [0..n] |
+| &emsp;&emsp;&emsp; Id | Секция: идентификация участника платежа | Party6Choice | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; OrgId |Секция: идентификация компании  | OrganisationIdentification4 | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Othr | Секция: иной вид идентификации <br>Может содержать только один элемент | GenericOrganisationIdentification1 | [0..n] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Id | ИНН  | Max35Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; SchmeNm | Секция: идентификация вида кода | OrganisationIdentificationSchemeName1Choice | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Cd | Код типа данных в поле Id <br> Всегда содержит значение "TXID" | ExternalOrganisationIdentification1Code | [1] |
+| &emsp;&emsp;&emsp; CtryOfRes | Код страны регистрации | CountryCode | [0..1] |
+| &emsp;&emsp;&emsp; CtctDtls | Секция: контактная информация| ContactDetails2 | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; Nm | ФИО | Max140Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; PhneNb | Телефон | PhoneNumber | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; EmailAdr | Email адрес | Max2048Text | [0..1] |
+| &emsp;&emsp; DbtrAcct | Секция: Счет плательщика | CashAccount16 | [1] |
+| &emsp;&emsp;&emsp; Id |Секция: идентификатор счета  | AccountIdentification4Choice | [1] |
+| &emsp;&emsp;&emsp;&emsp; Othr | Секция: другой тип счета | GenericAccountIdentification1 | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Id | Cчет | Max34Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; SchmeNm | Секция: тип счета| AccountSchemeName1Choice | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Cd | Вид счета. <br>Всегда содержит значение "BBAN" | ExternalAccountIdentification1Code | [1] |
+| &emsp;&emsp; DbtrAgt | Секция: Банк плательщика | BranchAndFinancialInstitutionIdentification4 | [1] |
+| &emsp;&emsp;&emsp; FinInstnId | Секция: идентификация банка | FinancialInstitutionIdentification7 | [1] |
+| &emsp;&emsp;&emsp;&emsp; BIC | SWIFT | BICIdentifier | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; Nm | Наименование | Max140Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; PstlAdr | Секция: Адрес | PostalAddress6 | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; TwnNm | Город | Max35Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; AdrLine | Адрес. <br> Может содержать только один элемент.| Max70Text | [0..n] |
+| &emsp;&emsp; ChrgBr | С кого списывается комиссия. <br> Возможные значения: "CRED", "DEBT", "SHAR" | ChargeBearerType1Code | [0..1] |
+| &emsp;&emsp; ChrgsAcct | Секция: счет комиссии. | CashAccount16 | [0..1] |
+| &emsp;&emsp;&emsp; Id | Секция: идентификатор счета | AccountIdentification4Choice | [1] |
+| &emsp;&emsp;&emsp;&emsp; Othr | Секция: другой тип счета | GenericAccountIdentification1 | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Id | Счет | Max34Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; SchmeNm | | AccountSchemeName1Choice | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Cd | Всегда содержит значение "BBAN" | ExternalAccountIdentification1Code | [1] |
+| &emsp;&emsp; CdtTrfTxInf | Секция: Реквизиты по кредиту (зачисления). <br> Всегда содержит один элемент. | CreditTransferTransactionInformation10 | [0..n] |
+| &emsp;&emsp;&emsp; PmtId | Секция: идентификаторы платежа | PaymentIdentification1 | [1]|
+| &emsp;&emsp;&emsp;&emsp; InstrId | Уникальный номер поручения | Max35Text | [0..1]|
+| &emsp;&emsp;&emsp;&emsp; EndToEndId | Номер платежного поручения | Max35Text | [1]|
+| &emsp;&emsp;&emsp; PmtTpInf | Секция: тип платежа | PaymentTypeInformation19 | [0..1]|
+| &emsp;&emsp;&emsp; Amt | Секция: сумма платежа | AmountType3Choice | [1]|
+| &emsp;&emsp;&emsp;&emsp; InstdAmt | Сумма | ActiveOrHistoricCurrencyAndAmount | [1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; @Ccy | Валюта перевода | ActiveOrHistoricCurrencyCode | [1]|
+| &emsp;&emsp;&emsp; XchgRateInf | Секция:курс конверсии | ExchangeRateInformation1 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp; XchgRate | Курс | BaseOneRate | [0..1]|
+| &emsp;&emsp;&emsp;&emsp; RateTp |Тип курса. <br> Всегда имеет значение "SPOT" | ExchangeRateType1Code | [0..1]|
+| &emsp;&emsp;&emsp; IntrmyAgt1 | Секция: Банк посредник| BranchAndFinancialInstitutionIdentification4 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp; FinInstnId | Секция: идентификация банка | FinancialInstitutionIdentification7 | [1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; BIC | SWIFT | BICIdentifier | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; Nm | Наименование банка | Max140Text | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; PstlAdr | Секция: Адрес | PostalAddress6 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Ctry | Код страны | CountryCode | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; AdrLine | Адрес. <br> Может содержать только один элемент | Max70Text | [0..n]|
+| &emsp;&emsp;&emsp; CdtrAgt | Секция: Банк получателя | BranchAndFinancialInstitutionIdentification4 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp; FinInstnId | Секция: идентификация банка | FinancialInstitutionIdentification7 | [1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; BIC | SWIFT | BICIdentifier | [1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; ClrSysMmbId | Секция: идентификация участника клиринга | ClearingSystemMemberIdentification2 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; MmbId | БИК | Max35Text | [1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; Nm | Наименование | Max140Text | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; PstlAdr | Секция: Адрес | PostalAddress6 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Ctry | Код страны | CountryCode | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; AdrLine | Адрес банка. <br> Может содержать только один элемент. | Max70Text | [0..n]|
+| &emsp;&emsp;&emsp; CdtrAgtAcct | Счет банк посредника получателя | CashAccount16 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; Id | Секция: идентификация счета | Max34Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Othr | Секция: не IBAN счет | Max34Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Id | Счет | Max34Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; SchmeNm | | AccountSchemeName1Choice | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Cd | Всегда содержит значение "BBAN" | ExternalAccountIdentification1Code | [1] |
+| &emsp;&emsp;&emsp; Cdtr | Секция: Получатель | PartyIdentification32 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp; Nm | Наименование | Max140Text | [0..1]|
+| &emsp;&emsp;&emsp;&emsp; PstlAdr | Секция: адрес | PostalAddress6 | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; Ctry | Код страны | CountryCode | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; PstCd | Индекс | Max16Text | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; TwnNm | Город | Max35Text | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; AdrLine | Неструктурированный адрес. <br> Может содержать только один элемент. | Max70Text | [0..n]|
+| &emsp;&emsp;&emsp;&emsp; Id | Идентификатор получателя  | Party6Choice | [0..1]|
+| &emsp;&emsp;&emsp;&emsp;&emsp; OrgId |  | OrganisationIdentification4 | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Othr | Может содержать только один элемент | GenericOrganisationIdentification1 | [0..n] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Id | ИНН получателя  | Max35Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; SchmeNm |  | OrganisationIdentificationSchemeName1Choice | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Cd | Всегда содержит значение "TXID" | ExternalOrganisationIdentification1Code | [1] |
+| &emsp;&emsp;&emsp;&emsp; CtryOfRes | Код страны получателя | CountryCode | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; CtctDtls | Контактная информация организации получателя | ContactDetails2 | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Nm | ФИО | Max140Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; PhneNb | Телефон | PhoneNumber | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; EmailAdr | Email адрес | Max2048Text | [0..1] |
+| &emsp;&emsp;&emsp; CdtrAcct | Секция: Счет получателя | CashAccount16 | [1] |
+| &emsp;&emsp;&emsp;&emsp; Id | Счет | AccountIdentification4Choice | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Othr | Секция: другой тип счета | GenericAccountIdentification1 | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Id | Номер счета | Max34Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; SchmeNm | | AccountSchemeName1Choice | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Cd | Всегда содержит значение "BBAN" | ExternalAccountIdentification1Code | [1] |
+| &emsp;&emsp;&emsp; RgltryRptg | Секция: информация для регулятора | RegulatoryReporting3 | [0..n] |
+| &emsp;&emsp;&emsp;&emsp; Dtls |  | StructuredRegulatoryReporting3 | [0..n] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Tp | Всегда содержит значение "VO"  | Max35Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Amt | Сумма | ActiveOrHistoricCurrencyAndAmount | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; @Ccy | Код валюты  | ActiveOrHistoricCurrencyCode | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Inf | Номер паспорта сделки | Max35Text | [0..n] |
+| &emsp;&emsp;&emsp; RmtInf | Секция: Информация о платеже | RemittanceInformation5 | [0..1] |
+| &emsp;&emsp;&emsp;&emsp; Ustrd | Назначение платежа | Max140Text | [0..n] |
+| &emsp;&emsp;&emsp;&emsp; Strd | Секция: Структурированная информация о платеже | StructuredRemittanceInformation7 | [0..n] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; RfrdDocInf | Секция: Информация о связанных документах | ReferredDocumentInformation3 | [0..n] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Tp |  Секция: Тип связанного документа| ReferredDocumentType2 | [0..n] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; CdOrPrtry |  | ReferredDocumentType1Choice | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Prtry | Тип документа. <br> Всегда имеет значение "POD" | Max35Text | [1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Nb | Номер документа	 | Max35Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; RltdDt | Дата документа	 | ISODate | [0..1] |
 
 ## <a name="9"></a> Особенности формирования выписки в формате ISO20022 на стороне банка.
 

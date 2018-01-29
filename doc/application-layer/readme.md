@@ -499,7 +499,7 @@
 
 |Элемент | Описание элемента | Тип | Мн.|
 |---------|-------------------|-----|----|
-| BkToCstmrStmt &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|        | BankToCustomerStatementV02   | [1] |
+| BkToCstmrStmt &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|        | BankToCustomerStatementV02   | [1] |
 | &emsp;	GrpHdr |   Секция: Заголовок     | GroupHeader42   | [1] |
 | &emsp;&emsp;	MsgId | Системный идентификатор сообщения.| Max35Text | [1] |
 | &emsp;&emsp;	CreDtTm | Дата и время создания сообщения системой. | ISODateTime | [1] |

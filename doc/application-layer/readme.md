@@ -482,6 +482,7 @@
 | &emsp;&emsp;&emsp; RgltryRptg | Секция: информация для регулятора | RegulatoryReporting3 | [0..n] |
 | &emsp;&emsp;&emsp;&emsp; Dtls |  | StructuredRegulatoryReporting3 | [0..n] |
 | &emsp;&emsp;&emsp;&emsp;&emsp; Tp | Всегда содержит значение "VO"  | Max35Text | [0..1] |
+| &emsp;&emsp;&emsp;&emsp;&emsp; Cd | Код вида операции | Max10Text | [0..1] |
 | &emsp;&emsp;&emsp;&emsp;&emsp; Amt | Сумма | ActiveOrHistoricCurrencyAndAmount | [0..1] |
 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; @Ccy | Код валюты  | ActiveOrHistoricCurrencyCode | [1] |
 | &emsp;&emsp;&emsp;&emsp;&emsp; Inf | Номер паспорта сделки | Max35Text | [0..n] |

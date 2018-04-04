@@ -504,7 +504,7 @@
 | userAgent     | [UserAgentType](#UserAgentType)     |   [0-1]   | Наименование и версия программы |
 | Sender        | [BankPartyType](#BankPartyType)     |    [1]    | Отправитель                     |
 | Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель. Атрибуты inn и kpp (при наличии)  обязательны к заполнению      |
-| Data          | [Data](#edo-Settings_Data)              |   [1-n]   | Параметры обмена                |
+| Data          | [Data](#edo-Settings_Data)              |   [1]   | Параметры обмена                |
 
 >###### <a name="edo-Settings_Data"></a> Data:
 | Параметр          | Тип               | Кратность | Описание                                                                    |

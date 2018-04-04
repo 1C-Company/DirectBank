@@ -33,6 +33,7 @@
  + [Тип edo:Probe](#edo-Probe)
  + [Тип edo:ResultBank](#edo-ResultBank)
  + [Тип edo:ResultStatusType](#edo-ResultStatusType)
+ + [Тип edo:Settings](#edo-Settings)
  + [Тип edo:SendPacketResponseType](#edo-SendPacketResponseType)
  + [Тип edo:Statement](#edo-Statement)
  + [Тип edo:StatementRequest](#edo-StatementRequest)

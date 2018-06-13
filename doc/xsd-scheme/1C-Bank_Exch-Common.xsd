@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
 <xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.1.2">
 	<xsd:annotation>
 		<xsd:documentation>***************************************************************************************************************</xsd:documentation>
@@ -353,7 +354,7 @@
 			</xsd:element>
 			<xsd:element name="PayType" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Тип платежа (поле 110).</xsd:documentation>
+					<xsd:documentation>Код выплат (поле 110).</xsd:documentation>
 				</xsd:annotation>
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">

@@ -187,7 +187,7 @@
 | TaxPeriod    | [string](#string)  <br> (от 1 до 10) |   [0-1]   | Налоговый период или 0 (ноль) / код таможенного органа (поле 107).                                |
 | DocNo        | [string](#string) <br>  (15)         |   [0-1]   | Номер налогового документа (поле 108).                                                            |
 | DocDate      | [DateString](#DateString) (от 1 до 10)          |   [0-1]   | Дата налогового документа или 0 (ноль) (поле 109).                                                |
-| PayType      | [string](#string) <br>(от 1 до 2)  |   [0-1]   | Тип платежа (поле 110).                                                                           |
+| PayType      | [string](#string) <br>(от 1 до 2)  |   [0-1]   | Код выплат (поле 110).                                                                           |
 
 ### <a name="edo-CancelationRequest"></a> Тип edo:CancelationRequest (*[1C-Bank_CancelationRequest.xsd](https://github.com/1C-Company/DirectBank/blob/master/doc/xsd-scheme/readme.md#1C-Bank_CancelationRequest)*)
 

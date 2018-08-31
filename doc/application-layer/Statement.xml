@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	id="f7cbc6af-33dd-4c37-b67d-7400e1c327ad"
-	formatVersion="2.1.2"
+	formatVersion="2.2.1"
 	creationDate="2016-05-13T13:51:21.829"
 	userAgent="DemoBankService">
 	<Sender name="ДЕМО-БАНК" bic="044525888"/>

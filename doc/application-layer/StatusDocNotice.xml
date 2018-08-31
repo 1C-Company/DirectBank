@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StatusDocNotice xmlns="http://directbank.1c.ru/XMLSchema"
 	id="204e36e4-6910-416d-99b2-e8109e518744"
-	formatVersion="2.1.2"
+	formatVersion="2.2.1"
     creationDate="2016-04-22T09:34:46+03:00"
     userAgent=" DemoBankService">
 	<Sender>

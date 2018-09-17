@@ -17,6 +17,7 @@
 + [XML-схема **транспортного контейнера**: *1C-Bank_Packet.xsd*](#1C-Bank_Packet)
 + [XML-схема **поручения на перевод валюты**: *pain.001.001.03.xsd*](#pain)
 + [XML-схема **выписки по валютным счетам**: *camt.053.001.02.xsd*](#camt)
++ [XML-схема **документов по зарплатному проекту**: *Wages_3.5.xsd*](#wages)
 
 
 ## <a name="1C-Bank_Library"></a> XML-схема **библиотеки**: *1C-Bank_Library.xsd*
@@ -157,6 +158,10 @@
 ## <a name="camt"></a> XML-схема выписки по валютным счетам ISO 20022: *camt.053.001.02.xsd*
 
 - [Файл схемы **camt.053.001.02.xsd**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/xsd-scheme/camt.053.001.02.xsd)
+
+## <a name="camt"></a> XML-схема документов по зарплатному проекту: *Wages_3.5.xsd*
+
+- [Файл схемы **Wages_3.5.xsd**](http://v8.1c.ru/edi/edi_stnd/109/Wages_3.5.xsd)
 
 
 

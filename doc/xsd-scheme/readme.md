@@ -159,7 +159,7 @@
 
 - [Файл схемы **camt.053.001.02.xsd**](https://raw.githubusercontent.com/1C-Company/DirectBank/master/doc/xsd-scheme/camt.053.001.02.xsd)
 
-## <a name="camt"></a> XML-схема документов по зарплатному проекту: *Wages_3.5.xsd*
+## <a name="wages"></a> XML-схема документов по зарплатному проекту: *Wages_3.5.xsd*
 
 - [Файл схемы **Wages_3.5.xsd**](http://v8.1c.ru/edi/edi_stnd/109/Wages_3.5.xsd)
 

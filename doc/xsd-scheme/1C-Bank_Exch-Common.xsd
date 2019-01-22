@@ -519,9 +519,9 @@
 					<xsd:documentation>Дата составления (поле 4).</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="Sum" type="edo:SumType">
+			<xsd:element name="SpareField5" type="xsd:string" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Сумма документа (поле 9).</xsd:documentation>
+					<xsd:documentation>Свободное поле (поле 5)</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="Author" minOccurs="0">
@@ -547,6 +547,48 @@
 					</xsd:complexContent>
 				</xsd:complexType>
 			</xsd:element>
+			<xsd:element name="AccountNameDebit" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Наименование счета по дебету (поле 7)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AccountDebit" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Счет по дебету (поле 8)</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="edo:AccNumType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="Sum" type="edo:SumType">
+				<xsd:annotation>
+					<xsd:documentation>Сумма документа (поле 9).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SpareField9a" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Свободное поле (поле 9a)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AccountNameCredit" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Наименование счета по кредиту (поле 10)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AccountCredit" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Счет по кредиту (поле 11)</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="edo:AccNumType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="20"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
 			<xsd:element name="PartialTransitionKind" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation>Шифр документа (поле 13).</xsd:documentation>
@@ -557,14 +599,24 @@
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:element>
+			<xsd:element name="SpareField14" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Свободное поле (поле 14)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="SpareField15" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Свободное поле (поле 15)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
 			<xsd:element name="TransitionContent" type="xsd:string" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation>Содержание операции (поле 16).</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="AddInfo" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="SpareField20" type="xsd:string" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Дополнительная информация (свободные поля).</xsd:documentation>
+					<xsd:documentation>Свободное поле (поле 20)</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>

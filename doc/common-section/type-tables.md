@@ -605,8 +605,8 @@
 | Account        | [AccNumType](#AccNumType)        |    [1]    | Номер лиц. счета                                         |
 | Bank           | [BankType](#BankType)          |    [1]    | Банк, в котором открыт счет                              |
 | OpeningBalance | [SumType](#SumType)           |   [0-1]   | Остаток на счете на начало периода                       |
-| TotalDebits    | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по дебету счета (списание)                  |
-| TotalCredits   | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по кредиту счета (поступление)            |
+| TotalDebits    | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по дебету счета (списание). Обязательно заполняется при наличии расходных операций за период выписки.  |
+| TotalCredits   | [SumType](#SumType)           |   [0-1]   | Общая сумма документов по кредиту счета (поступление). Обязательно заполняется при наличии приходных операций за период выписки.            |
 | ClosingBalance | [SumType](#SumType)           |    [1]    | Остаток на счете на конец периода                  |
 | OperationInfo  | [OperationInfo](#edo-Statement_Data_OperationInfo)     |   [0-n]   | Информация об одной операции по лицевому счету в выписке |
 | Stamp          | [Stamp](#edo-Statement_Data_Stamp)             |   [0-1]   | Данные штампа банка по выписке в целом                   |

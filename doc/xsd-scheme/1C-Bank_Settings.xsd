@@ -29,7 +29,7 @@
 					<xsd:sequence>
 						<xsd:element name="CustomerID" type="edo:IDCustomerType">
 							<xsd:annotation>
-								<xsd:documentation>Уникальный идентификатор клиента в банке</xsd:documentation>
+								<xsd:documentation>Уникальный идентификатор организации в банке</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
 						<xsd:element name="BankServerAddress">

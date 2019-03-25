@@ -412,6 +412,9 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 | ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
 
 
+![Аутентификация по закрытому ключу сертификата. LogonCert](../doc_imgs/LogonCert.png)
+
+
 
 
 
@@ -1233,7 +1236,7 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjM4MDI3MDc2LDE3ODQ1OTE3NjcsLTIxMz
-Q5MzQ4MjQsLTEyODUxMjM0MzIsLTE1OTA3NjQwMzMsLTY5NjM5
-MzQzOF19
+eyJoaXN0b3J5IjpbLTIzNzMxNjE2NywxNzg0NTkxNzY3LC0yMT
+M0OTM0ODI0LC0xMjg1MTIzNDMyLC0xNTkwNzY0MDMzLC02OTYz
+OTM0MzhdfQ==
 -->

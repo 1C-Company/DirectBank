@@ -401,6 +401,14 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 | AvailableAPIVersion | [FormatVersionType](../common-section/type-tables.md#FormatVersionType) | [0-1]       | Максимальная доступная для текущей информационной базы версия API обмена данными                                                                                                                  |
 
 
+**Параметры ответа:**
+
+| Параметр                         | Тип               | Кратность | Описание                        |
+|----------------------------------|-------------------|:---------:|---------------------------------|
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+
+
+
 
 
 ### <a name="recommendations"></a> Рекомендации для банковского сервиса
@@ -1221,6 +1229,6 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMzQ5MzQ4MjQsLTEyODUxMjM0MzIsLT
-E1OTA3NjQwMzMsLTY5NjM5MzQzOF19
+eyJoaXN0b3J5IjpbMTc4NDU5MTc2NywtMjEzNDkzNDgyNCwtMT
+I4NTEyMzQzMiwtMTU5MDc2NDAzMywtNjk2MzkzNDM4XX0=
 -->

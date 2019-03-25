@@ -506,7 +506,7 @@ MfAQtpI=</EncryptedSID>
 
 
 
-## <a name="installation"></a> Настройка обмена электронными документами
+# <a name="installation"></a> Настройка обмена электронными документами
 
 Для начала использования прямого обмена электронными документами из решений  «1С:Предприятие 8» с банковской системой Клиент должен получить параметры обмена данными из Банка – в «1С:Предприятии 8» будут автоматически созданы настройки ЭДО с Банком.
 
@@ -719,7 +719,7 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 </Settings>
 ```
 
-## <a name="3"></a> Порядок взаимодействия на транспортном уровне
+# <a name="3"></a> Порядок взаимодействия на транспортном уровне
 
 
 
@@ -741,7 +741,7 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 
 
 
-### <a name="transportPacket"></a> Формирование и разбор транспортного контейнера
+## <a name="transportPacket"></a> Формирование и разбор транспортного контейнера
 
 
 
@@ -755,7 +755,7 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 
 
 
-### <a name="send"></a> Отправка электронных документов из 1С
+## <a name="send"></a> Отправка электронных документов из 1С
 
 
 
@@ -777,7 +777,7 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 - Отправка транспортного контейнера с данными электронных документов из 1С — [SendPack](#sendPack).
 
 
-## <a name="sendPack"></a> Метод SendPack (HTTP-метод POST)
+### <a name="sendPack"></a> Метод SendPack (HTTP-метод POST)
 
 
 **Заголовки:**
@@ -990,7 +990,7 @@ Content-Length: 145
 Если после получения и разбора всех контейнеров из списка, 1С не находит нужный контейнер, процесс будет начат заново. Это происходит при ожидании получения выписки банка.
 
 
-## <a name="getPackList"></a> Метод GetPackList (HTTP-метод GET)
+### <a name="getPackList"></a> Метод GetPackList (HTTP-метод GET)
 
 
 
@@ -1304,8 +1304,8 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5OTA5Mzk0NCwtMjQwMTU5NjA3LC0xMT
-A0NTIwMTcwLC0yMzczMTYxNjcsMTc4NDU5MTc2NywtMjEzNDkz
-NDgyNCwtMTI4NTEyMzQzMiwtMTU5MDc2NDAzMywtNjk2MzkzND
-M4XX0=
+eyJoaXN0b3J5IjpbLTEwMzY0NjI3NTgsLTI0MDE1OTYwNywtMT
+EwNDUyMDE3MCwtMjM3MzE2MTY3LDE3ODQ1OTE3NjcsLTIxMzQ5
+MzQ4MjQsLTEyODUxMjM0MzIsLTE1OTA3NjQwMzMsLTY5NjM5Mz
+QzOF19
 -->

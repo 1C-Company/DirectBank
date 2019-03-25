@@ -390,6 +390,19 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 - Content: < XML-файл, соответствующий [XML-схеме ответа банк.сервиса](../xsd-scheme/readme.md#1C-Bank_ResultBank)>
 
 
+**Параметры запроса:**
+
+
+| Параметр      | Тип               | Кратность | Описание                                                         |
+|---------------|-------------------|:---------:|------------------------------------------------------------------|
+| Host          | [string](../common-section/type-tables.md#string)            | [1]       | Адрес ресурса банка                                              |
+| CustomerID    | [string](../common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы. |
+| APIVersion    | [FormatVersionType](../common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
+| AvailableAPIVersion | [FormatVersionType](../common-section/type-tables.md#FormatVersionType) | [0-1]       | Максимальная доступная для текущей информационной базы версия API обмена данными                                                                                                                  |
+
+
+
+
 ### <a name="recommendations"></a> Рекомендации для банковского сервиса
 
 
@@ -1208,6 +1221,6 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUwNjkxNzMxMywtMTI4NTEyMzQzMiwtMT
-U5MDc2NDAzMywtNjk2MzkzNDM4XX0=
+eyJoaXN0b3J5IjpbLTIxMzQ5MzQ4MjQsLTEyODUxMjM0MzIsLT
+E1OTA3NjQwMzMsLTY5NjM5MzQzOF19
 -->

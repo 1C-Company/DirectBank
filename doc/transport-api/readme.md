@@ -373,21 +373,13 @@ Content-Length: 145
 
 - CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы.>
 
-- Authorization: Basic <логин:пароль>
-
 - APIVersion: <Версия API обмена данными> 
 
 - AvailableAPIVersion: <Доступная версия API обмена данными>
 
-
-
 **Тело запроса:**
 
-- ПУСТО
-
-
-
-
+Content: <XML-файл, соответствующий [XML-схеме данных для аутентификации по закр.ключу](#СхемаДанныхАутПоЗакрКлючу)>
 
 **Успешный ответ:**
 
@@ -1216,6 +1208,6 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0MjA0NjYyMCwtMTI4NTEyMzQzMiwtMT
+eyJoaXN0b3J5IjpbMTUwNjkxNzMxMywtMTI4NTEyMzQzMiwtMT
 U5MDc2NDAzMywtNjk2MzkzNDM4XX0=
 -->

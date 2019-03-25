@@ -365,7 +365,37 @@ Content-Length: 145
 
 ## <a name="logonCert"></a> Метод LogonCert (HTTP-метод POST) 
 
+**Заголовки:**
 
+- Host: <Адрес ресурса банка>
+
+- Content-Type: application/xml; charset=utf-8
+
+- CustomerID: <Уникальный идентификатор Клиента, содержащий только ANSI-символы.>
+
+- Authorization: Basic <логин:пароль>
+
+- APIVersion: <Версия API обмена данными> 
+
+- AvailableAPIVersion: <Доступная версия API обмена данными>
+
+
+
+**Тело запроса:**
+
+- ПУСТО
+
+
+
+
+
+**Успешный ответ:**
+
+- HTTP/1.1 200 OK
+
+- Content-Type: application/xml; charset=utf-8
+
+- Content: < XML-файл, соответствующий [XML-схеме ответа банк.сервиса](../xsd-scheme/readme.md#1C-Bank_ResultBank)>
 
 
 ### <a name="recommendations"></a> Рекомендации для банковского сервиса
@@ -1186,6 +1216,6 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxNTE5NTM4MCwtMTI4NTEyMzQzMiwtMT
+eyJoaXN0b3J5IjpbMTU0MjA0NjYyMCwtMTI4NTEyMzQzMiwtMT
 U5MDc2NDAzMywtNjk2MzkzNDM4XX0=
 -->

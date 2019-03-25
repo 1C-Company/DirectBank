@@ -1180,3 +1180,6 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Запрос на получение списка GUID транспортных контейнеров, готовых к отправке клиенту банком — [GetPackList](#getPackList).
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTQ3NDI4MjE3Ml19
+-->

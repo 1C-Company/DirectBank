@@ -361,9 +361,12 @@ Content-Length: 145
 
 ### <a name="certAuthentication"></a> Аутентификация по закрытому ключу сертификата
 
-<![endif]-->
-
 Система «1С:Предприятия 8» передает в Банк уникальный идентификатор Клиента в банковской системе (строка может содержать только ANSI-символы в соответствии с [RFC 2616](http://tools.ietf.org/html/rfc2616) для передачи значений в HTTP-заголовке), а также серийный номер сертификата, имя издателя сертификата и файл открытой части ключа электронной подписи Клиента, импортированный в систему «1С:Предприятие 8» на этапе настроек обмена (отправка производится HTTP-методом POST - метод _LogonCert,_ передается  XML-файл, соответствующий [XML-схеме данных для аутентификации по закр.ключу](#СхемаДанныхАутПоЗакрКлючу)).
+
+## <a name="logonCert"></a> Метод LogonCert (HTTP-метод POST) 
+
+
+
 
 ### <a name="recommendations"></a> Рекомендации для банковского сервиса
 
@@ -1183,6 +1186,6 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI0NzY5MDU5NCwtMTI4NTEyMzQzMiwtMT
+eyJoaXN0b3J5IjpbMTAxNTE5NTM4MCwtMTI4NTEyMzQzMiwtMT
 U5MDc2NDAzMywtNjk2MzkzNDM4XX0=
 -->

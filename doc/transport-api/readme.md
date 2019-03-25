@@ -466,7 +466,7 @@ X-Powered-By: ASP.NET
 Date: Mon, 25 Mar 2019 09:32:31 GMT
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.1.2" userAgent="DirectBankService">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.2.1" userAgent="DirectBankService">
     <Success>
         <LogonCertResponse>
             <EncryptedSID>MIIB4QYJKoZIhvcNAQcDoIIB0jCCAc4CAQAxggFwMIIBbAIBADCBljB/MSMwIQYJ
@@ -1304,8 +1304,8 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMyOTgzNzczNSwtMjQwMTU5NjA3LC0xMT
-A0NTIwMTcwLC0yMzczMTYxNjcsMTc4NDU5MTc2NywtMjEzNDkz
-NDgyNCwtMTI4NTEyMzQzMiwtMTU5MDc2NDAzMywtNjk2MzkzND
-M4XX0=
+eyJoaXN0b3J5IjpbLTE2NTM5Nzg1MjEsLTI0MDE1OTYwNywtMT
+EwNDUyMDE3MCwtMjM3MzE2MTY3LDE3ODQ1OTE3NjcsLTIxMzQ5
+MzQ4MjQsLTEyODUxMjM0MzIsLTE1OTA3NjQwMzMsLTY5NjM5Mz
+QzOF19
 -->

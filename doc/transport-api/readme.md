@@ -1116,7 +1116,7 @@ Content-Length: 145
 
 
 
-## <a name="getPack"></a> Метод GetPack (HTTP-метод GET)
+### <a name="getPack"></a> Метод GetPack (HTTP-метод GET)
 
 
 
@@ -1250,7 +1250,7 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 </ResultBank>
 
 ```
-### <a name="test"></a> Проверка работоспособности обмена электронными документами.
+# <a name="test"></a> Проверка работоспособности обмена электронными документами.
 - На этапе отладки или профилактических работ часто возникает потребность проверить доступность банковского сервиса, не приступая к штатному обмену электронными документами. Для таких целей предназначен специальный вид электронного документа.
 - По команде в «1С:Предприятии 8» формируется электронный документ «Запрос-зонд» (XML-файл, соответствующий [XML-схеме запроса-зонда](../xsd-scheme/readme.md#1C-Bank_Probe)).
 - Если используется электронная подпись на стороне «1С:Предприятия 8» (см. раздел [«Обеспечение безопасности данных»](../common-section/data-security.md#security)), то система предложит пользователю подписать электронный документ.
@@ -1285,7 +1285,7 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 ```
 
 
-### <a name="5"></a> Процедура синхронизации 1С с банковским сервисом
+# <a name="5"></a> Процедура синхронизации 1С с банковским сервисом
 
 При синхронизации 1С с банковским сервисом последовательно выполняются процедуры отправки всех подготовленных в 1С транспортных контейнеров с данными электронных документов в банк и получения всех транспортных контейнеров документов из банка.
 
@@ -1304,8 +1304,8 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzY0NjI3NTgsLTI0MDE1OTYwNywtMT
-EwNDUyMDE3MCwtMjM3MzE2MTY3LDE3ODQ1OTE3NjcsLTIxMzQ5
-MzQ4MjQsLTEyODUxMjM0MzIsLTE1OTA3NjQwMzMsLTY5NjM5Mz
-QzOF19
+eyJoaXN0b3J5IjpbNjE4MjIwMzgxLC0yNDAxNTk2MDcsLTExMD
+Q1MjAxNzAsLTIzNzMxNjE2NywxNzg0NTkxNzY3LC0yMTM0OTM0
+ODI0LC0xMjg1MTIzNDMyLC0xNTkwNzY0MDMzLC02OTYzOTM0Mz
+hdfQ==
 -->

@@ -455,23 +455,34 @@ uTBy4kCyKkfBQ+cH/3w3IDU=</X509Certificate>
 
 ```
 
-**Пример успешного ответа** на запрос аутентификации по **закрытому ключ**:
+**Пример успешного ответа** на запрос аутентификации по **закрытому ключу сертификата**:
 
 ```xml
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 145
+Content-Length: 1036
+Server: Microsoft-IIS/8.5
+X-Powered-By: ASP.NET
+Date: Mon, 25 Mar 2019 09:32:31 GMT
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.1.2" userAgent="DirectBankService">
     <Success>
-        <LogonResponse>
-			<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
-        </LogonResponse>
+        <LogonCertResponse>
+            <EncryptedSID>MIIB4QYJKoZIhvcNAQcDoIIB0jCCAc4CAQAxggFwMIIBbAIBADCBljB/MSMwIQYJ
+KoZIhvcNAQkBFhRzdXBwb3J0QGNyeXB0b3Byby5ydTELMAkGA1UEBhMCUlUxDzAN
+BgNVBAcTBk1vc2NvdzEXMBUGA1UEChMOQ1JZUFRPLVBSTyBMTEMxITAfBgNVBAMT
+GENSWVBUTy1QUk8gVGVzdCBDZW50ZXIgMgITEgAxMjUzaJfTZvbuegAAADEyNTAf
+BggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgSBrDCBqTAoBCAW+Qq8GLci
+fmTW/tiKOVHnVkUHGqnbqecRqALLhq6DQgQE6obJFKB9BgkqhQMHAQIFAQGgZjAf
+BggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA/aK/7zFLdZWLLdAl
+5ZFLRjOjSN/f83tnb28/UU71zbYN4FL1KC/YflXoUQbPQne89OA9hPGtHo1cDT4t
+ExbPGwQIqr3cc3r3JUUwVQYJKoZIhvcNAQcBMB8GBiqFAwICFTAVBAiqd9ePVONw
+/AYJKoUDBwECBQEBgCcbOLtBwrqXz8dd6vNO4CsjbJFXMA/eieCj1NuFcenwX9f3
+MfAQtpI=</EncryptedSID>
+        </LogonCertResponse>
     </Success>
 </ResultBank>
-
 ```
 
 
@@ -1293,7 +1304,7 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2OTM1MTA2OSwtMjQwMTU5NjA3LC0xMT
+eyJoaXN0b3J5IjpbMTMyOTgzNzczNSwtMjQwMTU5NjA3LC0xMT
 A0NTIwMTcwLC0yMzczMTYxNjcsMTc4NDU5MTc2NywtMjEzNDkz
 NDgyNCwtMTI4NTEyMzQzMiwtMTU5MDc2NDAzMywtNjk2MzkzND
 M4XX0=

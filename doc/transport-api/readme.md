@@ -415,11 +415,11 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 ![Аутентификация по закрытому ключу сертификата. LogonCert](../doc_imgs/LogonCert.png)
 
 
-**Пример запроса** аутентификации по ****:
+**Пример запроса** аутентификации по **закрытому ключу сертификата**:
 
 ```http
 
-POST https://dbogate.demobank.ru/Logon HTTP/1.1
+POST https://dbogate.demobank.ru/LogonCert HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
 CustomerID: 502036
@@ -428,7 +428,7 @@ APIVersion: 2.1.1
 AvailableAPIVersion: 2.2.1
 User-Agent: 1C+Enterprise/8.3
 Content-Type: application/xml; charset=utf-8
-Content-Length: 0
+Content-Length: 2294
 
 ```
 
@@ -1270,7 +1270,7 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzkxMzE5Mzk3LC0yMzczMTYxNjcsMTc4ND
-U5MTc2NywtMjEzNDkzNDgyNCwtMTI4NTEyMzQzMiwtMTU5MDc2
-NDAzMywtNjk2MzkzNDM4XX0=
+eyJoaXN0b3J5IjpbLTExMDQ1MjAxNzAsLTIzNzMxNjE2NywxNz
+g0NTkxNzY3LC0yMTM0OTM0ODI0LC0xMjg1MTIzNDMyLC0xNTkw
+NzY0MDMzLC02OTYzOTM0MzhdfQ==
 -->

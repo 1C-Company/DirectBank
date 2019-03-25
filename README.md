@@ -18,3 +18,6 @@
 ###### - [Схемы данных](doc/xsd-scheme/readme.md)  
 ###### - [Классификаторы](doc/common-section/tables.md)
 ###### - [Описание типов](doc/common-section/type-tables.md)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTQ4ODAzMDM1M119
+-->

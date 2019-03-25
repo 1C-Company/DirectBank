@@ -455,7 +455,7 @@ uTBy4kCyKkfBQ+cH/3w3IDU=</X509Certificate>
 
 ```
 
-**Пример успешного ответа** на запрос аутентификации по **логину и паролю**:
+**Пример успешного ответа** на запрос аутентификации по **закрытому ключ**:
 
 ```xml
 
@@ -1293,8 +1293,8 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMzIyNTE5MjAsLTI0MDE1OTYwNywtMT
-EwNDUyMDE3MCwtMjM3MzE2MTY3LDE3ODQ1OTE3NjcsLTIxMzQ5
-MzQ4MjQsLTEyODUxMjM0MzIsLTE1OTA3NjQwMzMsLTY5NjM5Mz
-QzOF19
+eyJoaXN0b3J5IjpbMTU2OTM1MTA2OSwtMjQwMTU5NjA3LC0xMT
+A0NTIwMTcwLC0yMzczMTYxNjcsMTc4NDU5MTc2NywtMjEzNDkz
+NDgyNCwtMTI4NTEyMzQzMiwtMTU5MDc2NDAzMywtNjk2MzkzND
+M4XX0=
 -->

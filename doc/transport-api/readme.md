@@ -359,7 +359,7 @@ Content-Length: 145
 
 ```
 
-
+### <a name="baseAuthentication"></a> Аутентификация по логину и паролю
 
 ### <a name="recommendations"></a> Рекомендации для банковского сервиса
 
@@ -1179,6 +1179,6 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODUxMjM0MzIsLTE1OTA3NjQwMzMsLT
-Y5NjM5MzQzOF19
+eyJoaXN0b3J5IjpbLTE5MzA2NzI4NzIsLTEyODUxMjM0MzIsLT
+E1OTA3NjQwMzMsLTY5NjM5MzQzOF19
 -->

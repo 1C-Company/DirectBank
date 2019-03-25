@@ -20,7 +20,11 @@ API обмена данными – уровень, который описыв�
  		+ [Метод **Logon** (HTTP-метод POST)](#logon)
  		
  		+ [Метод **LogonOTP** (HTTP-метод POST)](#logonOTP)
+  
+     + [Аутентификация по закрытому ключу сертификата](#certAuthentication)
 
+ 		+ [Метод **LogonCert** (HTTP-метод POST)](#logonCert)
+ 		
 	+ [Рекомендации для банковского сервиса](#recommendations)
 
 + [Настройка обмена электронными документами](#installation)
@@ -1304,8 +1308,8 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjE4MjIwMzgxLC0yNDAxNTk2MDcsLTExMD
-Q1MjAxNzAsLTIzNzMxNjE2NywxNzg0NTkxNzY3LC0yMTM0OTM0
-ODI0LC0xMjg1MTIzNDMyLC0xNTkwNzY0MDMzLC02OTYzOTM0Mz
-hdfQ==
+eyJoaXN0b3J5IjpbOTk5MTMwOTI4LDYxODIyMDM4MSwtMjQwMT
+U5NjA3LC0xMTA0NTIwMTcwLC0yMzczMTYxNjcsMTc4NDU5MTc2
+NywtMjEzNDkzNDgyNCwtMTI4NTEyMzQzMiwtMTU5MDc2NDAzMy
+wtNjk2MzkzNDM4XX0=
 -->

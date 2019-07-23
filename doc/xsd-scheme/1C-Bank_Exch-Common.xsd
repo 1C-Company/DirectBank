@@ -966,7 +966,6 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:minLength value="1"/>
 			<xsd:maxLength value="20"/>
-			<xsd:pattern value="[0-9]{20}"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:simpleType name="SumType">

@@ -334,15 +334,23 @@
 
 ### <a name="edo-MemOrderApp"></a> Тип edo:MemOrderApp (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
-| Параметр              | Тип      | Кратность | Описание                                   |
-|-----------------------|----------|:---------:|--------------------------------------------|
-| DocNo                 | [string](#string)   |    [1]    | Номер документа (поле 3)                   |
-| DocDate               | [date](#date)     |    [1]    | Дата составления (поле 4)                  |
-| Sum                   | [SumType](#SumType)  |    [1]    | Сумма документа (поле 9)                   |
+| Параметр              | Тип      | Кратность  | Описание                                               |
+|-----------------------|----------|:----------:|--------------------------------------------------------|
+| DocNo                 | [string](#string)     |    [1]    | Номер документа (поле 3)                   |
+| DocDate               | [date](#date)         |    [1]    | Дата составления (поле 4)                  |
+| SpareField5           | [string](#string)     |   [0-1]   | Свободное поле (поле 5)                    |
 | Author                | [BankType](#BankType) |   [0-1]   | Составитель (поле 6)                       |
-| PartialTransitionKind | [string](#string) (2)  |   [0-1]   | Шифр документа (поле 13)                   |
-| TransitionContent     | [string](#string)   |   [0-1]   | Содержание операции (поле 16)              |
-| AddInfo               | [string](#string)   |   [0-n]   | Дополнительная информация (свободные поля) |
+| AccountNameDebit      | [string](#string)     |   [0-1]   | Наименование счета по дебету (поле 7)      |
+| AccountDebit          | [string](#string)     |   [0-1]   | Счет по дебету (поле 8)                    |
+| Sum                   | [SumType](#SumType)   |    [1]    | Сумма документа (поле 9)                   |
+| SpareField9a          | [string](#string)     |   [0-1]   | Свободное поле (поле 9a)                   |
+| AccountNameCredit     | [string](#string)     |   [0-1]   | Наименование счета по кредиту (поле 10)    |
+| AccountCredit         | [string](#string)     |   [0-1]   | Счет по кредиту (поле 11)                  |
+| PartialTransitionKind | [string](#string) (2) |   [0-1]   | Шифр документа (поле 13)                   |
+| SpareField14          | [string](#string)     |   [0-1]   | Свободное поле (поле 14)                   |
+| SpareField15          | [string](#string)     |   [0-1]   | Свободное поле (поле 15)                   |
+| TransitionContent     | [string](#string)   |   [0-1]     | Содержание операции (поле 16)              |
+| SpareField20          | [string](#string)   |   [0-1]     | Свободное поле (поле 20)                   |
 
 ### <a name="edo-OtherCustomerDetailsType"></a> Тип edo:OtherCustomerDetailsType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 

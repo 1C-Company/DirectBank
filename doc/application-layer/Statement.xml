@@ -3,15 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	id="f7cbc6af-33dd-4c37-b67d-7400e1c327ad"
-	formatVersion="2.2.1"
-	creationDate="2016-05-13T13:51:21.829"
+	formatVersion="2.3.1"
+	creationDate="2010-05-13T13:51:21.829"
 	userAgent="DemoBankService">
 	<Sender name="ДЕМО-БАНК" bic="044525888"/>
 	<Recipient id="c8d57b00-530d-4a2e-86c1-aa9d5e4fafbd" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Data>
 		<StatementType>0</StatementType>
-		<DateFrom>2016-05-04T00:00:00.000</DateFrom>
-		<DateTo>2016-05-13T11:51:13.000</DateTo>
+		<DateFrom>2019-05-04T00:00:00.000</DateFrom>
+		<DateTo>2019-05-13T11:51:13.000</DateTo>
 		<Account>40702810500000000001</Account>
 		<Bank>
 			<BIC>044525888</BIC>
@@ -25,7 +25,7 @@
 			<PayDoc id="768" docKind="10">
 				<PayDocRu>
 					<DocNo>768</DocNo>
-					<DocDate>2016-05-04</DocDate>
+					<DocDate>2019-05-04</DocDate>
 					<Sum>14</Sum>
 					<Payer>
 						<Name>Торговый дом Комплексный</Name>
@@ -52,11 +52,11 @@
 						</Bank>
 					</Payee>
 					<Priority>5</Priority>
-					<Purpose>За транспортные услуги по счету № Ек2Тюм003221 от 18 Апреля 2016г. Сумма 2 999-00руб без НДС</Purpose>
+					<Purpose>За транспортные услуги по счету № Ек2Тюм003221 от 18 Апреля 2019г. Сумма 2 999-00руб без НДС</Purpose>
 				</PayDocRu>
 			</PayDoc>
 			<DC>1</DC>
-			<Date>2016-05-04</Date>
+			<Date>2019-05-04</Date>
 			<Stamp>
 				<BIC>044525888</BIC>
 				<Name>ДЕМО-БАНК</Name>

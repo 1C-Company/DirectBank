@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.1">
+	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
+	<xsd:element name="Letter" type="edo:Letter">
+		<xsd:annotation>
+			<xsd:documentation>Письмо</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="Letter">
+		<xsd:sequence>
+			<xsd:element name="Sender" type="edo:ParticipantType">
+				<xsd:annotation>
+					<xsd:documentation>Отправитель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Recipient" type="edo:ParticipantType">
+				<xsd:annotation>
+					<xsd:documentation>Получатель</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Data">
+				<xsd:annotation>
+					<xsd:documentation>Данные письма</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="DocNum" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Номер документа</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="DocDate" type="xsd:date">
+							<xsd:annotation>
+								<xsd:documentation>Дата составления</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="LetterTypeCode" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Код типа письма</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="2"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Theme" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Тема письма</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="100"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="Text" type="xsd:string">
+							<xsd:annotation>
+								<xsd:documentation>Текст письма</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="Attachment" minOccurs="0" maxOccurs="unbounded">
+							<xsd:annotation>
+								<xsd:documentation>Вложение</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="BinaryFile">
+										<xsd:annotation>
+											<xsd:documentation>Двоичные данные файла</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:simpleContent>
+												<xsd:extension base="xsd:base64Binary">
+													<xsd:attribute name="id" type="edo:IDType" use="required">
+														<xsd:annotation>
+															<xsd:documentation>Уникальный идентификатор вложения</xsd:documentation>
+														</xsd:annotation>
+													</xsd:attribute>
+													<xsd:attribute name="name" use="required">
+														<xsd:annotation>
+															<xsd:documentation>Полное имя файла с расширением</xsd:documentation>
+														</xsd:annotation>
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:minLength value="1"/>
+																<xsd:maxLength value="256"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:attribute>
+													<xsd:attribute name="extension" use="required">
+														<xsd:annotation>
+															<xsd:documentation>Расширение имени файла</xsd:documentation>
+														</xsd:annotation>
+														<xsd:simpleType>
+															<xsd:restriction base="xsd:string">
+																<xsd:maxLength value="10"/>
+															</xsd:restriction>
+														</xsd:simpleType>
+													</xsd:attribute>
+													<xsd:attribute name="size" type="xsd:integer" use="required">
+														<xsd:annotation>
+															<xsd:documentation>Размер файла в байтах</xsd:documentation>
+														</xsd:annotation>
+													</xsd:attribute>
+													<xsd:attribute name="crc" type="xsd:integer" use="required">
+														<xsd:annotation>
+															<xsd:documentation>Контрольная сумма файла (алгоритм CRC32)</xsd:documentation>
+														</xsd:annotation>
+													</xsd:attribute>
+													<xsd:attribute name="creationDate" type="xsd:dateTime" use="required">
+														<xsd:annotation>
+															<xsd:documentation>Дата создания</xsd:documentation>
+														</xsd:annotation>
+													</xsd:attribute>
+												</xsd:extension>
+											</xsd:simpleContent>
+										</xsd:complexType>
+									</xsd:element>
+									<xsd:element name="Signature" type="edo:SignatureType" minOccurs="0" maxOccurs="unbounded">
+										<xsd:annotation>
+											<xsd:documentation>Данные электронных подписей</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="LinkedDoc" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Объект обсуждения. Например, платежное поручение или требование.</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:attribute name="id" use="required">
+									<xsd:annotation>
+										<xsd:documentation>Идентификатор документа</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+								<xsd:attribute name="dockind" type="edo:DocKindType" use="required">
+									<xsd:annotation>
+										<xsd:documentation>Код вида электронного документа, как он задан в описаниии к стандарту</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="linkedID" type="edo:IDType" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>ID изначального письма</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="correspondenceID" type="edo:IDType" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>ID переписки</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="edo:IDType" use="required"/>
+		<xsd:attribute name="formatVersion" type="edo:FormatVersionType" use="required"/>
+		<xsd:attribute name="creationDate" type="xsd:dateTime" use="required"/>
+		<xsd:attribute name="userAgent" type="edo:UserAgentType" use="optional"/>
+	</xsd:complexType>
+</xsd:schema>

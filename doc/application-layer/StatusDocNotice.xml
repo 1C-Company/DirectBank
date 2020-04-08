@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StatusDocNotice xmlns="http://directbank.1c.ru/XMLSchema"
 	id="204e36e4-6910-416d-99b2-e8109e518744"
-	formatVersion="2.2.1"
-    creationDate="2016-04-22T09:34:46+03:00"
+	formatVersion="2.3.1"
+    creationDate="2019-04-22T09:34:46+03:00"
     userAgent=" DemoBankService">
 	<Sender>
 		<Bank bic="044525888"/>
 	</Sender>
 	<Recipient>
-		<Customer id="id:42;s:9999"/>
+		<Customer id="82007cb2-dfd1-4193-b903-16cc9b7231c9"/>
 	</Recipient>
 	<ExtID>eafa28b5-6600-424c-b0d3-3785274d570d</ExtID>
    <Result>

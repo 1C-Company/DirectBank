@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.2.2">
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xsd:schema xmlns:edo="http://directbank.1c.ru/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://directbank.1c.ru/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.3.1">
 	<xsd:include schemaLocation="1C-Bank_Exch-Common.xsd"/>
 	<xsd:element name="Packet" type="edo:Packet"/>
 	<xsd:complexType name="Packet">
@@ -64,29 +65,10 @@
 					</xsd:simpleContent>
 				</xsd:complexType>
 			</xsd:element>
-			<xsd:element name="Signature" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Signature" type="edo:SignatureType" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation>Данные электронных подписей</xsd:documentation>
 				</xsd:annotation>
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:element name="SignedData" type="xsd:base64Binary">
-							<xsd:annotation>
-								<xsd:documentation>Электронная подпись</xsd:documentation>
-							</xsd:annotation>
-						</xsd:element>
-					</xsd:sequence>
-					<xsd:attribute name="x509IssuerName" type="xsd:string" use="required">
-						<xsd:annotation>
-							<xsd:documentation>Имя издателя сертификата открытого ключа ЭП (значение атрибута "CN").</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="x509SerialNumber" type="xsd:hexBinary" use="required">
-						<xsd:annotation>
-							<xsd:documentation>Серийный номер сертификата открытого ключа ЭП</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-				</xsd:complexType>
 			</xsd:element>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="edo:IDType" use="required">

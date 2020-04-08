@@ -14,6 +14,7 @@
 + [XML-схема **ответа банковского сервиса**: *1C-Bank_ResultBank.xsd*](#1C-Bank_ResultBank)
 + [XML-схема **платежного поручения**: *1C-Bank_PayDocRu.xsd*](#1C-Bank_PayDocRu)
 + [XML-схема **платежного требования**: *1C-Bank_PayRequest.xsd*](#1C-Bank_PayRequest)
++ [XML-схема **письма**: *1C-Bank_Letter.xsd*](#1C-Bank_Letter)
 + [XML-схема **транспортного контейнера**: *1C-Bank_Packet.xsd*](#1C-Bank_Packet)
 + [XML-схема **поручения на перевод валюты**: *pain.001.001.03.xsd*](#pain)
 + [XML-схема **выписки по валютным счетам**: *camt.053.001.02.xsd*](#camt)
@@ -142,6 +143,14 @@
 
 ##### Типы
  + [edo:PayRequest](../common-section/type-tables.md#edo-PayRequest)
+
+## <a name="1C-Bank_Letter"></a> XML-схема **письма**: *1C-Bank_Letter.xsd*
+
+- [Файл схемы **1C-Bank_Letter.xsd**](1C-Bank_Letter.xsd)
+
+##### Типы
+ + [edo:Letter](../common-section/type-tables.md#edo-Letter)
+
 
 ## <a name="1C-Bank_Packet"></a> XML-схема транспортного контейнера: *1C-Bank_Packet.xsd*
 

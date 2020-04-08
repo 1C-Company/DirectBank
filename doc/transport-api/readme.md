@@ -204,10 +204,10 @@ API обмена данными – уровень, который описыв�
 POST https://dbogate.demobank.ru/Logon HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
-CustomerID: 502036
+CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
 Authorization: Basic NjY5NzcxNDczMTo5MzcyMjkxMzIx
 APIVersion: 2.1.1
-AvailableAPIVersion: 2.2.1
+AvailableAPIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 Content-Type: application/xml; charset=utf-8
 Content-Length: 0
@@ -223,7 +223,7 @@ Content-Type: application/xml;charset=UTF-8
 Content-Length: 145
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
     <Success>
         <LogonResponse>
 			<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
@@ -244,7 +244,7 @@ Content-Type: application/xml;charset=UTF-8
 Content-Length: 176
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
     <Success>
         <LogonResponse>
             <SID>7767755b6fbb4ae296aa0ac6b179aef9</SID>
@@ -333,9 +333,9 @@ POST https://dbogate.demobank.ru/LogonOTP HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
 SID: 7767755b6fbb4ae296aa0ac6b179aef9
-CustomerID: 502036
+CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
 OTP: 034494
-APIVersion: 2.2.1
+APIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 Content-Type: application/xml; charset=utf-8
 Content-Length: 0
@@ -353,7 +353,7 @@ Content-Type: application/xml;charset=UTF-8
 Content-Length: 145
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
     <Success>
         <LogonResponse>
 			<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
@@ -427,16 +427,16 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 POST https://dbogate.demobank.ru/LogonCert HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
-CustomerID: 502036
+CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
 Authorization: Basic NjY5NzcxNDczMTo5MzcyMjkxMzIx
 APIVersion: 2.1.1
-AvailableAPIVersion: 2.2.1
+AvailableAPIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 Content-Type: application/xml; charset=utf-8
 Content-Length: 2294
 
 <?xml version="1.0" encoding="UTF-8"?>
-<X509Data xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="64ec7428-df46-4522-a6fb-abc0fb5a643d" formatVersion="2.1.2" creationDate="2019-03-25T12:32:28" userAgent="1С - БЭД: 1.6.1.4; БиблиотекаЭлектронныхДокументовДемо: 1.6.1.4">
+<X509Data xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="64ec7428-df46-4522-a6fb-abc0fb5a643d" formatVersion="2.3.1" creationDate="2019-03-25T12:32:28" userAgent="1С - БЭД: 1.7.1.4; БиблиотекаЭлектронныхДокументовДемо: 1.7.1.4">
     <X509IssuerName>CRYPTO-PRO Test Center 2</X509IssuerName>
     <X509SerialNumber>1200313235336897D366F6EE7A000000313235</X509SerialNumber>
     <X509Certificate>MIIDDTCCArygAwIBAgITEgAxMjUzaJfTZvbuegAAADEyNTAIBgYqhQMCAgMwfzEj
@@ -471,7 +471,7 @@ X-Powered-By: ASP.NET
 Date: Mon, 25 Mar 2019 09:32:31 GMT
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.2.1" userAgent="DirectBankService">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.1" userAgent="DirectBankService">
     <Success>
         <LogonCertResponse>
             <EncryptedSID>MIIB4QYJKoZIhvcNAQcDoIIB0jCCAc4CAQAxggFwMIIBbAIBADCBljB/MSMwIQYJ
@@ -640,7 +640,7 @@ Inn: 761700021132
 Bic: 044525888
 Account: 40802810200000099888
 APIVersion: 2.1.1
-AvailableAPIVersion: 2.2.1
+AvailableAPIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 Content-Type: application/xml; charset=utf-8
 Content-Length: 0
@@ -660,9 +660,9 @@ Content-Type: application/xml;charset=UTF-8
 Content-Length: 2145
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
     <Success>
-		<GetSettingsResponse creationDate="2015-02-19T11:21:02" formatVersion="2.2.1" id="502036">
+		<GetSettingsResponse creationDate="2015-02-19T11:21:02" formatVersion="2.3.1" id="502036">
 			<Data dockind="06">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFNldHRpbmdzIHhtbG5zPSJo
 dHRwOi8vZGlyZWN0YmFuay4xYy5ydS9YTUxTY2hlbWEiCiAgICB4bWxuczp4c2k9Imh0dHA6Ly93
 d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIgogICAgeG1sbnM6eHNkPSJodHRwOi8v
@@ -699,15 +699,15 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
-    formatVersion="2.2.1"
-    creationDate="2016-04-22T09:38:51" 
+    formatVersion="2.3.1"
+    creationDate="2019-04-22T09:38:51" 
     userAgent="DemoBankService">
 	<Sender bic="044525888" name="ДЕМО-БАНК" />
-    <Recipient id="2806" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001" />
+    <Recipient id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001" />
     <Data>
         <CustomerID>2806</CustomerID>
         <BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
-        <FormatVersion>2.2.1</FormatVersion>
+        <FormatVersion>2.3.1</FormatVersion>
         <Encoding>UTF-8</Encoding>
         <Logon>
             <Login>
@@ -885,7 +885,7 @@ Host: dbogate.demobank.ru
 Accept: */*
 SID: 8867755b6fbb4ae296aa0ac6b179ae88
 CustomerID: 502036
-APIVersion: 2.2.1
+APIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 Content-Type: application/xml; charset=utf-8
 Content-Length: 5239
@@ -895,16 +895,16 @@ Content-Length: 5239
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="9bad1c35-b7ff-11e4-9a88-0003ffb697db"
-    formatVersion="2.2.1"
+    formatVersion="2.3.1"
     creationDate="2016-04-19T11:12:31"
-    userAgent="1С - БЭД: 1.4">
+    userAgent="1С - БЭД: 1.7">
 	<Sender>
-		<Customer id="502036" name="ИП Петрович и Ко" inn="761700021132"/>
+		<Customer id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="ИП Петрович и Ко" inn="761700021132"/>
 	</Sender>
 	<Recipient>
 		<Bank bic="044525888" name="ДЕМО-БАНК"/>
 	</Recipient>
-	<Document id="a64225eb-9737-4d80-bd9d-1ffe5fdb63b1" dockind="10" formatVersion="2.2.1">
+	<Document id="a64225eb-9737-4d80-bd9d-1ffe5fdb63b1" dockind="10" formatVersion="2.3.1">
 		<Data>
 PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxQYXlEb2NSdSB4bWxucz0i
 aHR0cDovL2RpcmVjdGJhbmsuMWMucnUvWE1MU2NoZW1hIiANCgl4bWxuczp4cz0iaHR0cDovL3d3
@@ -958,7 +958,7 @@ Content-Type: application/xml;charset=UTF-8
 Content-Length: 145
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
     <Success>
         <SendPacketResponse>
 			<ID>50214584626</ID>
@@ -1086,7 +1086,7 @@ Host: dbogate.demobank.ru
 Accept: */*
 SID: 8867755b6fbb4ae296aa0ac6b179ae88
 CustomerID: 502036
-APIVersion: 2.2.1
+APIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 
 ```
@@ -1103,9 +1103,9 @@ Content-Length: 145
 
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
     <Success>
-        <GetPacketListResponse TimeStampLastPacket="2015-02-19T11:15:42">
+        <GetPacketListResponse TimeStampLastPacket="2019-02-19T11:15:42">
 			<PacketID>50214585876</PacketID>
         </GetPacketListResponse>
     </Success>
@@ -1197,7 +1197,7 @@ Host: dbogate.demobank.ru
 Accept: */*
 SID: 8867755b6fbb4ae296aa0ac6b179ae88
 CustomerID: 502036
-APIVersion: 2.2.1
+APIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 
 ```
@@ -1213,24 +1213,24 @@ Content-Type: application/xml;charset=UTF-8
 Content-Length: 2502
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.2.1">
+<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
     <Success>
 		<GetPacketResponse userAgent="Back Office"
-        creationDate="2015-02-19T11:15:42"
-        formatVersion="2.2.1"
+        creationDate="2019-02-19T11:15:42"
+        formatVersion="2.3.1"
         id="0ef6778b-4a2c-717c-e053-248c410af4aa">
 			<Sender>
 				<Bank bic="044525888"/>
 			</Sender>
         	<Recipient>
-				<Customer id="502036"/>
+				<Customer id="82007cb2-dfd1-4193-b903-16cc9b7231c9"/>
 	    	</Recipient>
         	<Document notifyRequired="false"
         	signResponse="false"
         	encrypted="false"
         	compressed="false"
         	testOnly="false"
-        	formatVersion="2.2.1"
+        	formatVersion="2.3.1"
         	dockind="01"
         	id="0f6d6032-31b0-8337-e053-248c410a1832">
         		<Data contentType="text/xml"fileName="">
@@ -1281,10 +1281,10 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	id="eafa28b5-6600-424c-b0d3-3785274d570d"
-	formatVersion="2.2.1"
-	creationDate="2016-04-22T09:33:57"
-	userAgent="1С - БЭД: 1.4.1.1; БиблиотекаЭлектронныхДокументов: 1.4.1.1">
-	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+	formatVersion="2.3.1"
+	creationDate="2019-04-22T09:33:57"
+	userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
+	<Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК "/>
 </Probe>
 ```

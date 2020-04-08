@@ -3,15 +3,15 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="da06dc8f-afbe-4172-89c8-0d4492c2dd25"
-    formatVersion="2.2.1"
-    creationDate="2016-04-22T09:52:27"
-    userAgent="1С - БЭД: 1.4.1.1; БиблиотекаЭлектронныхДокументов: 1.4.1.1">
-	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+    formatVersion="2.3.1"
+    creationDate="2019-04-22T09:52:27"
+    userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
+	<Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
 		<StatementType>0</StatementType>
-		<DateFrom>2016-04-21T00:00:00</DateFrom>
-		<DateTo>2016-04-21T23:59:59</DateTo>
+		<DateFrom>2019-04-21T00:00:00</DateFrom>
+		<DateTo>2019-04-21T23:59:59</DateTo>
 		<Account>40702810500000000001</Account>
 		<Bank>
 			<BIC>044525888</BIC>

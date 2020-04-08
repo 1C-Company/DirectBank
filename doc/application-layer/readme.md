@@ -49,14 +49,14 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     id="05688096-0806-4ef0-af4c-572f75dbaf7c" 
-    formatVersion="2.2.1" 
-    creationDate="2016-04-22T09:38:51" 
-    userAgent="1С - БЭД: 1.4.1.1; БиблиотекаЭлектронныхДокументов: 1.4.1.1">
-    <Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+    formatVersion="2.3.1" 
+    creationDate="2019-04-22T09:38:51" 
+    userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
+    <Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
     <Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
         <DocNo>14</DocNo>
-        <DocDate>2016-04-22</DocDate>
+        <DocDate>2019-04-22</DocDate>
         <Sum>15</Sum>
         <Payer>
             <Name>Торговый дом "Комплексный"</Name>
@@ -97,14 +97,14 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     id="a4d4c2ac-26dd-43ae-a98b-cb4cebdbd1db" 
-    formatVersion="2.2.1" 
-    creationDate="2016-04-22T09:50:09" 
-    userAgent="1С - БЭД: 1.4.1.1; БиблиотекаЭлектронныхДокументов: 1.4.1.1">
-	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+    formatVersion="2.3.1" 
+    creationDate="2019-04-22T09:50:09" 
+    userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
+	<Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
 		<DocNo>15</DocNo>
-		<DocDate>2016-04-22</DocDate>
+		<DocDate>2019-04-22</DocDate>
 		<Sum>15</Sum>
 		<Payer>
 			<Name>ООО "Канцтовары"</Name>
@@ -163,15 +163,15 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="da06dc8f-afbe-4172-89c8-0d4492c2dd25"
-    formatVersion="2.2.1"
-    creationDate="2016-04-22T09:52:27"
-    userAgent="1С - БЭД: 1.4.1.1; БиблиотекаЭлектронныхДокументов: 1.4.1.1">
-	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+    formatVersion="2.3.1"
+    creationDate="2019-04-22T09:52:27"
+    userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
+	<Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<Data>
 		<StatementType>0</StatementType>
-		<DateFrom>2016-04-21T00:00:00</DateFrom>
-		<DateTo>2016-04-21T23:59:59</DateTo>
+		<DateFrom>2019-04-21T00:00:00</DateFrom>
+		<DateTo>2019-04-21T23:59:59</DateTo>
 		<Account>40702810500000000001</Account>
 		<Bank>
 			<BIC>044525888</BIC>
@@ -191,15 +191,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	id="f7cbc6af-33dd-4c37-b67d-7400e1c327ad"
-	formatVersion="2.2.1"
-	creationDate="2016-05-13T13:51:21.829"
+	formatVersion="2.3.1"
+	creationDate="2019-05-13T13:51:21.829"
 	userAgent="DemoBankService">
 	<Sender name="ДЕМО-БАНК" bic="044525888"/>
 	<Recipient id="c8d57b00-530d-4a2e-86c1-aa9d5e4fafbd" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Data>
 		<StatementType>0</StatementType>
-		<DateFrom>2016-05-04T00:00:00.000</DateFrom>
-		<DateTo>2016-05-13T11:51:13.000</DateTo>
+		<DateFrom>2019-05-04T00:00:00.000</DateFrom>
+		<DateTo>2019-05-13T11:51:13.000</DateTo>
 		<Account>40702810500000000001</Account>
 		<Bank>
 			<BIC>044525888</BIC>
@@ -213,7 +213,7 @@
 			<PayDoc id="768" docKind="10">
 				<PayDocRu>
 					<DocNo>768</DocNo>
-					<DocDate>2016-05-04</DocDate>
+					<DocDate>2019-05-04</DocDate>
 					<Sum>14</Sum>
 					<Payer>
 						<Name>Торговый дом Комплексный</Name>
@@ -240,11 +240,11 @@
 						</Bank>
 					</Payee>
 					<Priority>5</Priority>
-					<Purpose>За транспортные услуги по счету № Ек2Тюм003221 от 18 Апреля 2016г. Сумма 2 999-00руб без НДС</Purpose>
+					<Purpose>За транспортные услуги по счету № Ек2Тюм003221 от 18 Апреля 2019г. Сумма 2 999-00руб без НДС</Purpose>
 				</PayDocRu>
 			</PayDoc>
 			<DC>1</DC>
-			<Date>2016-05-04</Date>
+			<Date>2019-05-04</Date>
 			<Stamp>
 				<BIC>044525888</BIC>
 				<Name>ДЕМО-БАНК</Name>
@@ -284,14 +284,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <StatusDocNotice xmlns="http://directbank.1c.ru/XMLSchema"
 	id="204e36e4-6910-416d-99b2-e8109e518744"
-	formatVersion="2.2.1"
-    creationDate="2016-04-22T09:34:46+03:00"
+	formatVersion="2.3.1"
+    creationDate="2019-04-22T09:34:46+03:00"
     userAgent=" DemoBankService">
 	<Sender>
 		<Bank bic="044525888"/>
 	</Sender>
 	<Recipient>
-		<Customer id="id:42;s:9999"/>
+		<Customer id="82007cb2-dfd1-4193-b903-16cc9b7231c9"/>
 	</Recipient>
 	<ExtID>eafa28b5-6600-424c-b0d3-3785274d570d</ExtID>
     <Result>
@@ -327,10 +327,10 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="0fa540c3-1aaa-4e06-8883-2c936fef05a5"
-    formatVersion="2.2.1"
-    creationDate="2016-04-22T10:09:11"
-    userAgent="1С - БЭД: 1.4.1.1; БиблиотекаЭлектронныхДокументов: 1.4.1.1">
-	<Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+    formatVersion="2.3.1"
+    creationDate="2019-04-22T10:09:11"
+    userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
+	<Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
 	<Recipient bic="044525888" name="ДЕМО-БАНК"/>
 	<ExtID>05688096-0806-4ef0-af4c-572f75dbaf7c</ExtID>
 </StatusRequest>
@@ -361,10 +361,10 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     id="e8caa148-82a3-446d-a10f-ff82ad514b7e"
-    formatVersion="2.2.1"
-    creationDate="2016-04-22T10:11:25"
-    userAgent="1С - БЭД: 1.4.1.1; БиблиотекаЭлектронныхДокументов: 1.4.1.1">
-    <Sender id="id:42;s:9999" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
+    formatVersion="2.3.1"
+    creationDate="2019-04-22T10:11:25"
+    userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
+    <Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
     <Recipient bic="044525888" name="ДЕМО-БАНК"/>
     <ExtID>05688096-0806-4ef0-af4c-572f75dbaf7c</ExtID>
     <Reason>Описание причины отзыва</Reason>

@@ -3,15 +3,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
-    formatVersion="2.2.1"
-    creationDate="2016-04-22T09:38:51" 
+    formatVersion="2.3.1"
+    creationDate="2019-04-22T09:38:51" 
     userAgent="DemoBankService">	
 	<Sender bic="044525888"/>
-	<Recipient kpp="770501001" inn="7705260699" id="2806"/>
+	<Recipient kpp="770501001" inn="7705260699" id="82007cb2-dfd1-4193-b903-16cc9b7231c9"/>
 	<Data>
-		<CustomerID>2806</CustomerID>
+		<CustomerID>82007cb2-dfd1-4193-b903-16cc9b7231c9</CustomerID>
 		<BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
-		<FormatVersion>2.2.1</FormatVersion>
+		<FormatVersion>2.3.1</FormatVersion>
 		<Encoding>UTF-8</Encoding>
 		<Compress>false</Compress>
 		<Logon>

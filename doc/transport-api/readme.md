@@ -191,7 +191,7 @@ API обмена данными – уровень, который описыв�
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#edo-ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 
@@ -317,7 +317,7 @@ Content-Length: 176
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#edo-ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 
@@ -414,7 +414,7 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#edo-ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 ![Аутентификация по закрытому ключу сертификата. LogonCert](../doc_imgs/LogonCert.png)
@@ -600,7 +600,7 @@ MfAQtpI=</EncryptedSID>
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#edo-ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 
@@ -838,7 +838,7 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#edo-ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 
@@ -1050,7 +1050,7 @@ Content-Length: 145
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#edo-ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 
@@ -1184,7 +1184,7 @@ Content-Length: 145
 
 | Параметр                         | Тип               | Кратность | Описание                        |
 |----------------------------------|-------------------|:---------:|---------------------------------|
-| ResultBank  |  [ResultBank](../common-section/type-tables.md#ResultBank)                 |   [1]                | Ответ банка                                |
+| ResultBank  |  [ResultBank](../common-section/type-tables.md#edo-ResultBank)                 |   [1]                | Ответ банка                                |
 
 
 

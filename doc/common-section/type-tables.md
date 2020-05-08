@@ -94,7 +94,7 @@
 | BIC        | [string](#string) (9) <br> фасет: [0-9]{9} |    [1]    | БИК банка                      |
 | Name       | [string](#string) (до 160)                 |   [0-1]   | Название банка                 |
 | City       | [string](#string) (до 30)                  |   [0-1]   | Город (населенный пункт) банка |
-| CorrespAcc | [AccNumType](#AccNumType)                  |   [0-1]   | Коррсчет банка                 |
+| CorrespAcc | [AccNumType](#edo-AccNumType)                  |   [0-1]   | Коррсчет банка                 |
 
 ### <a name="edo-CashContributionType"></a> Тип edo:CashContributionType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
@@ -166,11 +166,11 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                  |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования                                       |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы                                 |
-| Sender        | [CustomerPartyType](#CustomerPartyType) |    [1]    | Отправитель                                                     |
-| Recipient     | [BankPartyType](#BankPartyType)         |    [1]    | Получатель                                                      |
+| Sender        | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Отправитель                                                     |
+| Recipient     | [BankPartyType](#edo-BankPartyType)     |    [1]    | Получатель                                                      |
 | ExtID         | [IDType](#IDType)                       |    [1]    | ID исходного электронного документа, который требуется отозвать |
 | Reason        | [string](#string)                       |   [0-1]   | Причина, основание отзыва электронного документа                |
-| Digest        | [DigestType](#DigestType)               |   [0-1]   | Дайджест запроса                                                |
+| Digest        | [DigestType](#edo-DigestType)               |   [0-1]   | Дайджест запроса                                                |
 
 ### <a name="edo-CollectionOrderApp"></a> Тип edo:CollectionOrderApp (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
@@ -188,8 +188,8 @@
 | Name     | [string](#string)             |    [1]    | Наименование налогоплательщика                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | INN      | [string](#string)             |   [0-1]   | Идентификационный номера налогоплательщика (ИНН)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | KPP      | [string](#string) (от 1 до 9) |   [0-1]   | Для платежей в бюджет - указывать обязательно                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Account  | [AccNumType](#AccNumType)     |   [0-1]   | Расчетный счет клиента в его банке, независимо от того, прямые расчеты у этого банка или нет. Номер счета может не указываться в следующих случаях: в распоряжении, если получателем средств является кредитная организация, филиал кредитной организации, в том числе в целях выдачи наличных денежных средств получателю средств - физическому лицу без открытия банковского счета; в платежном поручении на общую сумму с реестром, в котором указаны получатели средств, обслуживаемые одним банком, составляемом плательщиком; в платежном поручении на общую сумму с реестром, в котором указаны плательщики, обслуживаемые одним банком, и получатели средств, обслуживаемые другим банком, составляемом банком плательщика |
-| Bank     | [BankType](#BankType)         |    [1]    | Реквизиты банка                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Account  | [AccNumType](#edo-AccNumType)     |   [0-1]   | Расчетный счет клиента в его банке, независимо от того, прямые расчеты у этого банка или нет. Номер счета может не указываться в следующих случаях: в распоряжении, если получателем средств является кредитная организация, филиал кредитной организации, в том числе в целях выдачи наличных денежных средств получателю средств - физическому лицу без открытия банковского счета; в платежном поручении на общую сумму с реестром, в котором указаны получатели средств, обслуживаемые одним банком, составляемом плательщиком; в платежном поручении на общую сумму с реестром, в котором указаны плательщики, обслуживаемые одним банком, и получатели средств, обслуживаемые другим банком, составляемом банком плательщика |
+| Bank     | [BankType](#edo-BankType)         |    [1]    | Реквизиты банка                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ### <a name="edo-CustomerPartyType"></a> Тип edo:CustomerPartyType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
@@ -279,8 +279,8 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                     |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования          |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы    |
-| Sender        | [ParticipantType](#ParticipantType)     |    [1]    | Отправитель письма                 |
-| Recipient     | [ParticipantType](#ParticipantType)     |    [1]    | Получатель письма                  |
+| Sender        | [ParticipantType](#edo-ParticipantType)     |    [1]    | Отправитель письма                 |
+| Recipient     | [ParticipantType](#edo-ParticipantType)     |    [1]    | Получатель письма                  |
 | Data          | [Data](#edo-LetterType_Data)            |    [1]    | Данные письма                      |
 
 >#### <a name="edo-LetterType_Data"></a> Data
@@ -375,7 +375,7 @@
 | INN      | [string](#string)             |   [0-1]   | Идентификационный номера плательщика (ИНН)                                                   |
 | KPP      | [string](#string) (от 1 до 9) |   [0-1]   | Для платежей в бюджет - указывать обязательно                                                |
 | Account  | [AccNumType](#AccNumType)     |   [0-1]   | Расчетный счет клиента в его банке, независимо от того, прямые расчеты у этого банка или нет |
-| Bank     | [BankType](#BankType)         |   [0-1]   | Реквизиты банка                                                                              |
+| Bank     | [BankType](#edo-BankType)         |   [0-1]   | Реквизиты банка                                                                              |
 
 ### <a name="edo-OtherPaymentDataType"></a> Тип edo:OtherPaymentDataType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
@@ -384,8 +384,8 @@
 | DocNo          | [string](#string)                                     |   [0-1]   | Номер документа                  |
 | DocDate        | [date](#date)                                         |   [0-1]   | Дата составления                 |
 | Sum            | [SumType](#SumType)                                   |    [1]    | Сумма документа                  |
-| Payer          | [OtherCustomerDetailsType](#OtherCustomerDetailsType) |   [0-1]   | Плательщик                       |
-| Payee          | [OtherCustomerDetailsType](#OtherCustomerDetailsType) |   [0-1]   | Получатель                       |
+| Payer          | [OtherCustomerDetailsType](#edo-OtherCustomerDetailsType) |   [0-1]   | Плательщик                       |
+| Payee          | [OtherCustomerDetailsType](#edo-OtherCustomerDetailsType) |   [0-1]   | Получатель                       |
 | TransitionKind | [string](#string)  (2)                                |   [0-1]   | Вид операции                     |
 | Code           | [string](#string)  (до 25)                            |   [0-1]   | Уникальный идентификатор платежа |
 | Purpose        | [string](#string)                                     |   [0-1]   | Назначение                       |
@@ -398,16 +398,16 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                         |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования              |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы        |
-| Sender        | [ParticipantType](#ParticipantType)     |    [1]    | Отправитель                            |
-| Recipient     | [ParticipantType](#ParticipantType)     |    [1]    | Получатель                             |
-| Document      | [DocumentType](#DocumentType)           |   [1-n]   | Электронный документ                   |
+| Sender        | [ParticipantType](#edo-ParticipantType)     |    [1]    | Отправитель                            |
+| Recipient     | [ParticipantType](#edo-ParticipantType)     |    [1]    | Получатель                             |
+| Document      | [DocumentType](#edo-DocumentType)           |   [1-n]   | Электронный документ                   |
 
 ### <a name="edo-ParticipantType"></a> Тип edo:ParticipantType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип                                     |   Кратность    | Описание                               |
 | -------- | --------------------------------------- | :------------: | -------------------------------------- |
-| Customer | [CustomerPartyType](#CustomerPartyType) | выбор <br> [1] | Идентификатор транспортного контейнера |
-| Bank     | [BankPartyType](#BankPartyType)         | выбор <br> [1] | Версия формата                         |
+| Customer | [CustomerPartyType](#edo-CustomerPartyType) | выбор <br> [1] | Идентификатор транспортного контейнера |
+| Bank     | [BankPartyType](#edo-BankPartyType)         | выбор <br> [1] | Версия формата                         |
 
 ### <a name="edo-PayDocRu"></a> Тип edo:PayDocRu (*[1C-Bank_PayDocRu.xsd](../xsd-scheme/readme.md#1C-Bank_PayDocRu)*)
 
@@ -417,10 +417,10 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования       |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы |
-| Sender        | [CustomerPartyType](#CustomerPartyType) |    [1]    | Отправитель                     |
-| Recipient     | [BankPartyType](#BankPartyType)         |    [1]    | Получатель                      |
-| Data          | [PayDocRuApp](#PayDocRuApp)             |    [1]    | Данные платежного поручения     |
-| Digest        | [DigestType](#DigestType)               |   [0-1]   | Дайджест электронного документа |
+| Sender        | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Отправитель                     |
+| Recipient     | [BankPartyType](#edo-BankPartyType)         |    [1]    | Получатель                      |
+| Data          | [PayDocRuApp](#edo-PayDocRuApp)             |    [1]    | Данные платежного поручения     |
+| Digest        | [DigestType](#edo-DigestType)               |   [0-1]   | Дайджест электронного документа |
 
 
 ### <a name="edo-PayDocRuApp"></a> Тип edo:PayDocRuApp (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
@@ -438,8 +438,8 @@
 | DocNo          | [string](#string)                           |    [1]    | Номер документа (поле 3).                                                                                                                                                                                      |
 | DocDate        | [date](#date)                               |    [1]    | Дата составления (поле 4).                                                                                                                                                                                     |
 | Sum            | [SumType](#SumType)                         |    [1]    | Сумма документа (поле 7).                                                                                                                                                                                      |
-| Payer          | [CustomerDetailsType](#CustomerDetailsType) |    [1]    | Плательщик <br> (поля 8, 9, 10, 11, 12, 60, 102).                                                                                                                                                              |
-| Payee          | [CustomerDetailsType](#CustomerDetailsType) |    [1]    | Получатель <br> (поля 13, 14, 15, 16, 17, 61, 103).                                                                                                                                                            |
+| Payer          | [CustomerDetailsType](#edo-CustomerDetailsType) |    [1]    | Плательщик <br> (поля 8, 9, 10, 11, 12, 60, 102).                                                                                                                                                              |
+| Payee          | [CustomerDetailsType](#edo-CustomerDetailsType) |    [1]    | Получатель <br> (поля 13, 14, 15, 16, 17, 61, 103).                                                                                                                                                            |
 | PaymentKind    | [string](#string) (15)                      |   [0-1]   | Вид платежа (поле 5). <br> Указывается "срочно",  "телеграфом",  "почтой",   иное значение в порядке, установленном  банком.                                                                                   |
 | TransitionKind | [string](#string)  (2)                      |   [0-1]   | Вид операции (поле 18). <br> Указывается условное цифровое обозначение документа, согласно установленного ЦБР перечня условных обозначений (шифров) документов, проводимых по счетам в кредитных организациях. |
 | Priority       | [string](#string)  (1)                      |   [0-1]   | Очередность платежа (поле 21).                                                                                                                                                                                 |
@@ -459,7 +459,7 @@
 | SumResidualPayment    | [SumType](#SumType)                             |   [0-1]   | Сумма остатка платежа (поле 42)                                                                                  |
 | PartialDocNo          | [string](#string) (до 6)                        |   [0-1]   | Номер платежного документа (поле 40)                                                                             |
 | PartialDocDate        | [DateString](#DateString)                       |   [0-1]   | Дата платежного документа (поле 41)                                                                              |
-| BudgetPaymentInfo     | [BudgetPaymentInfoType](#BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа.  См.правила заполнения платежных поручений, утвержденные приказом Минфина России |
+| BudgetPaymentInfo     | [BudgetPaymentInfoType](#edo-BudgetPaymentInfoType) |   [0-1]   | Реквизиты бюджетного документа.  См.правила заполнения платежных поручений, утвержденные приказом Минфина России |
 
 
 ### <a name="edo-PayRequest"></a> Тип edo:PayRequest (*[1C-Bank_PayRequest.xsd](../xsd-scheme/readme.md#1C-Bank_PayRequest)*)
@@ -470,10 +470,10 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования       |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы |
-| Sender        | [CustomerPartyType](#CustomerPartyType) |    [1]    | Отправитель                     |
-| Recipient     | [BankPartyType](#BankPartyType)         |    [1]    | Получатель                      |
-| Data          | [PayRequestApp](#PayRequestApp)         |    [1]    | Данные платежного требования    |
-| Digest        | [DigestType](#DigestType)               |   [0-1]   | Дайджест электронного документа |
+| Sender        | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Отправитель                     |
+| Recipient     | [BankPartyType](#edo-BankPartyType)         |    [1]    | Получатель                      |
+| Data          | [PayRequestApp](#edo-PayRequestApp)         |    [1]    | Данные платежного требования    |
+| Digest        | [DigestType](#edo-DigestType)               |   [0-1]   | Дайджест электронного документа |
 
 ### <a name="edo-PayRequestApp"></a> Тип edo:PayRequestApp (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
@@ -493,9 +493,9 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования       |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы |
-| Sender        | [CustomerPartyType](#CustomerPartyType) |    [1]    | Отправитель                     |
-| Recipient     | [BankPartyType](#BankPartyType)         |    [1]    | Получатель                      |
-| Digest        | [DigestType](#DigestType)               |   [0-1]   | Дайджест электронного документа |
+| Sender        | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Отправитель                     |
+| Recipient     | [BankPartyType](#edo-BankPartyType)         |    [1]    | Получатель                      |
+| Digest        | [DigestType](#edo-DigestType)               |   [0-1]   | Дайджест электронного документа |
 
 
 ### <a name="edo-ResultBank"></a> Тип edo:ResultBank (*[1C-Bank_ResultBank.xsd](../xsd-scheme/readme.md#1C-Bank_ResultBank)*)
@@ -503,14 +503,14 @@
 | Параметр | Тип                                         |   Кратность    | Описание                                  |
 | -------- | ------------------------------------------- | :------------: | ----------------------------------------- |
 | Success  | [SuccessResultType](#edo-SuccessResultType) | выбор <br> [1] | Успешный ответ банка                      |
-| Error    | [ErrorType](#ErrorType)                     | выбор <br> [1] | Ответ банка в случае возникновения ошибки |
+| Error    | [ErrorType](#edo-ErrorType)                     | выбор <br> [1] | Ответ банка в случае возникновения ошибки |
 
 ### <a name="edo-ResultStatusType"></a> Тип edo:ResultStatusType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр | Тип                       | Кратность | Описание                            |
 | -------- | ------------------------- | :-------: | ----------------------------------- |
-| Error    | [ErrorType](#ErrorType)   |   [0-1]   | Ответ в случае возникновения ошибки |
-| Status   | [StatusType](#StatusType) |   [0-1]   | Успешный ответ                      |
+| Error    | [ErrorType](#edo-ErrorType)   |   [0-1]   | Ответ в случае возникновения ошибки |
+| Status   | [StatusType](#edo-StatusType) |   [0-1]   | Успешный ответ                      |
 
 ### <a name="edo-SendPacketResponseType"></a> Тип edo:SendPacketResponseType (*[1C-Bank_ResultBank.xsd](../xsd-scheme/readme.md#1C-Bank_ResultBank)*)
 
@@ -526,8 +526,8 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                         |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования                                              |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы                                        |
-| Sender        | [BankPartyType](#BankPartyType)         |    [1]    | Отправитель                                                            |
-| Recipient     | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель. Атрибуты inn и kpp (при наличии)  обязательны к заполнению |
+| Sender        | [BankPartyType](#edo-BankPartyType)         |    [1]    | Отправитель                                                            |
+| Recipient     | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Получатель. Атрибуты inn и kpp (при наличии)  обязательны к заполнению |
 | Data          | [Data](#edo-Settings_Data)              |    [1]    | Параметры обмена                                                       |
 
 >#### <a name="edo-Settings_Data"></a> Data:
@@ -636,8 +636,8 @@
 | formatVersion         | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                  |
 | creationDate          | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования                       |
 | userAgent             | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы                 |
-| Sender                | [BankPartyType](#BankPartyType)         |    [1]    | Отправитель                                     |
-| Recipient             | [CustomerPartyType](#CustomerPartyType) |    [1]    | Получатель                                      |
+| Sender                | [BankPartyType](#edo-BankPartyType)         |    [1]    | Отправитель                                     |
+| Recipient             | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Получатель                                      |
 | Data                  | [Data](#edo-Statement_Data)             |    [1]    | Данные выписки по лиц. счету                    |
 | ExtIDStatementRequest | [IDType](#IDType)                       |   [0-1]   | ID исходного запроса на выписку, если такой был |
 
@@ -648,7 +648,7 @@
 | DateFrom       | [dateTime](#dateTime)                              |   [0-1]   | Начало периода выписки                                                                                                           |
 | DateTo         | [dateTime](#dateTime)                              |    [1]    | Конец периода выписки                                                                                                            |
 | Account        | [AccNumType](#AccNumType)                          |    [1]    | Номер лиц. счета                                                                                                                 |
-| Bank           | [BankType](#BankType)                              |    [1]    | Банк, в котором открыт счет                                                                                                      |
+| Bank           | [BankType](#edo-BankType)                              |    [1]    | Банк, в котором открыт счет                                                                                                      |
 | OpeningBalance | [SumType](#SumType)                                |   [0-1]   | Остаток на счете на начало периода                                                                                               |
 | TotalDebits    | [SumType](#SumType)                                |   [0-1]   | Общая сумма документов по дебету счета (списание). Обязательно заполняется при наличии расходных операций за период выписки.     |
 | TotalCredits   | [SumType](#SumType)                                |   [0-1]   | Общая сумма документов по кредиту счета (поступление). Обязательно заполняется при наличии приходных операций за период выписки. |
@@ -678,29 +678,29 @@
 | ---------------- | --------------------------------------------- | :------------: | -------------------------------------------------------------------- |
 | id               | [IDType](#IDType)                             |      [1]       | ID платежного документа в банке                                      |
 | docKind          | [DocKindType](#DocKindType)                   |      [1]       | Код вида электронного документа, как он задан в описании к стандарту |
-| PayDocRu         | [PayDocRuApp](#PayDocRuApp)                   | выбор <br> [1] | Данные платежного поручения                                          |
-| PayRequest       | [PayRequestApp](#PayRequestApp)               | выбор <br> [1] | Данные платежного требования                                         |
-| CollectionOrder  | [CollectionOrderApp](#CollectionOrderApp)     | выбор <br> [1] | Данные инкассового поручения                                         |
-| PaymentOrder     | [PaymentOrderApp](#PaymentOrderApp)           | выбор <br> [1] | Данные платежного ордера                                             |
-| BankOrder        | [BankOrderApp](#BankOrderApp)                 | выбор <br> [1] | Данные банковского ордера                                            |
-| MemOrder         | [MemOrderApp](#MemOrderApp)                   | выбор <br> [1] | Данные мемориального ордера                                          |
-| InnerDoc         | [OtherPaymentDataType](#OtherPaymentDataType) | выбор <br> [1] | Данные внутр.банковского документа                                   |
-| CashContribution | [CashContributionType](#CashContributionType) | выбор <br> [1] | Данные объявления на взнос наличными                                 |
-| Check            | [CheckType](#CheckType)                       | выбор <br> [1] | Данные денежного чека                                                |
+| PayDocRu         | [PayDocRuApp](#edo-PayDocRuApp)                   | выбор <br> [1] | Данные платежного поручения                                          |
+| PayRequest       | [PayRequestApp](#edo-PayRequestApp)               | выбор <br> [1] | Данные платежного требования                                         |
+| CollectionOrder  | [CollectionOrderApp](#edo-CollectionOrderApp)     | выбор <br> [1] | Данные инкассового поручения                                         |
+| PaymentOrder     | [PaymentOrderApp](#edo-PaymentOrderApp)           | выбор <br> [1] | Данные платежного ордера                                             |
+| BankOrder        | [BankOrderApp](#edo-BankOrderApp)                 | выбор <br> [1] | Данные банковского ордера                                            |
+| MemOrder         | [MemOrderApp](#edo-MemOrderApp)                   | выбор <br> [1] | Данные мемориального ордера                                          |
+| InnerDoc         | [OtherPaymentDataType](#edo-OtherPaymentDataType) | выбор <br> [1] | Данные внутр.банковского документа                                   |
+| CashContribution | [CashContributionType](#edo-CashContributionType) | выбор <br> [1] | Данные объявления на взнос наличными                                 |
+| Check            | [CheckType](#edo-CheckType)                       | выбор <br> [1] | Данные денежного чека                                                |
 >>>>###### <a name="edo-Statement_Data_OperationInfo_PayDoc_InnerDoc"></a> InnerDoc:
->>>> - Базовый тип: [OtherPaymentDataType](#OtherPaymentDataType)
+>>>> - Базовый тип: [OtherPaymentDataType](#edo-OtherPaymentDataType)
 >>>>
 | Параметр     | Тип                     | Кратность | Описание                                  |
 | ------------ | ----------------------- | :-------: | ----------------------------------------- |
 | InnerDocKind | [string](#string) (255) |    [1]    | Название типа внутр.банковского документа |
 
 >>>###### <a name="edo-Statement_Data_OperationInfo_OperationInfo_Stamp"></a> OperationInfo_Stamp:
->>> - Базовый тип: [BankType](#BankType)
+>>> - Базовый тип: [BankType](#edo-BankType)
 >>>
 | Параметр | Тип                        | Кратность | Описание                            |
 | -------- | -------------------------- | :-------: | ----------------------------------- |
 | Branch   | [string](#string) (до 255) |   [0-1]   | Отделение банка                     |
-| Status   | [StatusType](#StatusType)  |    [1]    | Статус платежного документа в банке |
+| Status   | [StatusType](#edo-StatusType)  |    [1]    | Статус платежного документа в банке |
 
 
 ### <a name="edo-StatementRequest"></a> Тип edo:StatementRequest (*[1C-Bank_StatementRequest.xsd](../xsd-scheme/readme.md#1C-Bank_StatementRequest)*)
@@ -711,10 +711,10 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                  |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования       |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы |
-| Sender        | [CustomerPartyType](#CustomerPartyType) |    [1]    | Отправитель                     |
-| Recipient     | [BankPartyType](#BankPartyType)         |    [1]    | Получатель                      |
+| Sender        | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Отправитель                     |
+| Recipient     | [BankPartyType](#edo-BankPartyType)         |    [1]    | Получатель                      |
 | Data          | [Data](#edo-StatementRequest_Data)      |    [1]    | Данные запроса                  |
-| Digest        | [DigestType](#DigestType)               |   [0-1]   | Дайджест электронного документа |
+| Digest        | [DigestType](#edo-DigestType)               |   [0-1]   | Дайджест электронного документа |
 
 > ##### <a name="edo-StatementRequest_Data"></a> Data:
 | Параметр      | Тип                                     | Кратность | Описание                                     |
@@ -723,7 +723,7 @@
 | DateFrom      | [dateTime](#dateTime)                   |    [1]    | Начало периода формирования выписки          |
 | DateTo        | [dateTime](#dateTime)                   |    [1]    | Конец периода формирования выписки           |
 | Account       | [AccNumType](#AccNumType)               |    [1]    | Номер счета, по которому производится запрос |
-| Bank          | [BankType](#BankType)                   |    [1]    | Банк, в котором открыт счет                  |
+| Bank          | [BankType](#edo-BankType)                   |    [1]    | Банк, в котором открыт счет                  |
 
 ### <a name="edo-StatusPacketNotice"></a> Тип edo:StatusPacketNotice (*[1C-Bank_StatusPacketNotice.xsd](../xsd-scheme/readme.md#1C-Bank_StatusPacketNotice)*)
 
@@ -733,10 +733,10 @@
 | formatVersion           | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                             |
 | creationDate            | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования                                                  |
 | userAgent               | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы                                            |
-| Sender                  | [ParticipantType](#ParticipantType)     |    [1]    | Отправитель                                                                |
-| Recipient               | [ParticipantType](#ParticipantType)     |    [1]    | Получатель                                                                 |
+| Sender                  | [ParticipantType](#edo-ParticipantType)     |    [1]    | Отправитель                                                                |
+| Recipient               | [ParticipantType](#edo-ParticipantType)     |    [1]    | Получатель                                                                 |
 | IDResultSuccessResponse | [IDType](#IDType)                       |    [1]    | ID, который сервис вернул в ответ после получения транспортного контейнера |
-| Result                  | [ResultStatusType](#ResultStatusType)   |    [1]    | Состояние электронного документа                                           |
+| Result                  | [ResultStatusType](#edo-ResultStatusType)   |    [1]    | Состояние электронного документа                                           |
 | ExtIDPacket             | [IDType](#IDType)                       |   [0-1]   | ID исходного транспортного контейнера, по которому возвращается состояния  |
 
 ### <a name="edo-StatusDocNotice"></a> Тип edo:StatusDocNotice (*[1C-Bank_StatusDocNotice.xsd](../xsd-scheme/readme.md#1C-Bank_StatusDocNotice)*)
@@ -747,10 +747,10 @@
 | formatVersion      | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                          |
 | creationDate       | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования                                               |
 | userAgent          | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы                                         |
-| Sender             | [ParticipantType](#ParticipantType)     |    [1]    | Отправитель                                                             |
-| Recipient          | [ParticipantType](#ParticipantType)     |    [1]    | Получатель                                                              |
+| Sender             | [ParticipantType](#edo-ParticipantType)     |    [1]    | Отправитель                                                             |
+| Recipient          | [ParticipantType](#edo-ParticipantType)     |    [1]    | Получатель                                                              |
 | ExtID              | [IDType](#IDType)                       |    [1]    | ID исходного электронного документа, по которому возвращается состояния |
-| Result             | [ResultStatusType](#ResultStatusType)   |    [1]    | Состояние электронного документа                                        |
+| Result             | [ResultStatusType](#edo-ResultStatusType)   |    [1]    | Состояние электронного документа                                        |
 | ExtIDStatusRequest | [IDType](#IDType)                       |   [0-1]   | ID запроса о состоянии электронного документа, если был такой           |
 
 ### <a name="edo-StatusType"></a> Тип edo:StatusType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
@@ -769,8 +769,8 @@
 | formatVersion | [FormatVersionType](#FormatVersionType) |    [1]    | Версия формата                                                          |
 | creationDate  | [dateTime](#dateTime)                   |    [1]    | Дата и время формирования                                               |
 | userAgent     | [UserAgentType](#UserAgentType)         |   [0-1]   | Наименование и версия программы                                         |
-| Sender        | [CustomerPartyType](#CustomerPartyType) |    [1]    | Отправитель                                                             |
-| Recipient     | [BankPartyType](#BankPartyType)         |    [1]    | Получатель                                                              |
+| Sender        | [CustomerPartyType](#edo-CustomerPartyType) |    [1]    | Отправитель                                                             |
+| Recipient     | [BankPartyType](#edo-BankPartyType)         |    [1]    | Получатель                                                              |
 | ExtID         | [IDType](#IDType)                       |    [1]    | ID исходного электронного документа, статус которого требуется получить |
 
 

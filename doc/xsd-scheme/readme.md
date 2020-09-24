@@ -170,7 +170,7 @@
 
 ## <a name="wages"></a> XML-схема документов по зарплатному проекту: *Wages_3.5.xsd*
 
-- [Файл схемы **Wages_3.5.xsd**](http://v8.1c.ru/edi/edi_stnd/109/Wages_3.5.xsd)
+- [Файл схемы **Wages_3.6.xsd**](https://v8.1c.ru/upload/integraciya/standarty-formary/wages_3.6.xsd)
 
 
 

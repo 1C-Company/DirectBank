@@ -168,7 +168,7 @@
 
 - [Файл схемы **camt.053.001.02.xsd**](camt.053.001.02.xsd)
 
-## <a name="wages"></a> XML-схема документов по зарплатному проекту: *Wages_3.5.xsd*
+## <a name="wages"></a> XML-схема документов по зарплатному проекту: *Wages_3.6.xsd*
 
 - [Файл схемы **Wages_3.6.xsd**](https://v8.1c.ru/upload/integraciya/standarty-formary/wages_3.6.xsd)
 

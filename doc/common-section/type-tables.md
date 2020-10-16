@@ -4,6 +4,7 @@
 + [Типы **W3C**](#typesW3C)
 + [Простые типы **edo**](#typesEDO)
 + [Комплексные типы **edo**](#complexTypes)
+   + [Тип edo:BankOrderApp](#edo-BankOrderApp)
    + [Тип edo:BankPartyType](#edo-BankPartyType)
    + [Тип edo:BankType](#edo-BankType)
    + [Тип edo:CancelationRequest](#edo-CancelationRequest)
@@ -347,6 +348,20 @@
 | phoneMask | [string](#string) (12) |   [0-1]   | Маска телефона или номер  клиента                        |
 | code      | [string](#string) (10) |   [0-1]   | Короткий код сессии, который будет показан при вводе OTP |
 
+### <a name="edo-BankOrderApp"></a> Тип edo:BankOrderApp (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
+
+| Параметр              | Тип                   | Кратность | Описание                                |
+| --------------------- | --------------------- | :-------: | --------------------------------------- |
+| DocNo                 | [string](#string)     |    [1]    | Номер документа (поле 3)                |
+| DocDate               | [date](#date)         |    [1]    | Дата составления (поле 4)               |
+| Sum                   | [SumType](#SumType)   |    [1]    | Сумма документа (поле 9)                |
+| Payer          | [CustomerDetailsType](#edo-CustomerDetailsType) |    [1]    | Плательщик <br> (поля 8, 9, 10, 11, 12, 60, 102).                                                                                                                                                              |
+| Payee          | [CustomerDetailsType](#edo-CustomerDetailsType) |    [1]    | Получатель <br> (поля 13, 14, 15, 16, 17, 61, 103).                                                                                                                                                            |
+| PaymentKind    | [string](#string) (15)                      |   [0-1]   | Вид платежа (поле 5). <br> Указывается "срочно",  "телеграфом",  "почтой",   иное значение в порядке, установленном  банком.                                                                                   |
+| TransitionKind | [string](#string)  (2)                      |   [0-1]   | Вид операции (поле 18). <br> Указывается условное цифровое обозначение документа, согласно установленного ЦБР перечня условных обозначений (шифров) документов, проводимых по счетам в кредитных организациях. |
+| Priority       | [string](#string)  (1)                      |   [0-1]   | Очередность платежа (поле 21).                                                                                                                                                                                 |
+| Code           | [string](#string)  (25)                     |   [0-1]   | Уникальный идентификатор платежа (поле 22). <br>  С 31 марта 2014 года согласно Указанию N 3025-У ЦБР.                                                                                                         |
+| Purpose        | [string](#string)  (210)                    |    [1]    | Назначение платежа (поле 24).                                                                                                                                                                                  |
 ### <a name="edo-MemOrderApp"></a> Тип edo:MemOrderApp (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
 | Параметр              | Тип                   | Кратность | Описание                                |

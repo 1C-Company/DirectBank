@@ -738,7 +738,7 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 
 
 
-Для передачи электронных документов между участниками обмена используется «транспортный контейнер» - XML-файл, сформированный по определенному формату ([XML-схема транспортного контейнера](../xsd-scheme/readme.md#1C-Bank_Packet)).
+Для передачи электронных документов между участниками обмена используется «транспортный контейнер» - XML-файл, сформированный по определенному формату ([XML-схема транспортного контейнера](../xsd-scheme/readme.md#1C-Bank_Packet)). XML-файл транспортного контейнера и файлы вложений всегда имеют BOM.
 
 
 
@@ -884,7 +884,7 @@ POST https://dbogate.demobank.ru/SendPack HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
 SID: 8867755b6fbb4ae296aa0ac6b179ae88
-CustomerID: 502036
+CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
 APIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 Content-Type: application/xml; charset=utf-8
@@ -1085,7 +1085,7 @@ GET https://dbogate.demobank.ru/GetPackList?date=16.02.2015%2011:25:32 HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
 SID: 8867755b6fbb4ae296aa0ac6b179ae88
-CustomerID: 502036
+CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
 APIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 
@@ -1196,7 +1196,7 @@ GET https://dbogate.demobank.ru/GetPack?id=50214585876 HTTP/1.1
 Host: dbogate.demobank.ru
 Accept: */*
 SID: 8867755b6fbb4ae296aa0ac6b179ae88
-CustomerID: 502036
+CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
 APIVersion: 2.3.1
 User-Agent: 1C+Enterprise/8.3
 

@@ -828,7 +828,7 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 | CustomerID | [string](../common-section/type-tables.md#string)            | [1]       | Уникальный идентификатор Клиента, содержащий только ANSI-символы |
 | SID        | [IDType](../common-section/type-tables.md#IDType)            | [1]       | Идентификатор авторизованной сессии                              |
 | APIVersion | [FormatVersionType](../common-section/type-tables.md#FormatVersionType) | [1]       | Версия API обмена данными                                        |
-| Packet     | [Packet](../common-section/type-tables.md#Packet)            | [1]       | Транспортный контейнер с данными электронных документов                                     |
+| Packet     | [Packet](../common-section/type-tables.md#edo-Packet)        | [1]       | Транспортный контейнер с данными электронных документов                                     |
 
 
 

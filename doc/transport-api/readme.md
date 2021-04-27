@@ -201,34 +201,37 @@ API обмена данными – уровень, который описыв�
 
 ```http
 
-POST https://dbogate.demobank.ru/Logon HTTP/1.1
-Host: dbogate.demobank.ru
-Accept: */*
-CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
-Authorization: Basic NjY5NzcxNDczMTo5MzcyMjkxMzIx
-APIVersion: 2.1.1
-AvailableAPIVersion: 2.3.1
+POST http://testdirectbank.1c.ru/go/Logon HTTP/1.1
+Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
+Accept: */*
+Authorization: Basic ZGVtbzpkZW1v
+AvailableAPIVersion: 2.3.2
+APIVersion: 2.1.1
+CustomerID: 0
 Content-Type: application/xml; charset=utf-8
-Content-Length: 0
 
 ```
 
 **Пример успешного ответа** на запрос аутентификации по **логину и паролю**:
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 145
+Server: nginx
+Date: Tue, 27 Apr 2021 11:47:12 GMT
+Content-Length: 378
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
-    <Success>
-        <LogonResponse>
-			<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
-        </LogonResponse>
-    </Success>
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
+	<Success>
+		<LogonResponse>
+			<SID>9b11221a-1bf6-4c34-a46d-ae9bcfdd9928</SID>
+		</LogonResponse>
+	</Success>
 </ResultBank>
 
 ```
@@ -237,19 +240,23 @@ Content-Length: 145
 
 **Пример успешного ответа** на запрос аутентификации по **логину и паролю + ОТР**:
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 176
+Server: nginx
+Date: Tue, 27 Apr 2021 11:53:28 GMT
+Content-Length: 464
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
         <LogonResponse>
-            <SID>7767755b6fbb4ae296aa0ac6b179aef9</SID>
+            <SID>5452194f-bb4d-4609-912f-35c849e9e0a3</SID>
             <ExtraAuth>
-            	<OTP phoneMask="7916***6465" />
+                <OTP phoneMask="+*********85" code="5452194f"/>
             </ExtraAuth>
         </LogonResponse>
     </Success>
@@ -329,16 +336,15 @@ Content-Length: 176
 
 ```http
 
-POST https://dbogate.demobank.ru/LogonOTP HTTP/1.1
-Host: dbogate.demobank.ru
-Accept: */*
-SID: 7767755b6fbb4ae296aa0ac6b179aef9
-CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
-OTP: 034494
-APIVersion: 2.3.1
+POST http://testdirectbank.1c.ru/go/LogonOTP HTTP/1.1
+Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
+Accept: */*
+APIVersion: 2.1.1
+OTP: 111111
+SID: 5452194f-bb4d-4609-912f-35c849e9e0a3
+CustomerID: 0
 Content-Type: application/xml; charset=utf-8
-Content-Length: 0
 
 ```
 
@@ -346,17 +352,21 @@ Content-Length: 0
 
 **Пример успешного ответа** на запрос передачи **OTP**:
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 145
+Server: nginx
+Date: Tue, 27 Apr 2021 11:53:36 GMT
+Content-Length: 378
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.1.1" userAgent="DirectBankService">
     <Success>
         <LogonResponse>
-			<SID>8867755b6fbb4ae296aa0ac6b179ae88</SID>
+            <SID>ca2d4c4c-2cc3-449e-9fe2-25465f878685</SID>
         </LogonResponse>
     </Success>
 </ResultBank>
@@ -424,70 +434,62 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 
 ```http
 
-POST https://dbogate.demobank.ru/LogonCert HTTP/1.1
-Host: dbogate.demobank.ru
-Accept: */*
-CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
-Authorization: Basic NjY5NzcxNDczMTo5MzcyMjkxMzIx
-APIVersion: 2.1.1
-AvailableAPIVersion: 2.3.1
+POST http://testdirectbank.1c.ru/go/LogonCert HTTP/1.1
+Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
+Accept: */*
+AvailableAPIVersion: 2.3.2
+APIVersion: 2.3.2
+CustomerID: 24102018
 Content-Type: application/xml; charset=utf-8
-Content-Length: 2294
 
 <?xml version="1.0" encoding="UTF-8"?>
-<X509Data xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="64ec7428-df46-4522-a6fb-abc0fb5a643d" formatVersion="2.3.1" creationDate="2019-03-25T12:32:28" userAgent="1С - БЭД: 1.7.1.4; БиблиотекаЭлектронныхДокументовДемо: 1.7.1.4">
-    <X509IssuerName>CRYPTO-PRO Test Center 2</X509IssuerName>
-    <X509SerialNumber>1200313235336897D366F6EE7A000000313235</X509SerialNumber>
-    <X509Certificate>MIIDDTCCArygAwIBAgITEgAxMjUzaJfTZvbuegAAADEyNTAIBgYqhQMCAgMwfzEj
-MCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJV
-MQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYD
-VQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMTkwMTA5MDg0NDI0WhcN
-MTkwNDA5MDg1NDI0WjAZMRcwFQYDVQQDDA7QoNC+0L3QsNC70LTQvjBmMB8GCCqF
-AwcBAQEBMBMGByqFAwICJAAGCCqFAwcBAQICA0MABEAw/ghNB5iSXyI2fh9u+8Il
-QplnMmGwJfEFcFyQi02gtYtQNdlIAHKVCBQB+xG2DVkAtVPJ862PtbXNSqX4x4qA
-o4IBcDCCAWwwDgYDVR0PAQH/BAQDAgTwMBMGA1UdJQQMMAoGCCsGAQUFBwMCMB0G
-A1UdDgQWBBTkj1PAQjxhYU2rl5u/bIiGNL6UvzAfBgNVHSMEGDAWgBQVMXywjRre
-ZtcVnElSlxckuQF6gzBZBgNVHR8EUjBQME6gTKBKhkhodHRwOi8vdGVzdGNhLmNy
-eXB0b3Byby5ydS9DZXJ0RW5yb2xsL0NSWVBUTy1QUk8lMjBUZXN0JTIwQ2VudGVy
-JTIwMi5jcmwwgakGCCsGAQUFBwEBBIGcMIGZMGEGCCsGAQUFBzAChlVodHRwOi8v
-dGVzdGNhLmNyeXB0b3Byby5ydS9DZXJ0RW5yb2xsL3Rlc3QtY2EtMjAxNF9DUllQ
-VE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIuY3J0MDQGCCsGAQUFBzABhihodHRw
-Oi8vdGVzdGNhLmNyeXB0b3Byby5ydS9vY3NwL29jc3Auc3JmMAgGBiqFAwICAwNB
-AM3KBkXlTmmTOSDA7lliffDKkc53o5DNtkP3/+hUv2BGqNaW0bs0UhNOgP3LEkLV
-uTBy4kCyKkfBQ+cH/3w3IDU=</X509Certificate>
+<X509Data xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="eb14c5fc-b430-4c1c-a5f3-5b536ff54ab9" formatVersion="2.3.2" creationDate="2021-04-27T14:59:08" userAgent="1С - БЭД: 1.9.2.10; БиблиотекаЭлектронныхДокументовДемо: 1.9.2.10">
+    <X509IssuerName>Biden</X509IssuerName>
+    <X509SerialNumber>36A445777B36FEA9</X509SerialNumber>
+    <X509Certificate>MIIB3zCCAYygAwIBAgIINqRFd3s2/qkwCgYIKoUDBwEBAwIwHTELMAkGA1UEBhMC
+UlUxDjAMBgNVBAMTBUJpZGVuMCAXDTIwMTAyMTExMzI1N1oYDzIwOTkxMDIxMTEz
+MjU3WjAdMQswCQYDVQQGEwJSVTEOMAwGA1UEAxMFQmlkZW4wZjAfBggqhQMHAQEB
+ATATBgcqhQMCAiQABggqhQMHAQECAgNDAARAp/7Alkrwt1vZr8mJoxNob5NHaOyX
+gCzJ6iX3m7+98DxRE/W+wS+gOA9zS6tjsYwxgIuQCowVzwZoKRYRjCNwKKOBpjCB
+ozAOBgNVHQ8BAf8EBAMCAtwwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwME
+MB0GA1UdDgQWBBTlIIRaPjErlFho+DP4aNWfWKfMljBCBgNVHSMEOzA5gBTlIIRa
+PjErlFho+DP4aNWfWKfMlqEhpB8wHTELMAkGA1UEBhMCUlUxDjAMBgNVBAMTBUJp
+ZGVuMA8GA1UdEwQIMAYBAf8CAQEwCgYIKoUDBwEBAwIDQQAxeE05M5QD3Jdrbnhp
+hExLrwi+dCc0WorAmRtshC9sRHy8vnbn1uIDsYRCOLImCdbhgVSybj7eMI+mjBsJ
+erKD</X509Certificate>
 </X509Data>
 
 ```
 
 **Пример успешного ответа** на запрос аутентификации по **закрытому ключу сертификата**:
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Length: 1036
-Server: Microsoft-IIS/8.5
-X-Powered-By: ASP.NET
-Date: Mon, 25 Mar 2019 09:32:31 GMT
+Server: nginx
+Date: Tue, 27 Apr 2021 11:59:08 GMT
+Content-Length: 882
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.1" userAgent="DirectBankService">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
         <LogonCertResponse>
-            <EncryptedSID>MIIB4QYJKoZIhvcNAQcDoIIB0jCCAc4CAQAxggFwMIIBbAIBADCBljB/MSMwIQYJ
-KoZIhvcNAQkBFhRzdXBwb3J0QGNyeXB0b3Byby5ydTELMAkGA1UEBhMCUlUxDzAN
-BgNVBAcTBk1vc2NvdzEXMBUGA1UEChMOQ1JZUFRPLVBSTyBMTEMxITAfBgNVBAMT
-GENSWVBUTy1QUk8gVGVzdCBDZW50ZXIgMgITEgAxMjUzaJfTZvbuegAAADEyNTAf
-BggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgSBrDCBqTAoBCAW+Qq8GLci
-fmTW/tiKOVHnVkUHGqnbqecRqALLhq6DQgQE6obJFKB9BgkqhQMHAQIFAQGgZjAf
-BggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA/aK/7zFLdZWLLdAl
-5ZFLRjOjSN/f83tnb28/UU71zbYN4FL1KC/YflXoUQbPQne89OA9hPGtHo1cDT4t
-ExbPGwQIqr3cc3r3JUUwVQYJKoZIhvcNAQcBMB8GBiqFAwICFTAVBAiqd9ePVONw
-/AYJKoUDBwECBQEBgCcbOLtBwrqXz8dd6vNO4CsjbJFXMA/eieCj1NuFcenwX9f3
-MfAQtpI=</EncryptedSID>
+            <EncryptedSID>MIIBcgYJKoZIhvcNAQcDoIIBYzCCAV8CAQAxggEBMIH+AgEAMCkwHTELMAkGA1UE
+BhMCUlUxDjAMBgNVBAMTBUJpZGVuAgg2pEV3ezb+qTAfBggqhQMHAQEBATATBgcq
+hQMCAiQABggqhQMHAQECAgSBrDCBqTAoBCDEIC+knfkTxc2WLBFQSxcTyDWYuOfm
+HbIu2PcaHGUVrgQEhzNgqqB9BgkqhQMHAQIFAQGgZjAfBggqhQMHAQEBATATBgcq
+hQMCAiQABggqhQMHAQECAgNDAARASA4uzEuNjnAFxKNzJOsQxI83F6gao1eQpAC9
+Lejvgwy+K4oGVKC0c16euhxgBD3WfJvbLl74CC1Tlw53nWc7rgQI3c/B8M1oRGAw
+VQYJKoZIhvcNAQcBMB8GBiqFAwICFTAVBAi6GX0KVG4zWQYJKoUDBwECBQEBgCek
+rYVRrIfwoO8myudpP0vOLhwLgWAYa9fWx9pLf/WAWmBahHGZjek=</EncryptedSID>
         </LogonCertResponse>
     </Success>
 </ResultBank>
+
 ```
 
 
@@ -631,19 +633,18 @@ MfAQtpI=</EncryptedSID>
 
 ```http
 
-POST https://dbogate.demobank.ru/GetSettings HTTP/1.1
-Host: dbogate.demobank.ru
-Accept: */*
-CustomerID: 0
-SID: 8867755b6fbb4ae296aa0ac6b179ae88
-Inn: 761700021132
-Bic: 044525888
-Account: 40802810200000099888
-APIVersion: 2.1.1
-AvailableAPIVersion: 2.3.1
+POST http://testdirectbank.1c.ru/go/GetSettings HTTP/1.1
+Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
+Accept: */*
+AvailableAPIVersion: 2.3.2
+APIVersion: 2.1.1
+Bic: 041111111
+SID: a30056cd-2122-4c66-a855-8bc88c2cfbcd
+Inn: 1001156517
+Account: 40702810125000001191
+CustomerID: 0
 Content-Type: application/xml; charset=utf-8
-Content-Length: 0
 
 ```
 
@@ -653,37 +654,113 @@ Content-Length: 0
 
 
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 2145
+Server: nginx
+Date: Tue, 27 Apr 2021 11:58:53 GMT
+Content-Length: 6470
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
-		<GetSettingsResponse creationDate="2015-02-19T11:21:02" formatVersion="2.3.1" id="502036">
-			<Data dockind="06">PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFNldHRpbmdzIHhtbG5zPSJo
-dHRwOi8vZGlyZWN0YmFuay4xYy5ydS9YTUxTY2hlbWEiCiAgICB4bWxuczp4c2k9Imh0dHA6Ly93
-d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIgogICAgeG1sbnM6eHNkPSJodHRwOi8v
-d3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIKICAgIGlkPSJFRkQ4NTdCNS03RkE4LTQxOTUtODY2
-Ni0yQ0NBREJDM0M4REUiCiAgICBmb3JtYXRWZXJzaW9uPSIyLjIuMSIKICAgIGNyZWF0aW9uRGF0
-ZT0iMjAxNi0wNC0yMlQwOTozODo1MSIgCiAgICB1c2VyQWdlbnQ9IkRlbW9CYW5rU2VydmljZSI+
-Cgk8U2VuZGVyIGJpYz0iMDQ0NTI1ODg4IiBuYW1lPSLQlNCV0JzQni3QkdCQ0J3QmiIgLz4KICAg
-IDxSZWNpcGllbnQgaWQ9IjI4MDYiIG5hbWU9ItCi0L7RgNCz0L7QstGL0Lkg0LTQvtC8INCa0L7Q
-vNC/0LvQtdC60YHQvdGL0LkiIGlubj0iNzcwNTI2MDY5OSIga3BwPSI3NzA1MDEwMDEiIC8+CiAg
-ICA8RGF0YT4KICAgICAgICA8Q3VzdG9tZXJJRD4yODA2PC9DdXN0b21lcklEPgogICAgICAgIDxC
-YW5rU2VydmVyQWRkcmVzcz5odHRwczovL2Rib2dhdGUuZGVtb2JhbmsucnUvPC9CYW5rU2VydmVy
-QWRkcmVzcz4KICAgICAgICA8Rm9ybWF0VmVyc2lvbj4yLjIuMTwvRm9ybWF0VmVyc2lvbj4KICAg
-ICAgICA8RW5jb2Rpbmc+VVRGLTg8L0VuY29kaW5nPgogICAgICAgIDxMb2dvbj4KICAgICAgICAg
-ICAgPExvZ2luPgogICAgICAgICAgICAgICAgPFVzZXI+dXNlcl9sb2dpbjwvVXNlcj4KICAgICAg
-ICAgICAgPC9Mb2dpbj4KICAgICAgICA8L0xvZ29uPgogICAgICAgIDxEb2N1bWVudCBkb2NLaW5k
-PSIwMyIgLz4KICAgICAgICA8RG9jdW1lbnQgZG9jS2luZD0iMDUiIC8+CiAgICAgICAgPERvY3Vt
-ZW50IGRvY0tpbmQ9IjEwIiAvPgogICAgICAgIDxEb2N1bWVudCBkb2NLaW5kPSIxMSIgLz4JCQog
-ICAgICAgIDxEb2N1bWVudCBkb2NLaW5kPSIxNCIgLz4KCQk8RG9jdW1lbnQgZG9jS2luZD0iMzAi
-IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
+        <GetSettingsResponse id="22636b6c-bcdc-4368-b6d8-1ba2205b0356" formatVersion="2.3.2" creationDate="2021-04-27T14:58:53" userAgent="DirectBankService">
+            <Data dockind="06">77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0
+aW5ncyB4bWxucz0iaHR0cDovL2RpcmVjdGJhbmsuMWMucnUvWE1MU2NoZW1hIiB4
+bWxuczp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5z
+OnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2Ui
+IGlkPSIxMTc2ZjM2MS02MDYyLTQ0YzktYWZlZC0wZmIwN2ZjODFhMGEiIGZvcm1h
+dFZlcnNpb249IjIuMy4yIiBjcmVhdGlvbkRhdGU9IjIwMjEtMDQtMjdUMTQ6NTg6
+NTMiIHVzZXJBZ2VudD0iRGlyZWN0QmFua1NlcnZpY2UiPg0KCTxTZW5kZXIgYmlj
+PSIwNDExMTExMTEiLz4NCgk8UmVjaXBpZW50IGlkPSIyNDEwMjAxOCIgbmFtZT0i
+0J7QntCeICZxdW90O9Ci0L7RgNCz0L7QstGL0Lkg0LTQvtC8JnF1b3Q7IiBpbm49
+IjEwMDExNTY1MTciIGtwcD0iMTAwMTAxMDAxIi8+DQoJPERhdGE+DQoJCTxDdXN0
+b21lcklEPjI0MTAyMDE4PC9DdXN0b21lcklEPg0KCQk8QmFua1NlcnZlckFkZHJl
+c3M+aHR0cDovL3Rlc3RkaXJlY3RiYW5rLjFjLnJ1L2dvPC9CYW5rU2VydmVyQWRk
+cmVzcz4NCgkJPEZvcm1hdFZlcnNpb24+Mi4zLjI8L0Zvcm1hdFZlcnNpb24+DQoJ
+CTxFbmNvZGluZz5VVEYtODwvRW5jb2Rpbmc+DQoJCTxMb2dvbj4NCgkJCTxDZXJ0
+aWZpY2F0ZT4NCgkJCQk8RW5jcnlwdGluZ0FsZ29yaXRobT5HT1NUIDI4MTQ3LTg5
+PC9FbmNyeXB0aW5nQWxnb3JpdGhtPg0KCQkJPC9DZXJ0aWZpY2F0ZT4NCgkJPC9M
+b2dvbj4NCgkJPENyeXB0b1BhcmFtZXRlcnM+DQoJCQk8Q1NQTmFtZT5DcnlwdG8t
+UHJvIEdPU1QgUiAzNC4xMC0yMDEyIENyeXB0b2dyYXBoaWMgU2VydmljZSBQcm92
+aWRlcjwvQ1NQTmFtZT4NCgkJCTxDU1BUeXBlPjgwPC9DU1BUeXBlPg0KCQkJPFNp
+Z25BbGdvcml0aG0+R1IgMzQuMTAtMjAxMiAyNTY8L1NpZ25BbGdvcml0aG0+DQoJ
+CQk8SGFzaEFsZ29yaXRobT5HUiAzNC4xMS0yMDEyIDI1NjwvSGFzaEFsZ29yaXRo
+bT4NCgkJCTxFbmNyeXB0ZWQ+DQoJCQkJPEVuY3J5cHRBbGdvcml0aG0+R09TVCAy
+ODE0Ny04OTwvRW5jcnlwdEFsZ29yaXRobT4NCgkJCTwvRW5jcnlwdGVkPg0KCQkJ
+PEJhbmtDZXJ0aWZpY2F0ZT5NSUlDUERDQ0FlbWdBd0lCQWdJSVRsOUZORjMxZlY4
+d0NnWUlLb1VEQndFQkF3SXdQREVMTUFrR0ExVUVCaE1DDQpVbFV4TFRBckJnTlZC
+QU1lSkFRbkJEVUVRQVJIQkRVRVFRUStCRElBSUFRaEJFSUVNQVE5QkRnRVFRUTdC
+REFFDQpNakFnRncweE9UQTBNVFV3T0RFd01EZGFHQTh5TURrNU1EUXhOVEE0TVRB
+d04xb3dQREVMTUFrR0ExVUVCaE1DDQpVbFV4TFRBckJnTlZCQU1lSkFRbkJEVUVR
+QVJIQkRVRVFRUStCRElBSUFRaEJFSUVNQVE5QkRnRVFRUTdCREFFDQpNakJtTUI4
+R0NDcUZBd2NCQVFFQk1CTUdCeXFGQXdJQ0pBQUdDQ3FGQXdjQkFRSUNBME1BQkVB
+eHg0TGNIcHBPDQpZTG02VjVaY0YzK0dFazhSK2NNTE1SQmtBQWFkUnkyUTcvMmlw
+d3J4c01zbGplZitpRHlCaG1OVVZPeXBOMzhwDQpxVHoxamNWelJxdWNvNEhGTUlI
+Q01BNEdBMVVkRHdFQi93UUVBd0lCM2pBZEJnTlZIU1VFRmpBVUJnZ3JCZ0VGDQpC
+UWNEQWdZSUt3WUJCUVVIQXdRd0hRWURWUjBPQkJZRUZQejJXZDM0L2N5ekJOdlVM
+MGM2cWpUZ3BxYzJNR0VHDQpBMVVkSXdSYU1GaUFGUHoyV2QzNC9jeXpCTnZVTDBj
+NnFqVGdwcWMyb1VDa1BqQThNUXN3Q1FZRFZRUUdFd0pTDQpWVEV0TUNzR0ExVUVB
+eDRrQkNjRU5RUkFCRWNFTlFSQkJENEVNZ0FnQkNFRVFnUXdCRDBFT0FSQkJEc0VN
+QVF5DQpNQThHQTFVZEV3UUlNQVlCQWY4Q0FRRXdDZ1lJS29VREJ3RUJBd0lEUVFB
+RFBPb0FTR09YOFJnYk15REtRVlgrDQpaeVdIdjZTSlJiTGR5a2FPTS9zWncxYjND
+Z0NrV29kMTVNSTd2bjBNZFVtQkdOTldIMkFxbnVjZGVUc2taSUlTDQo8L0JhbmtD
+ZXJ0aWZpY2F0ZT4NCgkJCTxDdXN0b21lclNpZ25hdHVyZT4NCgkJCQk8R3JvdXBT
+aWduYXR1cmVzIG51bWJlckdyb3VwPSIyIj4NCgkJCQkJPENlcnRpZmljYXRlPk1J
+SUNQRENDQWVtZ0F3SUJBZ0lJVGw5Rk5GMzFmVjh3Q2dZSUtvVURCd0VCQXdJd1BE
+RUxNQWtHQTFVRUJoTUMNClVsVXhMVEFyQmdOVkJBTWVKQVFuQkRVRVFBUkhCRFVF
+UVFRK0JESUFJQVFoQkVJRU1BUTlCRGdFUVFRN0JEQUUNCk1qQWdGdzB4T1RBME1U
+VXdPREV3TURkYUdBOHlNRGs1TURReE5UQTRNVEF3TjFvd1BERUxNQWtHQTFVRUJo
+TUMNClVsVXhMVEFyQmdOVkJBTWVKQVFuQkRVRVFBUkhCRFVFUVFRK0JESUFJQVFo
+QkVJRU1BUTlCRGdFUVFRN0JEQUUNCk1qQm1NQjhHQ0NxRkF3Y0JBUUVCTUJNR0J5
+cUZBd0lDSkFBR0NDcUZBd2NCQVFJQ0EwTUFCRUF4eDRMY0hwcE8NCllMbTZWNVpj
+RjMrR0VrOFIrY01MTVJCa0FBYWRSeTJRNy8yaXB3cnhzTXNsamVmK2lEeUJobU5V
+Vk95cE4zOHANCnFUejFqY1Z6UnF1Y280SEZNSUhDTUE0R0ExVWREd0VCL3dRRUF3
+SUIzakFkQmdOVkhTVUVGakFVQmdnckJnRUYNCkJRY0RBZ1lJS3dZQkJRVUhBd1F3
+SFFZRFZSME9CQllFRlB6MldkMzQvY3l6Qk52VUwwYzZxalRncHFjMk1HRUcNCkEx
+VWRJd1JhTUZpQUZQejJXZDM0L2N5ekJOdlVMMGM2cWpUZ3BxYzJvVUNrUGpBOE1R
+c3dDUVlEVlFRR0V3SlMNClZURXRNQ3NHQTFVRUF4NGtCQ2NFTlFSQUJFY0VOUVJC
+QkQ0RU1nQWdCQ0VFUWdRd0JEMEVPQVJCQkRzRU1BUXkNCk1BOEdBMVVkRXdRSU1B
+WUJBZjhDQVFFd0NnWUlLb1VEQndFQkF3SURRUUFEUE9vQVNHT1g4UmdiTXlES1FW
+WCsNClp5V0h2NlNKUmJMZHlrYU9NL3NadzFiM0NnQ2tXb2QxNU1JN3ZuME1kVW1C
+R05OV0gyQXFudWNkZVRza1pJSVMNCjwvQ2VydGlmaWNhdGU+DQoJCQkJPC9Hcm91
+cFNpZ25hdHVyZXM+DQoJCQkJPEdyb3VwU2lnbmF0dXJlcyBudW1iZXJHcm91cD0i
+MSI+DQoJCQkJCTxDZXJ0aWZpY2F0ZT5NSUlCM3pDQ0FZeWdBd0lCQWdJSU5xUkZk
+M3MyL3Frd0NnWUlLb1VEQndFQkF3SXdIVEVMTUFrR0ExVUVCaE1DDQpVbFV4RGpB
+TUJnTlZCQU1UQlVKcFpHVnVNQ0FYRFRJd01UQXlNVEV4TXpJMU4xb1lEekl3T1Rr
+eE1ESXhNVEV6DQpNalUzV2pBZE1Rc3dDUVlEVlFRR0V3SlNWVEVPTUF3R0ExVUVB
+eE1GUW1sa1pXNHdaakFmQmdncWhRTUhBUUVCDQpBVEFUQmdjcWhRTUNBaVFBQmdn
+cWhRTUhBUUVDQWdOREFBUkFwLzdBbGtyd3QxdlpyOG1Kb3hOb2I1TkhhT3lYDQpn
+Q3pKNmlYM203Kzk4RHhSRS9XK3dTK2dPQTl6UzZ0anNZd3hnSXVRQ293Vnp3Wm9L
+UllSakNOd0tLT0JwakNCDQpvekFPQmdOVkhROEJBZjhFQkFNQ0F0d3dIUVlEVlIw
+bEJCWXdGQVlJS3dZQkJRVUhBd0lHQ0NzR0FRVUZCd01FDQpNQjBHQTFVZERnUVdC
+QlRsSUlSYVBqRXJsRmhvK0RQNGFOV2ZXS2ZNbGpCQ0JnTlZIU01FT3pBNWdCVGxJ
+SVJhDQpQakVybEZobytEUDRhTldmV0tmTWxxRWhwQjh3SFRFTE1Ba0dBMVVFQmhN
+Q1VsVXhEakFNQmdOVkJBTVRCVUpwDQpaR1Z1TUE4R0ExVWRFd1FJTUFZQkFmOENB
+UUV3Q2dZSUtvVURCd0VCQXdJRFFRQXhlRTA1TTVRRDNKZHJibmhwDQpoRXhMcndp
+K2RDYzBXb3JBbVJ0c2hDOXNSSHk4dm5ibjF1SURzWVJDT0xJbUNkYmhnVlN5Ymo3
+ZU1JK21qQnNKDQplcktEPC9DZXJ0aWZpY2F0ZT4NCgkJCQk8L0dyb3VwU2lnbmF0
+dXJlcz4NCgkJCTwvQ3VzdG9tZXJTaWduYXR1cmU+DQoJCTwvQ3J5cHRvUGFyYW1l
+dGVycz4NCgkJPERvY3VtZW50IGRvY0tpbmQ9IjAzIj4NCgkJCTxTaWduZWQ+DQoJ
+CQkJPFJ1bGVTaWduYXR1cmVzPigwKTwvUnVsZVNpZ25hdHVyZXM+DQoJCQk8L1Np
+Z25lZD4NCgkJPC9Eb2N1bWVudD4NCgkJPERvY3VtZW50IGRvY0tpbmQ9IjA0Ij4N
+CgkJCTxTaWduZWQ+DQoJCQkJPFJ1bGVTaWduYXR1cmVzPigwKTwvUnVsZVNpZ25h
+dHVyZXM+DQoJCQk8L1NpZ25lZD4NCgkJPC9Eb2N1bWVudD4NCgkJPERvY3VtZW50
+IGRvY0tpbmQ9IjA1Ij4NCgkJCTxTaWduZWQ+DQoJCQkJPFJ1bGVTaWduYXR1cmVz
+PigwKTwvUnVsZVNpZ25hdHVyZXM+DQoJCQk8L1NpZ25lZD4NCgkJPC9Eb2N1bWVu
+dD4NCgkJPERvY3VtZW50IGRvY0tpbmQ9IjEwIj4NCgkJCTxTaWduZWQ+DQoJCQkJ
+PFJ1bGVTaWduYXR1cmVzPigxMSk8L1J1bGVTaWduYXR1cmVzPg0KCQkJPC9TaWdu
+ZWQ+DQoJCTwvRG9jdW1lbnQ+DQoJCTxEb2N1bWVudCBkb2NLaW5kPSIxMSI+DQoJ
+CQk8U2lnbmVkPg0KCQkJCTxSdWxlU2lnbmF0dXJlcz4oMTEpPC9SdWxlU2lnbmF0
+dXJlcz4NCgkJCTwvU2lnbmVkPg0KCQk8L0RvY3VtZW50Pg0KCQk8RG9jdW1lbnQg
+ZG9jS2luZD0iMTQiPg0KCQkJPFNpZ25lZD4NCgkJCQk8UnVsZVNpZ25hdHVyZXM+
+KDApPC9SdWxlU2lnbmF0dXJlcz4NCgkJCTwvU2lnbmVkPg0KCQk8L0RvY3VtZW50
+Pg0KCTwvRGF0YT4NCjwvU2V0dGluZ3M+</Data>
         </GetSettingsResponse>
-	</Success>
+    </Success>
 </ResultBank>
 
 ```
@@ -694,34 +771,106 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 - [XML-файл **настроек обмена с банком**](../application-layer/Settings.xml)
 
 ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<Settings xmlns="http://directbank.1c.ru/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    id="EFD857B5-7FA8-4195-8666-2CCADBC3C8DE"
-    formatVersion="2.3.1"
-    creationDate="2019-04-22T09:38:51" 
-    userAgent="DemoBankService">
-	<Sender bic="044525888" name="ДЕМО-БАНК" />
-    <Recipient id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001" />
-    <Data>
-        <CustomerID>2806</CustomerID>
-        <BankServerAddress>https://dbogate.demobank.ru/</BankServerAddress>
-        <FormatVersion>2.3.1</FormatVersion>
-        <Encoding>UTF-8</Encoding>
-        <Logon>
-            <Login>
-                <User>user_login</User>
-            </Login>
-        </Logon>
-        <Document docKind="03" />
-        <Document docKind="05" />
-        <Document docKind="10" />
-        <Document docKind="11" />
-        <Document docKind="14" />
-        <Document docKind="30" />
-    </Data>
+
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Settings xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1176f361-6062-44c9-afed-0fb07fc81a0a" formatVersion="2.3.2" creationDate="2021-04-27T14:58:53" userAgent="DirectBankService">
+	<Sender bic="041111111"/>
+	<Recipient id="24102018" name="ООО "Торговый дом"" inn="1001156517" kpp="100101001"/>
+	<Data>
+		<CustomerID>24102018</CustomerID>
+		<BankServerAddress>http://testdirectbank.1c.ru/go</BankServerAddress>
+		<FormatVersion>2.3.2</FormatVersion>
+		<Encoding>UTF-8</Encoding>
+		<Logon>
+			<Certificate>
+				<EncryptingAlgorithm>GOST 28147-89</EncryptingAlgorithm>
+			</Certificate>
+		</Logon>
+		<CryptoParameters>
+			<CSPName>Crypto-Pro GOST R 34.10-2012 Cryptographic Service Provider</CSPName>
+			<CSPType>80</CSPType>
+			<SignAlgorithm>GR 34.10-2012 256</SignAlgorithm>
+			<HashAlgorithm>GR 34.11-2012 256</HashAlgorithm>
+			<Encrypted>
+				<EncryptAlgorithm>GOST 28147-89</EncryptAlgorithm>
+			</Encrypted>
+			<BankCertificate>MIICPDCCAemgAwIBAgIITl9FNF31fV8wCgYIKoUDBwEBAwIwPDELMAkGA1UEBhMC
+UlUxLTArBgNVBAMeJAQnBDUEQARHBDUEQQQ+BDIAIAQhBEIEMAQ9BDgEQQQ7BDAE
+MjAgFw0xOTA0MTUwODEwMDdaGA8yMDk5MDQxNTA4MTAwN1owPDELMAkGA1UEBhMC
+UlUxLTArBgNVBAMeJAQnBDUEQARHBDUEQQQ+BDIAIAQhBEIEMAQ9BDgEQQQ7BDAE
+MjBmMB8GCCqFAwcBAQEBMBMGByqFAwICJAAGCCqFAwcBAQICA0MABEAxx4LcHppO
+YLm6V5ZcF3+GEk8R+cMLMRBkAAadRy2Q7/2ipwrxsMsljef+iDyBhmNUVOypN38p
+qTz1jcVzRquco4HFMIHCMA4GA1UdDwEB/wQEAwIB3jAdBgNVHSUEFjAUBggrBgEF
+BQcDAgYIKwYBBQUHAwQwHQYDVR0OBBYEFPz2Wd34/cyzBNvUL0c6qjTgpqc2MGEG
+A1UdIwRaMFiAFPz2Wd34/cyzBNvUL0c6qjTgpqc2oUCkPjA8MQswCQYDVQQGEwJS
+VTEtMCsGA1UEAx4kBCcENQRABEcENQRBBD4EMgAgBCEEQgQwBD0EOARBBDsEMAQy
+MA8GA1UdEwQIMAYBAf8CAQEwCgYIKoUDBwEBAwIDQQADPOoASGOX8RgbMyDKQVX+
+ZyWHv6SJRbLdykaOM/sZw1b3CgCkWod15MI7vn0MdUmBGNNWH2AqnucdeTskZIIS
+</BankCertificate>
+			<CustomerSignature>
+				<GroupSignatures numberGroup="2">
+					<Certificate>MIICPDCCAemgAwIBAgIITl9FNF31fV8wCgYIKoUDBwEBAwIwPDELMAkGA1UEBhMC
+UlUxLTArBgNVBAMeJAQnBDUEQARHBDUEQQQ+BDIAIAQhBEIEMAQ9BDgEQQQ7BDAE
+MjAgFw0xOTA0MTUwODEwMDdaGA8yMDk5MDQxNTA4MTAwN1owPDELMAkGA1UEBhMC
+UlUxLTArBgNVBAMeJAQnBDUEQARHBDUEQQQ+BDIAIAQhBEIEMAQ9BDgEQQQ7BDAE
+MjBmMB8GCCqFAwcBAQEBMBMGByqFAwICJAAGCCqFAwcBAQICA0MABEAxx4LcHppO
+YLm6V5ZcF3+GEk8R+cMLMRBkAAadRy2Q7/2ipwrxsMsljef+iDyBhmNUVOypN38p
+qTz1jcVzRquco4HFMIHCMA4GA1UdDwEB/wQEAwIB3jAdBgNVHSUEFjAUBggrBgEF
+BQcDAgYIKwYBBQUHAwQwHQYDVR0OBBYEFPz2Wd34/cyzBNvUL0c6qjTgpqc2MGEG
+A1UdIwRaMFiAFPz2Wd34/cyzBNvUL0c6qjTgpqc2oUCkPjA8MQswCQYDVQQGEwJS
+VTEtMCsGA1UEAx4kBCcENQRABEcENQRBBD4EMgAgBCEEQgQwBD0EOARBBDsEMAQy
+MA8GA1UdEwQIMAYBAf8CAQEwCgYIKoUDBwEBAwIDQQADPOoASGOX8RgbMyDKQVX+
+ZyWHv6SJRbLdykaOM/sZw1b3CgCkWod15MI7vn0MdUmBGNNWH2AqnucdeTskZIIS
+</Certificate>
+				</GroupSignatures>
+				<GroupSignatures numberGroup="1">
+					<Certificate>MIIB3zCCAYygAwIBAgIINqRFd3s2/qkwCgYIKoUDBwEBAwIwHTELMAkGA1UEBhMC
+UlUxDjAMBgNVBAMTBUJpZGVuMCAXDTIwMTAyMTExMzI1N1oYDzIwOTkxMDIxMTEz
+MjU3WjAdMQswCQYDVQQGEwJSVTEOMAwGA1UEAxMFQmlkZW4wZjAfBggqhQMHAQEB
+ATATBgcqhQMCAiQABggqhQMHAQECAgNDAARAp/7Alkrwt1vZr8mJoxNob5NHaOyX
+gCzJ6iX3m7+98DxRE/W+wS+gOA9zS6tjsYwxgIuQCowVzwZoKRYRjCNwKKOBpjCB
+ozAOBgNVHQ8BAf8EBAMCAtwwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwME
+MB0GA1UdDgQWBBTlIIRaPjErlFho+DP4aNWfWKfMljBCBgNVHSMEOzA5gBTlIIRa
+PjErlFho+DP4aNWfWKfMlqEhpB8wHTELMAkGA1UEBhMCUlUxDjAMBgNVBAMTBUJp
+ZGVuMA8GA1UdEwQIMAYBAf8CAQEwCgYIKoUDBwEBAwIDQQAxeE05M5QD3Jdrbnhp
+hExLrwi+dCc0WorAmRtshC9sRHy8vnbn1uIDsYRCOLImCdbhgVSybj7eMI+mjBsJ
+erKD</Certificate>
+				</GroupSignatures>
+			</CustomerSignature>
+		</CryptoParameters>
+		<Document docKind="03">
+			<Signed>
+				<RuleSignatures>(0)</RuleSignatures>
+			</Signed>
+		</Document>
+		<Document docKind="04">
+			<Signed>
+				<RuleSignatures>(0)</RuleSignatures>
+			</Signed>
+		</Document>
+		<Document docKind="05">
+			<Signed>
+				<RuleSignatures>(0)</RuleSignatures>
+			</Signed>
+		</Document>
+		<Document docKind="10">
+			<Signed>
+				<RuleSignatures>(11)</RuleSignatures>
+			</Signed>
+		</Document>
+		<Document docKind="11">
+			<Signed>
+				<RuleSignatures>(11)</RuleSignatures>
+			</Signed>
+		</Document>
+		<Document docKind="14">
+			<Signed>
+				<RuleSignatures>(0)</RuleSignatures>
+			</Signed>
+		</Document>
+	</Data>
 </Settings>
+
 ```
 
 # <a name="transport"></a> Порядок взаимодействия на транспортном уровне
@@ -880,69 +1029,60 @@ IC8+CiAgICA8L0RhdGE+CjwvU2V0dGluZ3M+</Data>
 
 ```xml
 
-POST https://dbogate.demobank.ru/SendPack HTTP/1.1
-Host: dbogate.demobank.ru
-Accept: */*
-SID: 8867755b6fbb4ae296aa0ac6b179ae88
-CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
-APIVersion: 2.3.1
+POST http://testdirectbank.1c.ru/go/SendPack HTTP/1.1
+Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
+Accept: */*
+APIVersion: 2.3.2
+CustomerID: 24102018
+SID: c0f6a4d5-c10d-4dfb-84f0-922fcb1b36e9
 Content-Type: application/xml; charset=utf-8
-Content-Length: 5239
 
 <?xml version="1.0" encoding="UTF-8"?>
-<Packet xmlns="http://directbank.1c.ru/XMLSchema"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    id="9bad1c35-b7ff-11e4-9a88-0003ffb697db"
-    formatVersion="2.3.1"
-    creationDate="2016-04-19T11:12:31"
-    userAgent="1С - БЭД: 1.7">
-	<Sender>
-		<Customer id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="ИП Петрович и Ко" inn="761700021132"/>
-	</Sender>
-	<Recipient>
-		<Bank bic="044525888" name="ДЕМО-БАНК"/>
-	</Recipient>
-	<Document id="a64225eb-9737-4d80-bd9d-1ffe5fdb63b1" dockind="10" formatVersion="2.3.1">
-		<Data>
-PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxQYXlEb2NSdSB4bWxucz0i
-aHR0cDovL2RpcmVjdGJhbmsuMWMucnUvWE1MU2NoZW1hIiANCgl4bWxuczp4cz0iaHR0cDovL3d3
-dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIA0KICAgIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5v
-cmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIA0KICAgIGlkPSIwNTY4ODA5Ni0wODA2LTRlZjAt
-YWY0Yy01NzJmNzVkYmFmN2MiIA0KICAgIGZvcm1hdFZlcnNpb249IjIuMi4xIiANCiAgICBjcmVh
-dGlvbkRhdGU9IjIwMTYtMDQtMjJUMDk6Mzg6NTEiIA0KICAgIHVzZXJBZ2VudD0iMdChIC0g0JHQ
-rdCUOiAxLjQuMS4xOyDQkdC40LHQu9C40L7RgtC10LrQsNCt0LvQtdC60YLRgNC+0L3QvdGL0YXQ
-lNC+0LrRg9C80LXQvdGC0L7QsjogMS40LjEuMSI+DQogICAgPFNlbmRlciBpZD0iaWQ6NDI7czo5
-OTk5IiBuYW1lPSLQotC+0YDQs9C+0LLRi9C5INC00L7QvCDQmtC+0LzQv9C70LXQutGB0L3Ri9C5
-IiBpbm49Ijc3MDUyNjA2OTkiIGtwcD0iNzcwNTAxMDAxIi8+DQogICAgPFJlY2lwaWVudCBiaWM9
-IjA0NDUyNTg4OCIgbmFtZT0i0JTQldCc0J4t0JHQkNCd0JoiLz4NCgk8RGF0YT4NCiAgICAgICAg
-PERvY05vPjE0PC9Eb2NObz4NCiAgICAgICAgPERvY0RhdGU+MjAxNi0wNC0yMjwvRG9jRGF0ZT4N
-CiAgICAgICAgPFN1bT4xNTwvU3VtPg0KICAgICAgICA8UGF5ZXI+DQogICAgICAgICAgICA8TmFt
-ZT7QotC+0YDQs9C+0LLRi9C5INC00L7QvCAi0JrQvtC80L/Qu9C10LrRgdC90YvQuSI8L05hbWU+
-DQogICAgICAgICAgICA8SU5OPjc3MDUyNjA2OTk8L0lOTj4NCiAgICAgICAgICAgIDxLUFA+Nzcw
-NTAxMDAxPC9LUFA+DQogICAgICAgICAgICA8QWNjb3VudD40MDcwMjgxMDgxMzEyMzEyMzIyMjwv
-QWNjb3VudD4NCiAgICAgICAgICAgIDxCYW5rPg0KICAgICAgICAgICAgICAgIDxCSUM+MDQ0NTI1
-ODg4PC9CSUM+DQogICAgICAgICAgICAgICAgPE5hbWU+0JTQldCc0J4t0JHQkNCd0Jo8L05hbWU+
-DQogICAgICAgICAgICAgICAgPENvcnJlc3BBY2M+MzAxMDE4MTA1MDAwMDAwMDAyMTk8L0NvcnJl
-c3BBY2M+DQogICAgICAgICAgICA8L0Jhbms+DQogICAgICAgIDwvUGF5ZXI+DQogICAgICAgIDxQ
-YXllZT4NCiAgICAgICAgICAgIDxOYW1lPtCe0J7QniAi0JrQsNC90YbRgtC+0LLQsNGA0YsiPC9O
-YW1lPg0KICAgICAgICAgICAgPElOTj43NzA0NTk2MTgxPC9JTk4+DQogICAgICAgICAgICA8S1BQ
-Pjc3MDQwMTAwMTwvS1BQPg0KICAgICAgICAgICAgPEFjY291bnQ+NDA3MDI4MTA0MDEyMDAwMDAw
-MzU8L0FjY291bnQ+DQogICAgICAgICAgICA8QmFuaz4NCiAgICAgICAgICAgICAgICA8QklDPjA0
-NDUyNTk5OTwvQklDPg0KICAgICAgICAgICAgICAgIDxOYW1lPtCU0JXQnNCeLdCR0JDQndCaMjwv
-TmFtZT4NCiAgICAgICAgICAgICAgICA8Q29ycmVzcEFjYz4zMDEwMTgxMDIwMDAwMDAwMDU5Mzwv
-Q29ycmVzcEFjYz4NCiAgICAgICAgICAgIDwvQmFuaz4NCiAgICAgICAgPC9QYXllZT4NCiAgICAg
-ICAgPFRyYW5zaXRpb25LaW5kPjAxPC9UcmFuc2l0aW9uS2luZD4NCiAgICAgICAgPFByaW9yaXR5
-PjM8L1ByaW9yaXR5Pg0KICAgICAgICA8UHVycG9zZT7Qt9CwINGC0L7QstCw0YA8L1B1cnBvc2U+
-DQoJPC9EYXRhPg0KPC9QYXlEb2NSdT4=
-		</Data>
-		<Signature x509IssuerName="Удостоверяющий Центр Банка" x509SerialNumber="022C03015B03010F022FE2">
-		<SignedData>
-MIIGbQYJKoZIhvcNAQcCoIIGXjCCBloCAQExEDAOBgorBgEEAa1ZAQIBBQAwCwYJKoZIhvcNAQcBoIIEwDCCBLwwggRdoAMCAQICCwFsAwFbAwEPAh/mMA4GCisGAQQBrVkBAwIFADCB7jELMAkGA1UEBhMCUlUxFTATBgNVBAgeDAQcBD4EQQQ6BDIEMDEVMBMGA1UEBx4MBBwEPgRBBDoEMgQwMTUwMwYDVQQKHiwEHgQQBB4AIAQRBDAEPQQ6ACAAIgQkBBoAIAQeBEIEOgRABEsEQgQ4BDUAIjFfMF0GA1UEAx5WBCMENAQ+BEEEQgQ+BDIENQRABE8ETgRJBDgEOQAgBCYENQQ9BEIEQAAgBB4EEAQeACAEEQQwBD0EOgAgACIEJAQaACAEHgRCBDoEQARLBEIEOAQ1ACIxGTAXBgkqhkiG9w0BCQEWCnBraUBvZmMucnUwHhcNMTQxMDA2MDcxMDMyWhcNMTUxMjEwMDcxMDMyWjCB2jELMAkGA1UEBhMCUlUxFTATBgNVBAgeDAQcBB4EIQQaBBIEEDEpMCcGA1UECh4gBBgEHwAgBB8ENQRCBEAEPgQyBDgERwAgBDgAIAQaBD4xDzANBgNVBAseBgBEAEIATzFFMEMGA1UEDB48BBgEPQQ0BDgEMgQ4BDQEQwQwBDsETAQ9BEsEOQAgBD8EQAQ1BDQEPwRABDgEPQQ4BDwEMARCBDUEOwRMMTEwLwYDVQQDHigEHwQ1BEIEQAQ+BDIAIAQfBDUEQgRAACAEHwQ1BEIEQAQ+BDIEOARHMF4wFgYKKwYBBAGtWQEGAgYIKoZIzj0DAQcDRAAEQQSvMegoDmW20Br8eWAZipeFbWfUR7J7d/pdCiO8pMw2lfHX1Vjet7cTaiG0vQhwmD+TGIOh+FgRHBkMZXNVDl1Do4IB6TCCAeUwHQYDVR0OBBYEFC8QX0Ex2lQqSBZDVujpCceXCG/wMIIBJAYDVR0jBIIBGzCCAReAFEnfU+U9thXTPfDAbd2Z2TnrZfZZoYH0pIHxMIHuMQswCQYDVQQGEwJSVTEVMBMGA1UECB4MBBwEPgRBBDoEMgQwMRUwEwYDVQQHHgwEHAQ+/EhM5EcGNPvvvYXrX14rtH0Q7J7yOAV1ROmMxggFwMIIBbAIBATCB/jCB7jELMAkGA1UEBhMCUlUxRJBDgEOQAgBCYENQQ9BEIEQAAgBB4EEAQeACAEEQQwBD0EOgAgACIEJAQaACAEHgRCBDoEQARLBEIEOAQ1ACIxGTAXBgkqhkiG9w0BCQEWCnBraUBvZmMucnUCCwFsAwFbAwEPAh/mMA4GCisGAQQBrVkBAgEFADAMBgorBgEEAa1ZAQYCBEgwRgIhALJ4SDHfRVBq9egxlJiAC+tGHRNU7vg4AIUA8iS9qFmOAiEA5rdyEyuYZ5H46JjDNVJexcYmgCuDNpiU15rskCKDuVc=
-        	</SignedData>
-		</Signature>
-	</Document>
+<Packet xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="df9863e9-9059-4936-a75f-7fbf1117a105" formatVersion="2.3.2" creationDate="2021-04-27T14:59:09" userAgent="1С - БЭД: 1.9.2.10; БиблиотекаЭлектронныхДокументовДемо: 1.9.2.10">
+    <Sender>
+        <Customer id="24102018" name="Общество с ограниченной ответственностью &quot;Торговый дом&quot;" inn="1001156517" kpp="100101001"/>
+    </Sender>
+    <Recipient>
+        <Bank bic="041111111" name="1С:Банк"/>
+    </Recipient>
+    <Document id="2429e5d3-a0f1-4592-9c9e-62740ff59fd4" dockind="05" formatVersion="2.3.2">
+        <Data>77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxQcm9i
+ZSB4bWxucz0iaHR0cDovL2RpcmVjdGJhbmsuMWMucnUvWE1MU2NoZW1hIiB4bWxu
+czp4cz0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhz
+aT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIGlk
+PSIyNDI5ZTVkMy1hMGYxLTQ1OTItOWM5ZS02Mjc0MGZmNTlmZDQiIGZvcm1hdFZl
+cnNpb249IjIuMy4yIiBjcmVhdGlvbkRhdGU9IjIwMjEtMDQtMjdUMTQ6NTg6NTUi
+IHVzZXJBZ2VudD0iMdChIC0g0JHQrdCUOiAxLjkuMi4xMDsg0JHQuNCx0LvQuNC+
+0YLQtdC60LDQrdC70LXQutGC0YDQvtC90L3Ri9GF0JTQvtC60YPQvNC10L3RgtC+
+0LLQlNC10LzQvjogMS45LjIuMTAiPg0KCTxTZW5kZXIgaWQ9IjI0MTAyMDE4IiBu
+YW1lPSLQntCe0J4gJnF1b3Q70KLQvtGA0LPQvtCy0YvQuSDQtNC+0LwmcXVvdDsi
+IGlubj0iMTAwMTE1NjUxNyIga3BwPSIxMDAxMDEwMDEiLz4NCgk8UmVjaXBpZW50
+IGJpYz0iMDQxMTExMTExIiBuYW1lPSIx0KE60JHQsNC90LoiLz4NCjwvUHJvYmU+
+</Data>
+        <Signature x509IssuerName="Biden" x509SerialNumber="36A445777B36FEA9">
+            <SignedData>MIIDjgYJKoZIhvcNAQcCoIIDfzCCA3sCAQExDjAMBggqhQMHAQECAgUAMAsGCSqG
+SIb3DQEHAaCCAeMwggHfMIIBjKADAgECAgg2pEV3ezb+qTAKBggqhQMHAQEDAjAd
+MQswCQYDVQQGEwJSVTEOMAwGA1UEAxMFQmlkZW4wIBcNMjAxMDIxMTEzMjU3WhgP
+MjA5OTEwMjExMTMyNTdaMB0xCzAJBgNVBAYTAlJVMQ4wDAYDVQQDEwVCaWRlbjBm
+MB8GCCqFAwcBAQEBMBMGByqFAwICJAAGCCqFAwcBAQICA0MABECn/sCWSvC3W9mv
+yYmjE2hvk0do7JeALMnqJfebv73wPFET9b7BL6A4D3NLq2OxjDGAi5AKjBXPBmgp
+FhGMI3Aoo4GmMIGjMA4GA1UdDwEB/wQEAwIC3DAdBgNVHSUEFjAUBggrBgEFBQcD
+AgYIKwYBBQUHAwQwHQYDVR0OBBYEFOUghFo+MSuUWGj4M/ho1Z9Yp8yWMEIGA1Ud
+IwQ7MDmAFOUghFo+MSuUWGj4M/ho1Z9Yp8yWoSGkHzAdMQswCQYDVQQGEwJSVTEO
+MAwGA1UEAxMFQmlkZW4wDwYDVR0TBAgwBgEB/wIBATAKBggqhQMHAQEDAgNBADF4
+TTkzlAPcl2tueGmETEuvCL50JzRaisCZG2yEL2xEfLy+dufW4gOxhEI4siYJ1uGB
+VLJuPt4wj6aMGwl6soMxggFwMIIBbAIBATApMB0xCzAJBgNVBAYTAlJVMQ4wDAYD
+VQQDEwVCaWRlbgIINqRFd3s2/qkwDAYIKoUDBwEBAgIFAKCB3TAYBgkqhkiG9w0B
+CQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMTA0MjcxMTU4NTdaMC8G
+CSqGSIb3DQEJBDEiBCBGEhWZpZh8DlEb7sRy5WgACyKQCjD1Df7uZrxdbXMYLTBy
+BgsqhkiG9w0BCRACLzFjMGEwXzBdMAoGCCqFAwcBAQICBCBFa4ObLOWrBOX8qfT6
+aUc/SvtGb+bOE/GadziwAdbDbzAtMCGkHzAdMQswCQYDVQQGEwJSVTEOMAwGA1UE
+AxMFQmlkZW4CCDakRXd7Nv6pMAwGCCqFAwcBAQEBBQAEQIkNL637sz3RkjR2wuP2
+EmZv+JnRKGjLo0DRkVNtPji3GB4R91OGI5X18xN1XpdBUw8dTIJX4KlxV4YMsw65
+sWU=</SignedData>
+        </Signature>
+    </Document>
 </Packet>
 
 ```
@@ -951,17 +1091,21 @@ MIIGbQYJKoZIhvcNAQcCoIIGXjCCBloCAQExEDAOBgorBgEEAa1ZAQIBBQAwCwYJKoZIhvcNAQcBoIIE
 
 **Пример успешного ответа** на запрос отправки транспортного контейнера:
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 145
+Server: nginx
+Date: Tue, 27 Apr 2021 11:59:09 GMT
+Content-Length: 386
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
         <SendPacketResponse>
-			<ID>50214584626</ID>
+            <ID>fb981835-a471-4ad9-9c00-bc4783b0ac5d</ID>
         </SendPacketResponse>
     </Success>
 </ResultBank>
@@ -1081,13 +1225,15 @@ Content-Length: 145
 
 ```http
 
-GET https://dbogate.demobank.ru/GetPackList?date=16.02.2015%2011:25:32 HTTP/1.1
-Host: dbogate.demobank.ru
-Accept: */*
-SID: 8867755b6fbb4ae296aa0ac6b179ae88
-CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
-APIVersion: 2.3.1
+GET http://testdirectbank.1c.ru/go/GetPackList?date=27.04.2021%2000%3A00%3A00 HTTP/1.1
+Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
+Accept: */*
+X-1C-Request-UID: 4ec72f9f-3b02-42d9-8b2d-57034d33dc51
+Accept-Charset: UTF-8
+APIVersion: 2.3.2
+CustomerID: 24102018
+SID: c0f6a4d5-c10d-4dfb-84f0-922fcb1b36e9
 
 ```
 
@@ -1095,18 +1241,23 @@ User-Agent: 1C+Enterprise/8.3
 
 **Пример успешного ответа** на запрос получения списка уникальных идентификаторов:
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 145
-
+Server: nginx
+Date: Tue, 27 Apr 2021 11:59:09 GMT
+Content-Length: 570
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
-        <GetPacketListResponse TimeStampLastPacket="2019-02-19T11:15:42">
-			<PacketID>50214585876</PacketID>
+        <GetPacketListResponse TimeStampLastPacket="2021-04-27T14:59:10">
+            <PacketID>842c67fe-a514-494a-81d6-f27655e9504e</PacketID>
+            <PacketID>f3bd5fd8-5078-4466-8706-57fb267420c5</PacketID>
+            <PacketID>9b77d006-3748-44be-9bdc-2a7521b5bbdf</PacketID>
         </GetPacketListResponse>
     </Success>
 </ResultBank>
@@ -1192,13 +1343,15 @@ Content-Length: 145
 
 ```http
 
-GET https://dbogate.demobank.ru/GetPack?id=50214585876 HTTP/1.1
-Host: dbogate.demobank.ru
-Accept: */*
-SID: 8867755b6fbb4ae296aa0ac6b179ae88
-CustomerID: 82007cb2-dfd1-4193-b903-16cc9b7231c9
-APIVersion: 2.3.1
+GET http://testdirectbank.1c.ru/go/GetPack?id=9b77d006-3748-44be-9bdc-2a7521b5bbdf HTTP/1.1
+Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
+Accept: */*
+X-1C-Request-UID: 76f78e37-3f57-440a-8400-48f541607720
+Accept-Charset: UTF-8
+APIVersion: 2.3.2
+CustomerID: 24102018
+SID: c0f6a4d5-c10d-4dfb-84f0-922fcb1b36e9
 
 ```
 
@@ -1206,52 +1359,46 @@ User-Agent: 1C+Enterprise/8.3
 
 **Пример успешного ответа** на запрос получения транспортного контейнера:
 
-```xml
+```http
 
 HTTP/1.1 200 OK
-Content-Type: application/xml;charset=UTF-8
-Content-Length: 2502
+Server: nginx
+Date: Tue, 27 Apr 2021 11:59:10 GMT
+Content-Length: 1837
+Proxy-Connection: Keep-Alive
+Via: 1.1 FWD9
+Connection: Keep-Alive
 
 <?xml version="1.0" encoding="UTF-8"?>
-<ResultBank xmlns ="http://directbank.1c.ru/XMLSchema" formatVersion="2.3.1">
+<ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
-		<GetPacketResponse userAgent="Back Office"
-        creationDate="2019-02-19T11:15:42"
-        formatVersion="2.3.1"
-        id="0ef6778b-4a2c-717c-e053-248c410af4aa">
-			<Sender>
-				<Bank bic="044525888"/>
-			</Sender>
-        	<Recipient>
-				<Customer id="82007cb2-dfd1-4193-b903-16cc9b7231c9"/>
-	    	</Recipient>
-        	<Document notifyRequired="false"
-        	signResponse="false"
-        	encrypted="false"
-        	compressed="false"
-        	testOnly="false"
-        	formatVersion="2.3.1"
-        	dockind="01"
-        	id="0f6d6032-31b0-8337-e053-248c410a1832">
-        		<Data contentType="text/xml"fileName="">
-PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFN0YXR1c1BhY2tldE5vdGlj
-ZSB4bWxucz0iaHR0cDovL2RpcmVjdGJhbmsuMWMucnUvWE1MU2NoZW1hIiBpZD0iMGY2ZDYwMzIt
-MzFiMC04MzM3LWUwNTMtMjQ4YzQxMGExODMyIiBmb3JtYXRWZXJzaW9uPSIyLjIuMSIgY3JlYXRp
-b25EYXRlPSIyMDE1LTAyLTE5VDExOjAzOjQ4Ij4KICA8U2VuZGVyPgogICAgPEJhbmsgYmljPSIw
-NDQ1MjU5ODUiLz4KICA8L1NlbmRlcj4KICA8UmVjaXBpZW50PgogICAgPEN1c3RvbWVyIGlkPSI1
-MDIwMzYyNzEyMSIvPgogIDwvUmVjaXBpZW50PgogIDxJRFJlc3VsdFN1Y2Nlc3NSZXNwb25zZT41
-MDIxNDU4MDgzODwvSURSZXN1bHRTdWNjZXNzUmVzcG9uc2U+CiAgPFJlc3VsdD4KICAgIDxTdGF0
-dXM+CiAgICAgIDxDb2RlPjAxPC9Db2RlPgogICAgICA8TmFtZT7Qn9GA0LjQvdGP0YI8L05hbWU+
-CiAgICA8L1N0YXR1cz4KICA8L1Jlc3VsdD4KPC9TdGF0dXNQYWNrZXROb3RpY2U+Cg==
-         		</Data>
-         		<Signature x509SerialNumber="076C03010BBF0109029965" x509IssuerName="CN=Удостоверяющий Центр Банка">
-            		<SignedData>
-MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkwggTlMIIEh6ADAgECAgsBbAMBC78BCQKZZTAOBgorBgEEAa1ZAQMCBQAwgc4xCzAJBgNVBAYTAlJVMRUwEwYDVQQIHgwEHAQ+BEEEOgQyBDAxFTATBgNVBAceDAQcBD4EQQQ6BDIEMDEpMCcGA1UECh4gBB0EHgQcBB4EIQAtBBEEEAQdBBoAIAAoBB4EEAQeACkxSTBHBgNVBAMeQAQjBDQEPgRBBEIEPgQyBDUEQARPBE4ESQQ4BDkAIAQmBDUEPQRCBEAAIAQdBB4EHAQeBCEALQQRBBAEHQQaBDAxGzAZBgkqhkiG9w0BCQEWDHBraUBub21vcy5ydTAeFw0xMzExMTQwNzMyNThaFw0xNTAxMTgwNzMyNThaMIIBITELMAkGA1UEBhMCUlUxFTATBgNVBAgeDAQcBD4EQQQ6BDIEMDEVMBMGA1UEBx4MBBwEPgRBBDoEMgQwMS0wKwYDVQQKHiQAIgQdBB4EHAQeBCEALQQRBBAEHQQaACIAIAAoBB4EEAQeACkxDzANBgNVBAseBgBEAEIATzEbMBkGA1UEDB4SBB8EQAQ1BDcEOAQ0BDUEPQRCMWkwZwYDVQQDHmAEIAQ+BDwEMAQ1BDIAIAQUBDwEOARCBEAEOAQ5ACAEFwQwBDoENQRABDgENQQyBDgERwAgACgEQgQ1BEEEQgQ+BDIESwQ5ACAENAQ7BE8AIAAxBEEALQBnAGEAdABlACkxHDAaBgkqhkiG9w0BCQEWDXRlc3RAbm9tb3MucnUwXjAWBgorBgEEAa1ZAQYCBggqhkjOPQMBBwNEAARBBBoll+XCHC/ID+sPpsUVDoRJU/HDcmYuGNPMVdXPRL07BSieQTeK4xA6dBOTLR1Z8ucCMk88DDKcsMpVoq1absejggHrMIIB5zAdBgNVHQ4EFgQUiBzxHvsiSOqenCuS8clloCsNaPAwgewGA1UdIwSB5DCB4aGB1KSB0TCBzjELMAkGA1UEBhMCUlUxFTATBgNVBAgeDAQcBD4EQQQ6BDIEMDEVMBMGA1UEBx4MBBwEPgRBBDoEMgQwMSkwJwYDVQQKHiAEHQQeBBwEHgQhAC0EEQQQBB0EGgAgACgEHgQQBB4AKTFJMEcGA1UEAx5ABCMENAQ+BEEEQgQ+BDIENQRABE8ETgRJBDgEOQAgBCYENQQ9BEIEQAAgBB0EHgQcBB4EIQAtBBEEEAQdBBoEMDEbMBkGCSqGSIb3DQEJARYMcGtpQG5vbW9zLnJ1gggBbAEBAQkBATALBgNVHQ8EBAMCAvwwUgYDVR0fBEswSTBHoEWgQ4ZBaHR0cDovL3d3dy5ub21vcy5ydS9mLzEvY29ycG9yYXRlL3JlbW90ZS9jYS1yZWdsYW1lbnQvQ0FfMjAxMC5jcmwwdgYDVR0gBG8wbTBrBgorBgEEAYKcBQEBMF0wPgYIKwYBBQUHAgEWMmh0dHA6Ly93d3cubm9tb3MucnUvY29ycG9yYXRlL3JlbW90ZS9jYS1yZWdsYW1lbnQvMBsGCCsGAQUFBwICMA8aDcTBziBCUy1DbGllbnQwDgYKKwYBBAGtWQEDAgUAA0gAMEUCIDuMdg2vSXPo2m2OhyOfD/j9W3j++cq54aLhgHGX7bPnAiEAtuUXHPpSyGNVmb5EWlwXVKGg5suhKYMNyK43/tOkXr0xggL0MIIC8AIBATCB3jCBzjELMAkGA1UEBhMCUlUxFTATBgNVBAgeDAQcBD4EQQQ6BDIEMDEVMBMGA1UEBx4MBBwEPgRBBDoEMgQwMSkwJwYDVQQKHiAEHQQeBBwEHgQhAC0EEQQQBB0EGgAgACgEHgQQBB4AKTFJMEcGA1UEAx5ABCMENAQ+BEEEQgQ+BDIENQRABE8ETgRJBDgEOQAgBCYENQQ9BEIEQAAgBB0EHgQcBB4EIQAtBBEEEAQdBBoEMDEbMBkGCSqGSIb3DQEJARYMcGtpQG5vbW9zLnJ1AgsBbAMBC78BCQKZZTAMBgorBgEEAa1ZAQIBoIIBoTAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNTAyMTkwODA1MTNaMC8GCSqGSIb3DQEJBDEiBCDwWSYDkO3so1xbyB9h+5Mg52gP3ijqZJf1ahFRkZY6yjCCATQGCyqGSIb3DQEJEAIvMYIBIzCCAR8wggEbMIIBFzAMBgorBgEEAa1ZAQIBBCAgbg9HriqIAf1RGVxkrmpXXGeP7FhgC+mpECPlbRVmgTCB5DCB1KSB0TCBzjELMAkGA1UEBhMCUlUxFTATBgNVBAgeDAQcBD4EQQQ6BDIEMDEVMBMGA1UEBx4MBBwEPgRBBDoEMgQwMSkwJwYDVQQKHiAEHQQeBBwEHgQhAC0EEQQQBB0EGgAgACgEHgQQBB4AKTFJMEcGA1UEAx5ABCMENAQ+BEEEQgQ+BDIENQRABE8ETgRJBDgEOQAgBCYENQQ9BEIEQAAgBB0EHgQcBB4EIQAtBBEEEAQdBBoEMDEbMBkGCSqGSIb3DQEJARYMcGtpQG5vbW9zLnJ1AgsBbAMBC78BCQKZZTAOBgorBgEEAa1ZAQYCBQAERzBFAiAytZ9jF+7AJVoiFF7DNkQX5r/zzUvKAPRLDLzGxdONPAIhAKrwnkXPd4K4vOGy64JLkLlGJZbCJagYYuV57EYI3mvq
-            		</SignedData>
-         		</Signature>
-        	</Document>
-    	</GetPacketResponse>
-	</Success>
+        <GetPacketResponse id="9b77d006-3748-44be-9bdc-2a7521b5bbdf" formatVersion="2.3.2" creationDate="2021-04-27T14:59:10">
+            <Sender>
+                <Bank bic="041111111" name="1С:БАНК"/>
+            </Sender>
+            <Recipient>
+                <Customer id="24102018" name="ООО &quot;Торговый дом&quot;" inn="1001156517" kpp="100101001"/>
+            </Recipient>
+            <Document id="7a758615-f8c0-434c-a056-fc93cb89672e" dockind="02" formatVersion="2.3.2">
+                <Data fileName="FileFromBank">77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTdGF0
+dXNEb2NOb3RpY2UgeG1sbnM9Imh0dHA6Ly9kaXJlY3RiYW5rLjFjLnJ1L1hNTFNj
+aGVtYSIgeG1sbnM6eHM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1h
+IiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWlu
+c3RhbmNlIiBpZD0iN2E3NTg2MTUtZjhjMC00MzRjLWEwNTYtZmM5M2NiODk2NzJl
+IiBmb3JtYXRWZXJzaW9uPSIyLjMuMiIgY3JlYXRpb25EYXRlPSIyMDIxLTA0LTI3
+VDE0OjU5OjA5IiB1c2VyQWdlbnQ9IkRpcmVjdEJhbmtTZXJ2aWNlIj4NCgk8U2Vu
+ZGVyPg0KCQk8QmFuayBiaWM9IjA0MTExMTExMSIgbmFtZT0iMdChOtCR0JDQndCa
+Ii8+DQoJPC9TZW5kZXI+DQoJPFJlY2lwaWVudD4NCgkJPEN1c3RvbWVyIGlkPSIy
+NDEwMjAxOCIgbmFtZT0i0J7QntCeICZxdW90O9Ci0L7RgNCz0L7QstGL0Lkg0LTQ
+vtC8JnF1b3Q7IiBpbm49IjEwMDExNTY1MTciIGtwcD0iMTAwMTAxMDAxIi8+DQoJ
+PC9SZWNpcGllbnQ+DQoJPEV4dElEPjI0MjllNWQzLWEwZjEtNDU5Mi05YzllLTYy
+NzQwZmY1OWZkNDwvRXh0SUQ+DQoJPFJlc3VsdD4NCgkJPFN0YXR1cz4NCgkJCTxD
+b2RlPjAxPC9Db2RlPg0KCQkJPE1vcmVJbmZvPtCi0LXRgdGCINCy0YvQv9C+0LvQ
+vdC10L3QviDRg9GB0L/QtdGI0L3QvjwvTW9yZUluZm8+DQoJCTwvU3RhdHVzPg0K
+CTwvUmVzdWx0Pg0KPC9TdGF0dXNEb2NOb3RpY2U+</Data>
+            </Document>
+        </GetPacketResponse>
+    </Success>
 </ResultBank>
 
 ```
@@ -1276,17 +1423,13 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
 - [XML-файл **запроса-зонда**](../application-layer/Probe.xml)
 
 ```xml
+
 <?xml version="1.0" encoding="UTF-8"?>
-<Probe xmlns="http://directbank.1c.ru/XMLSchema"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	id="eafa28b5-6600-424c-b0d3-3785274d570d"
-	formatVersion="2.3.1"
-	creationDate="2019-04-22T09:33:57"
-	userAgent="1С - БЭД: 1.7.1.1; БиблиотекаЭлектронныхДокументов: 1.7.1.1">
-	<Sender id="82007cb2-dfd1-4193-b903-16cc9b7231c9" name="Торговый дом Комплексный" inn="7705260699" kpp="770501001"/>
-	<Recipient bic="044525888" name="ДЕМО-БАНК "/>
+<Probe xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="2429e5d3-a0f1-4592-9c9e-62740ff59fd4" formatVersion="2.3.2" creationDate="2021-04-27T14:58:55" userAgent="1С - БЭД: 1.9.2.10; БиблиотекаЭлектронныхДокументовДемо: 1.9.2.10">
+	<Sender id="24102018" name="ООО "Торговый дом"" inn="1001156517" kpp="100101001"/>
+	<Recipient bic="041111111" name="1С:Банк"/>
 </Probe>
+
 ```
 
 
@@ -1307,10 +1450,3 @@ MIIIGAYJKoZIhvcNAQcCoIIICTCCCAUCAQExDjAMBgorBgEEAa1ZAQIBMAsGCSqGSIb3DQEHAaCCBOkw
  - Для аутентификации по логину и паролю с двухфакторной авторизацией — [Logon](#logon), а затем — [LogonOTP](#logonOTP).
 - Запрос на получение списка GUID транспортных контейнеров, готовых к отправке клиенту банком — [GetPackList](#getPackList).
 - Для каждого GUID из ранее полученного списка запрос на получение транспортного контейнера — [GetPack](#getPack).
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMzUyODY1ODk5LDkwMTczNzIxNSw1NDI3ND
-E4MzksNjE4MjIwMzgxLC0yNDAxNTk2MDcsLTExMDQ1MjAxNzAs
-LTIzNzMxNjE2NywxNzg0NTkxNzY3LC0yMTM0OTM0ODI0LC0xMj
-g1MTIzNDMyLC0xNTkwNzY0MDMzLC02OTYzOTM0MzhdfQ==
--->

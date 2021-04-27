@@ -216,7 +216,6 @@ Content-Type: application/xml; charset=utf-8
 **Пример успешного ответа** на запрос аутентификации по **логину и паролю**:
 
 ```http
-
 HTTP/1.1 200 OK
 Server: nginx
 Date: Tue, 27 Apr 2021 11:47:12 GMT
@@ -224,7 +223,8 @@ Content-Length: 378
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
 	<Success>
@@ -233,7 +233,6 @@ Connection: Keep-Alive
 		</LogonResponse>
 	</Success>
 </ResultBank>
-
 ```
 
 
@@ -241,7 +240,6 @@ Connection: Keep-Alive
 **Пример успешного ответа** на запрос аутентификации по **логину и паролю + ОТР**:
 
 ```http
-
 HTTP/1.1 200 OK
 Server: nginx
 Date: Tue, 27 Apr 2021 11:53:28 GMT
@@ -249,7 +247,8 @@ Content-Length: 464
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
@@ -261,7 +260,6 @@ Connection: Keep-Alive
         </LogonResponse>
     </Success>
 </ResultBank>
-
 ```
 
 ### <a name="logonOTP"></a> Метод LogonOTP (HTTP-метод POST)
@@ -335,7 +333,6 @@ Connection: Keep-Alive
 
 
 ```http
-
 POST http://testdirectbank.1c.ru/go/LogonOTP HTTP/1.1
 Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
@@ -345,7 +342,6 @@ OTP: 111111
 SID: 5452194f-bb4d-4609-912f-35c849e9e0a3
 CustomerID: 0
 Content-Type: application/xml; charset=utf-8
-
 ```
 
 
@@ -353,7 +349,6 @@ Content-Type: application/xml; charset=utf-8
 **Пример успешного ответа** на запрос передачи **OTP**:
 
 ```http
-
 HTTP/1.1 200 OK
 Server: nginx
 Date: Tue, 27 Apr 2021 11:53:36 GMT
@@ -361,7 +356,8 @@ Content-Length: 378
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.1.1" userAgent="DirectBankService">
     <Success>
@@ -370,7 +366,6 @@ Connection: Keep-Alive
         </LogonResponse>
     </Success>
 </ResultBank>
-
 ```
 
 ## <a name="certAuthentication"></a> Аутентификация по закрытому ключу сертификата
@@ -433,7 +428,6 @@ Content: <XML-файл, соответствующий [XML-схеме данн�
 **Пример запроса** аутентификации по **закрытому ключу сертификата**:
 
 ```http
-
 POST http://testdirectbank.1c.ru/go/LogonCert HTTP/1.1
 Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
@@ -442,7 +436,8 @@ AvailableAPIVersion: 2.3.2
 APIVersion: 2.3.2
 CustomerID: 24102018
 Content-Type: application/xml; charset=utf-8
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <X509Data xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="eb14c5fc-b430-4c1c-a5f3-5b536ff54ab9" formatVersion="2.3.2" creationDate="2021-04-27T14:59:08" userAgent="1С - БЭД: 1.9.2.10; БиблиотекаЭлектронныхДокументовДемо: 1.9.2.10">
     <X509IssuerName>Biden</X509IssuerName>
@@ -459,13 +454,11 @@ ZGVuMA8GA1UdEwQIMAYBAf8CAQEwCgYIKoUDBwEBAwIDQQAxeE05M5QD3Jdrbnhp
 hExLrwi+dCc0WorAmRtshC9sRHy8vnbn1uIDsYRCOLImCdbhgVSybj7eMI+mjBsJ
 erKD</X509Certificate>
 </X509Data>
-
 ```
 
 **Пример успешного ответа** на запрос аутентификации по **закрытому ключу сертификата**:
 
 ```http
-
 HTTP/1.1 200 OK
 Server: nginx
 Date: Tue, 27 Apr 2021 11:59:08 GMT
@@ -473,7 +466,8 @@ Content-Length: 882
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
@@ -489,7 +483,6 @@ rYVRrIfwoO8myudpP0vOLhwLgWAYa9fWx9pLf/WAWmBahHGZjek=</EncryptedSID>
         </LogonCertResponse>
     </Success>
 </ResultBank>
-
 ```
 
 
@@ -632,7 +625,6 @@ rYVRrIfwoO8myudpP0vOLhwLgWAYa9fWx9pLf/WAWmBahHGZjek=</EncryptedSID>
 
 
 ```http
-
 POST http://testdirectbank.1c.ru/go/GetSettings HTTP/1.1
 Host: testdirectbank.1c.ru:80
 User-Agent: 1C+Enterprise/8.3
@@ -645,7 +637,6 @@ Inn: 1001156517
 Account: 40702810125000001191
 CustomerID: 0
 Content-Type: application/xml; charset=utf-8
-
 ```
 
 
@@ -655,7 +646,6 @@ Content-Type: application/xml; charset=utf-8
 
 
 ```http
-
 HTTP/1.1 200 OK
 Server: nginx
 Date: Tue, 27 Apr 2021 11:58:53 GMT
@@ -663,7 +653,8 @@ Content-Length: 6470
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
@@ -762,7 +753,6 @@ Pg0KCTwvRGF0YT4NCjwvU2V0dGluZ3M+</Data>
         </GetSettingsResponse>
     </Success>
 </ResultBank>
-
 ```
 
 
@@ -771,8 +761,7 @@ Pg0KCTwvRGF0YT4NCjwvU2V0dGluZ3M+</Data>
 - [XML-файл **настроек обмена с банком**](../application-layer/Settings.xml)
 
 ```xml
-
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Settings xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="1176f361-6062-44c9-afed-0fb07fc81a0a" formatVersion="2.3.2" creationDate="2021-04-27T14:58:53" userAgent="DirectBankService">
 	<Sender bic="041111111"/>
 	<Recipient id="24102018" name="ООО "Торговый дом"" inn="1001156517" kpp="100101001"/>
@@ -870,7 +859,6 @@ erKD</Certificate>
 		</Document>
 	</Data>
 </Settings>
-
 ```
 
 # <a name="transport"></a> Порядок взаимодействия на транспортном уровне
@@ -1027,7 +1015,7 @@ erKD</Certificate>
 
 **Пример отправки** транспортного контейнера:
 
-```xml
+```http
 
 POST http://testdirectbank.1c.ru/go/SendPack HTTP/1.1
 Host: testdirectbank.1c.ru:80
@@ -1037,7 +1025,8 @@ APIVersion: 2.3.2
 CustomerID: 24102018
 SID: c0f6a4d5-c10d-4dfb-84f0-922fcb1b36e9
 Content-Type: application/xml; charset=utf-8
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Packet xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="df9863e9-9059-4936-a75f-7fbf1117a105" formatVersion="2.3.2" creationDate="2021-04-27T14:59:09" userAgent="1С - БЭД: 1.9.2.10; БиблиотекаЭлектронныхДокументовДемо: 1.9.2.10">
     <Sender>
@@ -1084,7 +1073,6 @@ sWU=</SignedData>
         </Signature>
     </Document>
 </Packet>
-
 ```
 
 
@@ -1100,7 +1088,8 @@ Content-Length: 386
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
@@ -1109,7 +1098,6 @@ Connection: Keep-Alive
         </SendPacketResponse>
     </Success>
 </ResultBank>
-
 ```
 
 
@@ -1250,7 +1238,8 @@ Content-Length: 570
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>
@@ -1261,7 +1250,6 @@ Connection: Keep-Alive
         </GetPacketListResponse>
     </Success>
 </ResultBank>
-
 ```
 
 Система «1С:Предприятие 8» после получения списка GUID готовых к передаче транспортных контейнеров запрашивает конкретный транспортный контейнер по его GUID (запрос на ресурс Банка производится HTTP-методом GET – метод [GetPack](#getPack)). В синхронном режиме банковская система возвращает либо ошибку, либо транспортный контейнер (XML-файл, соответствующий XML-схеме ответа банк.сервиса).
@@ -1368,7 +1356,8 @@ Content-Length: 1837
 Proxy-Connection: Keep-Alive
 Via: 1.1 FWD9
 Connection: Keep-Alive
-
+```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <ResultBank xmlns="http://directbank.1c.ru/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" formatVersion="2.3.2" userAgent="DirectBankService">
     <Success>

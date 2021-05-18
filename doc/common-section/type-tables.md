@@ -426,10 +426,10 @@
 
 ### <a name="edo-ParticipantType"></a> Тип edo:ParticipantType (*[1C-Bank_Exch-Common.xsd](../xsd-scheme/readme.md#1C-Bank_Exch-Common)*)
 
-| Параметр | Тип                                         |   Кратность    | Описание                               |
-| -------- | ------------------------------------------- | :------------: | -------------------------------------- |
-| Customer | [CustomerPartyType](#edo-CustomerPartyType) | выбор <br> [1] | Идентификатор транспортного контейнера |
-| Bank     | [BankPartyType](#edo-BankPartyType)         | выбор <br> [1] | Версия формата                         |
+| Параметр | Тип                                         |   Кратность    | Описание |
+| -------- | ------------------------------------------- | :------------: | -------- |
+| Customer | [CustomerPartyType](#edo-CustomerPartyType) | выбор <br> [1] | Клиент   |
+| Bank     | [BankPartyType](#edo-BankPartyType)         | выбор <br> [1] | Банк     |
 
 ### <a name="edo-PayDocRu"></a> Тип edo:PayDocRu (*[1C-Bank_PayDocRu.xsd](../xsd-scheme/readme.md#1C-Bank_PayDocRu)*)
 
